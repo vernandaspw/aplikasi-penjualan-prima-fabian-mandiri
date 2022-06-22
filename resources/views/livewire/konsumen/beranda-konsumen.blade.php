@@ -23,7 +23,7 @@
             </ul>
         </div>
     </nav>
-    <div class="body" style="padding-top: 70px; padding-bottom: 65px;">
+    <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container">
             <a href="{{ url('perusahaan') }}" class="produkcard" style="text-decoration: none; color:black;">
                 <div class="card">
@@ -47,10 +47,10 @@
                 <div class="mt-3">
                     <span style="font-size: 17px"><b>Kategori</b></span>
                 </div>
-                <div class="scrollmenu mt-1">
+                <div class="scrollmenu">
                     @forelse ($produkkategori as $data)
-                        <a href="{{ url('produk?kategori='. $data->id) }}">
-                            <div class="card border py-0 border-gray-500 border-1 shadow-sm me-1"
+                        <a href="{{ url('produk?kategori=' . $data->id) }}">
+                            <div class="card border border-light py-0 shadow-sm my-2 me-1"
                                 style="width: 100%; height: 100%;">
                                 <div class="card-body">
                                     <div class=" text-wrap text-center" style="font-size: 14px;">
@@ -68,10 +68,10 @@
                 <div class="mt-3">
                     <span style="font-size: 17px"><b>Merek</b></span>
                 </div>
-                <div class="scrollmenu mt-1">
+                <div class="scrollmenu">
                     @forelse ($produkmerek as $data)
-                        <a href="{{ url('produk?merek='.$data->id) }}">
-                            <div class="card border py-0 border-gray-500 border-1 shadow-sm me-1"
+                        <a href="{{ url('produk?merek=' . $data->id) }}">
+                            <div class="card border border-light py-0 shadow-sm my-2 me-1"
                                 style="width: 100%; height: 100%;">
                                 <div class="card-body">
                                     <div class=" text-wrap text-center" style="font-size: 14px;">
@@ -90,11 +90,12 @@
                     <span style="font-size: 17px"><b>Produk Terbaru</b></span>
                 </div>
                 <div class="mt-1">
-                    <div class="row row-cols-2">
+                    <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-md-3">
                         <div class="col mt-2">
-                            <a href="{{ url('produk', 1) }}" class="produkcard" style="text-decoration: none; color: black;">
-                                <div class="card">
-                                    <img src="{{ asset('parabola.jpg') }}" class="" width="100%"
+                            <a href="{{ url('produk', 1) }}" class="produkcard"
+                                style="text-decoration: none; color: black;">
+                                <div class="card shadow-sm border-0">
+                                    <img src="{{ asset('parabola.jpg') }}" class="card-img-top" width="100%"
                                         height="170px" alt="">
                                     <div class="card-body">
                                         <div class="" style="font-size: 14px">
