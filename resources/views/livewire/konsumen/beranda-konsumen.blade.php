@@ -18,9 +18,6 @@
                     placeholder="cari produk" aria-label="cariproduk">
             </ul>
 
-
-
-
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
                     <a class="shadow-m px-3" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
@@ -44,6 +41,7 @@
                                 aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis...
                             </p>
                             <div class="">
+
                                 selengkapnya >>
                             </div>
                         </div>

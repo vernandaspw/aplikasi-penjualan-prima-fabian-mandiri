@@ -19,7 +19,13 @@
     <!-- Styles -->
     <style>
         body {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'roboto', sans-serif;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
         }
     </style>
     @livewireStyles

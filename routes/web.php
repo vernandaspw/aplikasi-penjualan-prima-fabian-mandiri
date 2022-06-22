@@ -3,6 +3,7 @@
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\DaftarKonsumen;
 use App\Http\Livewire\Konsumen\LoginKonsumen;
+use App\Http\Livewire\Konsumen\MainPageKonsumen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', BerandaKonsumen::class);
+Route::get('/', MainPageKonsumen::class);
 
 Route::middleware(['konsumenisnotlogin'])->group(function () {
     Route::get('login', LoginKonsumen::class);
