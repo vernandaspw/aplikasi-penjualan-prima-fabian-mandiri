@@ -11,12 +11,16 @@ class BerandaKonsumen extends Component
 {
     public $perusahaan, $produkkategori, $produkmerek;
 
+    public function produk()
+    {
+        redirect('produk');
+    }
+
     public function mount()
     {
         $this->perusahaan = Pengaturan::first();
         $this->produkkategori = ProdukKategori::latest()->get();
         $this->produkmerek = ProdukMerek::latest()->get();
-  
     }
 
     public function render()

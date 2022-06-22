@@ -5,6 +5,8 @@ use App\Http\Livewire\Konsumen\DaftarKonsumen;
 use App\Http\Livewire\Konsumen\LoginKonsumen;
 use App\Http\Livewire\Konsumen\MainPageKonsumen;
 use App\Http\Livewire\Konsumen\PerusahaanKonsumen;
+use App\Http\Livewire\Konsumen\ProdukDetailKonsumen;
+use App\Http\Livewire\Konsumen\ProdukKonsumen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', MainPageKonsumen::class);
 Route::get('/perusahaan', PerusahaanKonsumen::class);
+Route::get('/produk', ProdukKonsumen::class);
+Route::get('/produk/{id}', ProdukDetailKonsumen::class);
 
 Route::middleware(['konsumenisnotlogin'])->group(function () {
     Route::get('login', LoginKonsumen::class)->name('loginkonsumen');

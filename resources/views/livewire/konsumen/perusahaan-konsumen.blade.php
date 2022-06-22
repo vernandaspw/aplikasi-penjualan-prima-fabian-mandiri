@@ -18,7 +18,6 @@
             </ul> --}}
         </div>
     </nav>
-
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container">
             <h2>

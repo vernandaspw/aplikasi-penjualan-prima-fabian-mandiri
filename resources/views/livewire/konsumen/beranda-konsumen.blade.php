@@ -12,7 +12,7 @@
                     <span class="text-white">
                     </span>
                 </li>
-                <input class="form-control rounded border border-right-0 border-1 p-1" type="cariproduk"
+                <input wire:click='produk' class="form-control rounded border border-right-0 border-1 p-1" type="cariproduk"
                     placeholder="cari produk" aria-label="cariproduk">
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
