@@ -1,5 +1,5 @@
 <div>
-    <nav class="p-3 navbar navbar-dark navbar-expand fixed-top shadow" style="background-color: orange">
+    <nav class="p-3 navbar navbar-dark navbar-expand fixed-top shadow-sm" style="background-color: orange">
         <div class="container-fluid">
             <ul class="navbar-nav me-auto w-full align-items-centar">
                 <li class="nav-item me-3">
@@ -19,7 +19,72 @@
         </div>
     </nav>
 
-    <div class="body" style="padding-top: 70px; padding-bottom: 65px;">
-        perusahaan
+    <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
+        <div class="container">
+            <h2>
+                {{ $perusahaan->nm_perusahaan }}
+            </h2>
+            <div>
+                <div class="">
+                    <h5><b>Tentang Perusahaan</b></h5>
+                </div>
+                <p>
+                    {{ $perusahaan->tentang }}
+                </p>
+            </div>
+            <div class="mt-2">
+                <h5><b>Alamat</b></h5>
+            </div>
+            @if ($perusahaan->provinsi != null)
+                <div class="">
+                    provinsi :{{ $perusahaan->provinsi }}
+                </div>
+            @endif
+            @if ($perusahaan->kota != null)
+                <div class="">
+                    kota :{{ $perusahaan->kota }}
+                </div>
+            @endif
+            @if ($perusahaan->kecamatan != null)
+                <div class="">
+                    kecamatan :{{ $perusahaan->kecamatan }}
+                </div>
+            @endif
+            @if ($perusahaan->alamat != null)
+                <div class="">
+                    alamat :{{ $perusahaan->alamat }}
+                </div>
+            @endif
+            @if ($perusahaan->kodepos != null)
+                <div class="">
+                    kodepos :{{ $perusahaan->kodepos }}
+                </div>
+            @endif
+
+            <br>
+            @if ($perusahaan->nm_toko != null)
+                <div class="">
+                    <b> Toko :{{ $perusahaan->nm_toko }}</b>
+                </div>
+            @endif
+            @if ($perusahaan->no_telp != null)
+                <div class="">
+                    telp :{{ $perusahaan->no_telp }}
+                </div>
+            @endif
+            @if ($perusahaan->no_wa != null)
+                <div class="">
+                    whatsapp :{{ $perusahaan->no_wa }}
+                </div>
+            @endif
+            @if ($perusahaan->ig != null)
+                <div class="">
+                    instagram :{{ $perusahaan->ig }}
+                </div>
+            @endif
+
+
+
+        </div>
     </div>
 </div>
