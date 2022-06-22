@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
             KonsumenSeeder::class,
             PegawaiSeeder::class,
             KeranjangSeeder::class,
-            PengaturanSeeder::class
+            PengaturanSeeder::class,
+
+            ProdukKategoriSeeder::class,
+            ProdukMerekSeeder::class
         ]);
     }
 }

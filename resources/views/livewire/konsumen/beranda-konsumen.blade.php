@@ -48,16 +48,20 @@
                     <span style="font-size: 17px"><b>Kategori</b></span>
                 </div>
                 <div class="scrollmenu mt-1">
-                    <a href="{{ url('pesanan-create') }}">
-                        <div class="card border py-0 border-gray-500 border-1 shadow-sm me-1"
-                            style="width: 100%; height: 100%;">
-                            <div class="card-body">
-                                <div class=" text-wrap text-center" style="font-size: 14px;">
-                                    Antena
+                    @forelse ($produkkategori as $data)
+                        <a href="{{ url('produk?kategori='. $data->id) }}">
+                            <div class="card border py-0 border-gray-500 border-1 shadow-sm me-1"
+                                style="width: 100%; height: 100%;">
+                                <div class="card-body">
+                                    <div class=" text-wrap text-center" style="font-size: 14px;">
+                                        {{ $data->nama }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @empty
+                        tidak ada
+                    @endforelse
                 </div>
             </section>
             <section class="merek">
@@ -65,16 +69,20 @@
                     <span style="font-size: 17px"><b>Merek</b></span>
                 </div>
                 <div class="scrollmenu mt-1">
-                    <a href="{{ url('pesanan-create') }}">
-                        <div class="card border py-0 border-gray-500 border-1 shadow-sm me-1"
-                            style="width: 100%; height: 100%;">
-                            <div class="card-body">
-                                <div class=" text-wrap text-center" style="font-size: 14px;">
-                                    Sonoff
+                    @forelse ($produkmerek as $data)
+                        <a href="{{ url('produk?merek='.$data->id) }}">
+                            <div class="card border py-0 border-gray-500 border-1 shadow-sm me-1"
+                                style="width: 100%; height: 100%;">
+                                <div class="card-body">
+                                    <div class=" text-wrap text-center" style="font-size: 14px;">
+                                        {{ $data->nama }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @empty
+                        tidak ada
+                    @endforelse
                 </div>
             </section>
             <section class="produk">
@@ -84,7 +92,7 @@
                 <div class="mt-1">
                     <div class="row row-cols-2">
                         <div class="col mt-2">
-                            <a href="#" class="produkcard" style="text-decoration: none; color: black;">
+                            <a href="{{ url('produk', 1) }}" class="produkcard" style="text-decoration: none; color: black;">
                                 <div class="card">
                                     <img src="{{ asset('parabola.jpg') }}" class="" width="100%"
                                         height="170px" alt="">

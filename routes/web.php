@@ -27,7 +27,7 @@ Route::get('/', MainPageKonsumen::class);
 Route::get('/perusahaan', PerusahaanKonsumen::class);
 
 Route::middleware(['konsumenisnotlogin'])->group(function () {
-    Route::get('login', LoginKonsumen::class);
+    Route::get('login', LoginKonsumen::class)->name('loginkonsumen');
     Route::get('daftar', DaftarKonsumen::class);
 });
 
