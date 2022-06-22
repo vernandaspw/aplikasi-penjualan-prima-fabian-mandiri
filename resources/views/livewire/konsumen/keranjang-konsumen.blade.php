@@ -23,33 +23,39 @@
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container-fluid">
             <div class="card shadow-sm border border-light">
-                <div class="d-flex justify-content-start">
-                    <img src="{{ asset('parabola.jpg') }}" width="100px" height="70px"
-                        class="img-fluid rounded-start" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Antena Parabola</h5>
-                        <p class="card-text">
-                            @uang(10000)
-                        </p>
-                        <p class="card-text">
-                            <div class="">
-                                <div class="k d-flex ">
-                                    <button wire:click='tambah' class="btn btn-primary">
-                                        +
-                                    </button>
-                                    <input  min="1" class="w-25 text-center border border-light py-1 px-0" type="number"
-                                        wire:model='qty'>
-                                    <button wire:click='kurang' class="btn btn-warning">
-                                        -
-                                    </button>
-                                </div>
-                                <div class="kanan mt-2">
-                                    <button wire:click="delete('1')" class="btn btn-danger">Hapus</button>
-                                </div>
-                            </div>
-                        </p>
+                <div class="card-body pb-0">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <img src="{{ asset('parabola.jpg') }}" width="100px" height="100px" class="rounded"
+                            alt="...">
+                        <div class="ms-3">
+
+                            <h5 class="card-title">Antena Parabola</h5>
+
+                            <p class="card-text">
+                                @uang(10000)
+                            </p>
+
+                        </div>
                     </div>
+                    <p class="card-text">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="k d-flex">
+                            <button wire:click='tambah' class="btn btn-primary">
+                                +
+                            </button>
+                            <input min="1" class="w-25 text-center border border-light py-1 px-0" type="number"
+                                wire:model='qty'>
+                            <button wire:click='kurang' class="btn btn-warning">
+                                -
+                            </button>
+                        </div>
+                        <div class="kanan mt-2">
+                            <button wire:click="delete('1')" class="btn btn-danger">Hapus</button>
+                        </div>
+                    </div>
+                    </p>
                 </div>
+
             </div>
         </div>
     </div>
