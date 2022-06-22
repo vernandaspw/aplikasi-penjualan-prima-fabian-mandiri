@@ -26,7 +26,7 @@
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container">
             <a href="{{ url('perusahaan') }}" class="produkcard" style="text-decoration: none; color:black;">
-                <div class="card">
+                <div class="card border border-orange-500">
                     <div class="card-body">
                         <div class="d-flex justify-content-start align-items-center">
                             <div class="kiri me-3">
@@ -94,7 +94,7 @@
                         <div class="col mt-2">
                             <a href="{{ url('produk', 1) }}" class="produkcard"
                                 style="text-decoration: none; color: black;">
-                                <div class="card shadow-sm border-0">
+                                <div class="card produkitem shadow-sm border-0">
                                     <img src="{{ asset('parabola.jpg') }}" class="card-img-top" width="100%"
                                         height="170px" alt="">
                                     <div class="card-body">
