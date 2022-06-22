@@ -28,15 +28,14 @@
             <a href="{{ url('perusahaan') }}" class="produkcard" style="text-decoration: none; color:black;">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-start align-items-center">
                             <div class="kiri me-3">
                                 <img src="{{ asset('logo.png') }}" width="60px" alt="">
                             </div>
-                            <div class="kanan">
-                                <b style="font-size: {{ env('FONTSIZE_H') }}">Nama perusahaan</b>
+                            <div class="kanan text-start">
+                                <b style="font-size: {{ env('FONTSIZE_H') }}">{{ $perusahaan->nm_perusahaan }}</b>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
-                                    aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis...
+                                    {{ Str::limit($perusahaan->tentang, 130, '...') }}
                                 </p>
 
                             </div>

@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Konsumen;
 
+use App\Models\Pengaturan;
 use Livewire\Component;
 
 class BerandaKonsumen extends Component
 {
-    public $cek;
+    public $perusahaan;
 
-    public function cek()
+    public function mount()
     {
-        $this->cek = 5;
+        $this->perusahaan = Pengaturan::first();
     }
 
     public function render()
