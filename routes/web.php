@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\DaftarKonsumen;
+use App\Http\Livewire\Konsumen\KeranjangKonsumen;
 use App\Http\Livewire\Konsumen\LoginKonsumen;
 use App\Http\Livewire\Konsumen\MainPageKonsumen;
 use App\Http\Livewire\Konsumen\PerusahaanKonsumen;
@@ -29,6 +30,8 @@ Route::get('/', MainPageKonsumen::class);
 Route::get('/perusahaan', PerusahaanKonsumen::class);
 Route::get('/produk', ProdukKonsumen::class);
 Route::get('/produk/{id}', ProdukDetailKonsumen::class);
+
+Route::get('/keranjang', KeranjangKonsumen::class);
 
 Route::middleware(['konsumenisnotlogin'])->group(function () {
     Route::get('login', LoginKonsumen::class)->name('loginkonsumen');

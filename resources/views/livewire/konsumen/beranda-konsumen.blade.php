@@ -17,7 +17,7 @@
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
-                    <a class="shadow-m px-3" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
+                    <a class="shadow-m px-2" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
                             alt=""></a>
                 </li>
             </ul>
