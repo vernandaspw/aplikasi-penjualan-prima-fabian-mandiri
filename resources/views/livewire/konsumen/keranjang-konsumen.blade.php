@@ -34,17 +34,17 @@
                         <p class="card-text">
                             <div class="">
                                 <div class="k d-flex ">
-                                    <button class="btn btn-primary">
+                                    <button wire:click='tambah' class="btn btn-primary">
                                         +
                                     </button>
                                     <input  min="1" class="w-25 text-center border border-light py-1 px-0" type="number"
                                         wire:model='qty'>
-                                    <button class="btn btn-warning">
+                                    <button wire:click='kurang' class="btn btn-warning">
                                         -
                                     </button>
                                 </div>
                                 <div class="kanan mt-2">
-                                    <button class="btn btn-danger">Hapus</button>
+                                    <button wire:click="delete('1')" class="btn btn-danger">Hapus</button>
                                 </div>
                             </div>
                         </p>
