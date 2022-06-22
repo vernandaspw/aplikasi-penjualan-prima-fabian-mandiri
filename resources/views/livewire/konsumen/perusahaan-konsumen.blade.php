@@ -1,5 +1,5 @@
 <div>
-    <nav class="p-3 navbar navbar-dark navbar-expand fixed-top shadow-sm" style="background-color: orange">
+    <nav class="p-3 navbar navbar-dark navbar-expand fixed-top shadow-sm" style="background-color: {{ env('COLOR_PRIMARY') }}">
         <div class="container-fluid">
             <ul class="navbar-nav me-auto w-full align-items-centar">
                 <li class="nav-item me-3">
