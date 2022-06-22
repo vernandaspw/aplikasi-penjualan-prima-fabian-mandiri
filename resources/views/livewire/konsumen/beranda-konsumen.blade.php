@@ -33,7 +33,7 @@
                                 <img src="{{ asset('logo.png') }}" width="60px" alt="">
                             </div>
                             <div class="kanan text-start">
-                                <b style="font-size: {{ env('FONTSIZE_H') }}">{{ $perusahaan->nm_perusahaan }}</b>
+                                <b style="font-size: 17px">{{ $perusahaan->nm_perusahaan }}</b>
                                 <p>
                                     {{ Str::limit($perusahaan->tentang, 130, '...') }}
                                 </p>
@@ -45,7 +45,7 @@
             </a>
             <section class="kategori">
                 <div class="mt-3">
-                    <span style="font-size: {{ env('FONTSIZE_H') }}"><b>Kategori</b></span>
+                    <span style="font-size: 17px"><b>Kategori</b></span>
                 </div>
                 <div class="scrollmenu mt-1">
                     <a href="{{ url('pesanan-create') }}">
@@ -62,7 +62,7 @@
             </section>
             <section class="merek">
                 <div class="mt-3">
-                    <span style="font-size: {{ env('FONTSIZE_H') }}"><b>Merek</b></span>
+                    <span style="font-size: 17px"><b>Merek</b></span>
                 </div>
                 <div class="scrollmenu mt-1">
                     <a href="{{ url('pesanan-create') }}">
@@ -79,7 +79,7 @@
             </section>
             <section class="produk">
                 <div class="mt-3">
-                    <span style="font-size: {{ env('FONTSIZE_H') }}"><b>Produk Terbaru</b></span>
+                    <span style="font-size: 17px"><b>Produk Terbaru</b></span>
                 </div>
                 <div class="mt-1">
                     <div class="row row-cols-2">
