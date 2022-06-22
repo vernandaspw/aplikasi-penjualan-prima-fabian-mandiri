@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pegawais', function (Blueprint $table) {
+        Schema::create('metode_pengirimans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 25);
-            $table->string('nohp',15)->unique();
-            $table->string('email',80)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 65);
-            $table->enum('role',['administrator', 'admin', 'logistik','pimpinan']);
+            $table->string('nama',35);
+            $table->decimal('biaya',10,2)->default(0);
             $table->boolean('isaktif')->default(true);
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pegawais');
+        Schema::dropIfExists('metode_pengirimans');
     }
 };

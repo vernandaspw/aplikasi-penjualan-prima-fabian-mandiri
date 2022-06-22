@@ -13,23 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('konsumens', function (Blueprint $table) {
+        Schema::create('pengaturans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 25);
-            $table->string('nohp',15)->unique();
-            $table->string('email', 80)->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password',65);
-            $table->string('avatar', 65)->nullable();
+            $table->string('nm_perusahaan',40);
+            $table->string('nm_toko',30)->nullable();
+            $table->string('no_telp',15)->nullable();
+            $table->string('no_wa', 15)->nullable();
+            $table->string('ig',30)->nullable();
+            $table->longText('tentang')->nullable();
             $table->string('provinsi',30)->nullable();
             $table->string('kota',30)->nullable();
             $table->string('kecamatan',30)->nullable();
             $table->longText('alamat')->nullable();
-            $table->longText('patokan')->nullable();
-            $table->string('kodepos', 7)->nullable();
-            $table->string('lat',20)->nullable();
-            $table->string('long',20)->nullable();
-            $table->rememberToken();
+            $table->string('kodepos',7)->nullable();
             $table->timestamps();
         });
     }
@@ -41,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('konsumens');
+        Schema::dropIfExists('pengaturans');
     }
 };
