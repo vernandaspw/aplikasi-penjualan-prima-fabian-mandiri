@@ -16,6 +16,9 @@ class AdminIsNotLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        if (auth('konsumen')->check()) {
+            return redirect('/admin');
+        }
         return $next($request);
     }
 }

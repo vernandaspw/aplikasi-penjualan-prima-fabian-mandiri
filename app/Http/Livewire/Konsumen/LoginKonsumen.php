@@ -23,6 +23,7 @@ class LoginKonsumen extends Component
         if ($konsumen) {
             if (Hash::check($this->password, $konsumen->password)) {
                 if (auth('konsumen')->loginUsingId($konsumen->id, $this->ingat)) {
+                    session()->regenerate();
                     redirect()->to('/');
                 } else {
                     session()->flash('msg_error', 'gagal login');

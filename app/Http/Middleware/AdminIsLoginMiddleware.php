@@ -16,6 +16,9 @@ class AdminIsLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth('pegawai')->check() ) {
+            return $next($request);
+        }
+        return redirect('admin/login');
     }
 }

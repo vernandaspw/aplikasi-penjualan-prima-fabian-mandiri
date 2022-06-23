@@ -40,12 +40,12 @@
                     <p class="card-text">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="k d-flex">
-                            <button wire:click='tambah' class="btn btn-primary">
+                            <button wire:click='tambah' class="btn text-white" style="background-color: {{ env('COLOR_PRIMARY') }}">
                                 +
                             </button>
                             <input min="1" class="w-25 text-center border border-light py-1 px-0" type="number"
                                 wire:model='qty'>
-                            <button wire:click='kurang' class="btn btn-warning">
+                            <button wire:click='kurang' class="btn btn-warning text-white">
                                 -
                             </button>
                         </div>
@@ -59,4 +59,27 @@
             </div>
         </div>
     </div>
+    <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg" style="background-color: {{ env('COLOR_PRIMARY') }}">
+        <div class="container-fluid">
+            <ul class="py-2 navbar-nav justify-content-between w-100 align-items-center">
+                <div class="me-auto text-white">
+                    <div class="">
+                        Total Belanja
+                    </div>
+                    <div class="" style="font-size: 18px">
+                        <b>@uang(10000)</b>
+                    </div>
+                </div>
+              
+                <div class="ms-auto">
+                    <a href="{{ url('checkout') }}"
+                        class="nav-link btn px-5 m-1 text-center btn-light"   style="color: {{ env('COLOR_PRIMARY') }}">
+                        <span class="small d-block" style="font-size: 15px">
+                        <b>Checkout</b>
+                        </span>
+                    </a>
+                </div>
+            </ul>
+        </div>
+    </nav>
 </div>

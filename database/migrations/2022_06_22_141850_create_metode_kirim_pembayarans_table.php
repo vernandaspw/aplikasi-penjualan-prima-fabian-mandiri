@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('metode_pengirimans', function (Blueprint $table) {
+        Schema::create('metode_kirim_pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',35);
-            $table->decimal('biaya',10,2)->default(0);
-            $table->boolean('isaktif')->default(true);
+            $table->foreignId('metode_kirim_id')->nullable()->constrained('metode_kirims')->onUpdate('cascade')->onDelete('set null');
+            $table->foreignId('metode_pembayaran_id')->nullable()->constrained('metode_pembayarans')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metode_pengirimans');
+        Schema::dropIfExists('metode_kirim_pembayarans');
     }
 };

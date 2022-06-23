@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('metode_pembayarans', function (Blueprint $table) {
+        Schema::create('metode_kirims', function (Blueprint $table) {
             $table->id();
-            $table->enum('metode',['bank transfer','dompet digital','cod','tunai']);
+            $table->enum('metode',['logistik perusahaan','logistik lainnya','ambil ditempat']);
             $table->string('nama',35)->nullable();
-            $table->string('norek', 40)->nullable();
-            $table->string('an',40)->nullable();
+            $table->decimal('biaya',10,2)->default(0);
             $table->boolean('isaktif')->default(true);
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metode_pembayarans');
+        Schema::dropIfExists('metode_kirims');
     }
 };

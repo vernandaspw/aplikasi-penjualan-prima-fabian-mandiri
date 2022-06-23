@@ -17,8 +17,8 @@ class KonsumenIsNotLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
-            return redirect('beranda');
+        if (auth('konsumen')->check()) {
+            return redirect('/');
         }
         return $next($request);
     }
