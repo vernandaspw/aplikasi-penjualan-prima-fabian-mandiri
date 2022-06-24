@@ -11,7 +11,7 @@
     @endif
 
 
-    <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg" style="background-color: {{ env('COLOR_PRIMARY') }}">
+    <nav class="p-1 navbar navbar-dark navbar-expand fixed-bottom shadow-lg" style="background-color: {{ env('COLOR_PRIMARY') }}">
         <ul class="py-1 navbar-nav nav-justified w-100 align-items-center">
             <li class="nav-item">
                 <a href="javascript:void(0)" wire:click.prefetch='beranda'
