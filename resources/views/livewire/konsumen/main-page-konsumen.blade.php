@@ -17,8 +17,8 @@
 
                 <a href="javascript:void(0)" wire:click.prefetch='beranda'
                     class="nav-link {{ $page == 0 ? 'active' : '' }} text-center">
-                    <img src="{{ asset('icon_home.png') }}" class="mb-0 pb-0" alt="" style=" {{ $page == 0 ? 'width: 23px' : 'width: 17px' }}">
-                    <span class="small d-block" style="font-size: 12px">
+                    <img src="{{ asset('icon_home.png') }}" class="mb-0 pb-0" alt="" style=" {{ $page == 0 ? 'width: 21px' : 'width: 15px' }}">
+                    <span class="small d-block" style="font-size: 11px">
                         Beranda
                     </span>
                 </a>
@@ -26,8 +26,8 @@
             <li class="nav-item">
                 <a href="javascript:void(0)" wire:click.prefetch='pesanan'
                     class="nav-link {{ $page == 1 ? 'active' : '' }} text-center">
-                    <img src="{{ asset('icon_order.png') }}" class="mb-0 pb-0" alt="" style=" {{ $page == 1 ? 'width: 23px' : 'width: 17px' }}">
-                    <span class="small d-block" style="font-size: 12px">
+                    <img src="{{ asset('icon_order.png') }}" class="mb-0 pb-0" alt="" style=" {{ $page == 1 ? 'width: 21px' : 'width: 15px' }}">
+                    <span class="small d-block" style="font-size: 11px">
                         Pesanan
                     </span>
                 </a>
@@ -35,8 +35,8 @@
             <li class="nav-item">
                 <a href="javascript:void(0)" wire:click.prefetch='akun'
                     class="nav-link {{ $page == 2 ? 'active' : '' }} text-center">
-                    <img src="{{ asset('icon_person.png') }}" class="mb-0 pb-0" alt="" style=" {{ $page == 2 ? 'width: 23px' : 'width: 17px' }}">
-                    <span class="small d-block" style="font-size: 12px">
+                    <img src="{{ asset('icon_person.png') }}" class="mb-0 pb-0" alt="" style=" {{ $page == 2 ? 'width: 21px' : 'width: 15px' }}">
+                    <span class="small d-block" style="font-size: 11px">
                         Akun
                     </span>
                 </a>
