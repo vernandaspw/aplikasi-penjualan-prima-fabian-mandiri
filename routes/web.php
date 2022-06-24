@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\Admin\DashboardAdmin;
+use App\Http\Livewire\Admin\LoginAdmin;
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\CheckoutKonsumen;
 use App\Http\Livewire\Konsumen\DaftarKonsumen;
@@ -11,20 +13,6 @@ use App\Http\Livewire\Konsumen\ProdukDetailKonsumen;
 use App\Http\Livewire\Konsumen\ProdukKonsumen;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('layouts.main');
-// });
 
 // Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 // Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
@@ -50,11 +38,11 @@ Route::middleware(['konsumenislogin'])->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::middleware(['adminisnotlogin'])->group(function () {
-        Route::get('login', LoginKonsumen::class);
+        Route::get('login', LoginAdmin::class);
     });
 
-    Route::middleware(['adminisnotlogin'])->group(function () {
-        Route::get('/', LoginKonsumen::class);
+    Route::middleware(['adminislogin'])->group(function () {
+        Route::get('/', DashboardAdmin::class);
     });
 });
 

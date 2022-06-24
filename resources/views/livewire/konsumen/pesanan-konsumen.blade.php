@@ -15,7 +15,7 @@
                         <span class="text-white">
                         </span>
                     </li>
-                    <input class="form-control rounded border border-right-0 border-1 p-1" type="cariproduk"
+                    <input wire:model='cari' class="form-control rounded border border-right-0 border-1 p-1" type="cariproduk"
                         placeholder="cari no transaksi" aria-label="cariproduk">
                 </ul>
                 <ul class="navbar-nav ms-auto  w-full align-items-start">
@@ -26,8 +26,62 @@
                 </ul>
             </div>
         </nav>
-        <div class="body" style="padding-top: 70px; padding-bottom: 65px;">
-            Pesanan
+        <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
+            <div class="container-fluid container-lg">
+                <div class="card shadow-sm border-light">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div class="kiri">
+                                T4325343523523523
+                            </div>
+                            <div class="kanan">
+                                Selesai
+                            </div>
+                        </div>
+                        <hr class="my-0">
+                        <div class="mt-2 d-flex justify-content-start">
+                            <div class="kiri">
+                                <img src="{{ asset('parabola.jpg') }}" width="60px" height="60px" class="rounded"
+                                alt="...">
+                            </div>
+                            <div class="kanan ms-3">
+                                <div class="">
+                                    <b>Parabola</b>
+                                    <div class="">
+                                        1 Qty
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-1">
+                            +2 Produk lainnya
+                        </div>
+                        <hr class="my-0">
+                        <div class="mt-2 d-flex justify-content-between align-items-center">
+                            <div class="kir">
+                                <div class="text-muted">
+                                    Total pesanan
+                                </div>
+                                <div class="">
+                                   <b>@uang(200000)</b>
+                                </div>
+                            </div>
+                            <div class="kanan">
+                                <button class="btn btn rounded text-white" style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                    Beri ulasan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
 </div>
+
+
+<style>
+    body{
+        background-color: rgb(248, 248, 248);
+    }
+</style>

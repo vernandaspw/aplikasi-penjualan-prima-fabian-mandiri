@@ -39,10 +39,10 @@
                             <input checked type="checkbox" wire:model='ingat' class="form-check-input" id="remember">
                             <label class="form-check-label" for="remember">Ingat saya</label>
                         </div>
-                        <button type="submit" class="btn form-control shadow-sm text-white"
+                        <button type="submit" class="btn form-control rounded-pill shadow-sm text-white"
                             style="background-color: {{ env('COLOR_PRIMARY') }};">Login</button>
                     </form>
-                    <a href="{{ url('daftar') }}" class="btn btn-transparent form-control shadow-sm mt-2">Daftar</a>
+                    <a href="{{ url('daftar') }}" class="btn btn-transparent rounded-pill form-control shadow-sm mt-2">Daftar</a>
                 </div>
             </div>
         </div>

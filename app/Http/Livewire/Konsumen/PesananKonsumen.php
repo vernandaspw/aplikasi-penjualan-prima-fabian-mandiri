@@ -7,6 +7,7 @@ use Livewire\Component;
 class PesananKonsumen extends Component
 {
     public $transaksi;
+    public $cari;
     public function render()
     {
         if (auth('konsumen')->check()) {

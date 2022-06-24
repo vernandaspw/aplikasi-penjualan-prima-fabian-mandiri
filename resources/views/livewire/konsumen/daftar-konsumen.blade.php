@@ -88,9 +88,9 @@
                             <input checked type="checkbox" wire:model='ingat' class="form-check-input" id="remember">
                             <label class="form-check-label" for="remember">Ingat saya</label>
                         </div> --}}
-                        <button type="submit" class="btn mt-3 text-white form-control shadow-sm" style="background-color: {{ env('COLOR_PRIMARY') }};">Daftar</button>
+                        <button type="submit" class="btn mt-3 rounded-pill text-white form-control shadow-sm" style="background-color: {{ env('COLOR_PRIMARY') }};">Daftar</button>
                     </form>
-                    <a href="{{ url('login', []) }}" class="btn btn-transparent form-control shadow-sm mt-2">Login</a>
+                    <a href="{{ url('login', []) }}" class="btn rounded-pill btn-transparent form-control shadow-sm mt-2">Login</a>
                 </div>
             </div>
         </div>

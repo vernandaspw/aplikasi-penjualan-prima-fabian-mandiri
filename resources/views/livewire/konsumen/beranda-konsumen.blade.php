@@ -24,7 +24,7 @@
         </div>
     </nav>
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
-        <div class="container">
+        <div class="container-lg container-fluid">
             <a href="{{ url('perusahaan') }}" class="produkcard" style="text-decoration: none; color:black;">
                 <div class="card border border-orange-500">
                     <div class="card-body">
@@ -90,7 +90,7 @@
                     <span style="font-size: 17px"><b>Produk Terbaru</b></span>
                 </div>
                 <div class="mt-1">
-                    <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-md-3">
+                    <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-md-3 row-cols-2">
                         <div class="col mt-2">
                             <a href="{{ url('produk', 1) }}" class="produkcard"
                                 style="text-decoration: none; color: black;">
@@ -122,3 +122,9 @@
     </div>
 
 </div>
+
+<style>
+body{
+    background-color: rgb(248, 248, 248);
+}
+</style>
