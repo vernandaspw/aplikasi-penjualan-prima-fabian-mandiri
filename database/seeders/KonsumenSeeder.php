@@ -19,6 +19,7 @@ class KonsumenSeeder extends Seeder
         DB::table('konsumens')->insert([
             [
                 'nama' => 'jhon doe',
+                'jeniskelamin' => 'laki laki',
                 'nohp' => '89660741134',
                 'email' => 'konsumen@gmail.com',
                 'password' => Hash::make('konsumen'),
@@ -31,6 +32,7 @@ class KonsumenSeeder extends Seeder
             ],
             [
                 'nama' => 'nakama doe',
+                'jeniskelamin' => 'perempuan',
                 'nohp' => '89660741136',
                 'email' => 'konsumen2@gmail.com',
                 'password' => Hash::make('konsumen'),

@@ -21,8 +21,9 @@
                     <div class="">
                         <b>Profil</b>
                     </div>
-                    <div class="" >
-                        <a href="{{ url('ubah-profil') }}" class="text-decoration-none" style="color: {{ env('COLOR_PRIMARY') }}">Ubah</a>
+                    <div class="">
+                        <a href="{{ url('ubah-profil') }}" class="text-decoration-none"
+                            style="color: {{ env('COLOR_PRIMARY') }}">Ubah</a>
                     </div>
                 </div>
 
@@ -35,6 +36,10 @@
                     <div class="text-muted " style="font-size: 12px">Nomor handphone</div>
                     <div class="" style="font-size: 14px">{{ $akun->nohp }}</div>
                 </div>
+                <div class="mt-2">
+                    <div class="text-muted " style="font-size: 12px">Jenis Kelamin</div>
+                    <div class="" style="font-size: 14px">{{ $akun->jeniskelamin }}</div>
+                </div>
             </div>
 
 
@@ -44,11 +49,16 @@
                     <div class="">
                         <b>Alamat</b>
                     </div>
-                    <div class="" >
-                        <a href="{{ url('ubah-alamat') }}" class="text-decoration-none" style="color: {{ env('COLOR_PRIMARY') }}">Ubah</a>
+                    <div class="">
+                        <a href="{{ url('ubah-alamat') }}" class="text-decoration-none"
+                            style="color: {{ env('COLOR_PRIMARY') }}">
+                            @if ($akun->provinsi && $akun->kota && $akun->kecamatan && $akun->alamat && $akun->patokan && $akun->kodepos)
+                                Ubah
+                            @endif
+                        </a>
                     </div>
                 </div>
-
+                @if ($akun->provinsi && $akun->kota && $akun->kecamatan && $akun->alamat && $akun->patokan && $akun->kodepos)
                 <div class="mt-2">
                     <div class="text-muted" style="font-size: 12px">Provinsi</div>
                     <div class="" style="font-size: 14px">{{ $akun->provinsi }}</div>
@@ -73,21 +83,30 @@
                     <div class="text-muted" style="font-size: 12px">Kode pos</div>
                     <div class="" style="font-size: 14px">{{ $akun->kodepos }}</div>
                 </div>
+                    @else
+                    Alamat tidak lengkap, silakan
+                    <a href="{{ url('ubah-alamat') }}" class="text-decoration-none"
+                        style="color: {{ env('COLOR_PRIMARY') }}">
+                        lengkapi alamat
+                    </a>
+                @endif
+
 
 
             </div>
 
 
 
-           <div class="container">
-            <hr  class="my-2">
-            <button wire:click='ubahpassword' class="btn rounded-pill mt-2 form-control text-white" style="background-color: {{ env('COLOR_PRIMARY') }}">
-                Ubah password
-            </button>
-            <button wire:click='logout' class="btn rounded-pill btn-danger mt-2 form-control">
-                Logout
-            </button>
-           </div>
+            <div class="container">
+                <hr class="my-2">
+                <button wire:click='ubahpassword' class="btn rounded-pill mt-2 form-control text-white"
+                    style="background-color: {{ env('COLOR_PRIMARY') }}">
+                    Ubah password
+                </button>
+                <button wire:click='logout' class="btn rounded-pill btn-danger mt-2 form-control">
+                    Logout
+                </button>
+            </div>
 
         </div>
     @endif
