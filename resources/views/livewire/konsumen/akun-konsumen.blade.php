@@ -21,8 +21,8 @@
                     <div class="">
                         <b>Profil</b>
                     </div>
-                    <div class="" style="color: {{ env('COLOR_PRIMARY') }}">
-                        <a href="{{ url('ubah-profil') }}" class="">Ubah</a>
+                    <div class="" >
+                        <a href="{{ url('ubah-profil') }}" class="text-decoration-none" style="color: {{ env('COLOR_PRIMARY') }}">Ubah</a>
                     </div>
                 </div>
 
@@ -44,8 +44,8 @@
                     <div class="">
                         <b>Alamat</b>
                     </div>
-                    <div class="" style="color: {{ env('COLOR_PRIMARY') }}">
-                        <a href="{{ url('ubah-alamat') }}" class="">Ubah</a>
+                    <div class="" >
+                        <a href="{{ url('ubah-alamat') }}" class="text-decoration-none" style="color: {{ env('COLOR_PRIMARY') }}">Ubah</a>
                     </div>
                 </div>
 
