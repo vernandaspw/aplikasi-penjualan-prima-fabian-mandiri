@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('konsumens', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 25);
+            $table->enum('jeniskelamin',['laki laki','perempuan']);
             $table->string('nohp',15)->unique();
             $table->string('email', 80)->unique();
             $table->timestamp('email_verified_at')->nullable();

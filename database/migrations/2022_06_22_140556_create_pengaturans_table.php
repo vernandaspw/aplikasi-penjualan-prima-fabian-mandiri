@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('pengaturans', function (Blueprint $table) {
             $table->id();
             $table->string('nm_perusahaan',40);
-            $table->string('nm_toko',30)->nullable();
             $table->string('no_telp',15)->nullable();
             $table->string('no_wa', 15)->nullable();
             $table->string('ig',30)->nullable();
-            $table->longText('tentang')->nullable();
+            $table->longText('sejarah')->nullable();
+            $table->longText('visi')->nullable();
+            $table->longText('misi')->nullable();
             $table->string('provinsi',30)->nullable();
             $table->string('kota',30)->nullable();
             $table->string('kecamatan',30)->nullable();

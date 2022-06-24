@@ -20,6 +20,7 @@ class Konsumen extends Authenticatable
      */
     protected $fillable = [
         'nama',
+        'jeniskelamin',
         'nohp',
         'email',
         'password',

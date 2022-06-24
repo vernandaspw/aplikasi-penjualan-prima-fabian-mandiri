@@ -94,7 +94,7 @@
                 <b>Deskripsi Produk</b>
             </div>
             <div class="">
-                <p>
+                <p style="text-align: justify">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ex. Magni possimus, eveniet enim
                     ullam dignissimos sapiente vero minus officiis repellat sequi rerum numquam fugit consequuntur modi
                     itaque delectus maxime
@@ -114,7 +114,7 @@
             <div class="">
                 <img src="{{ asset('stars.svg') }}" alt=""> 4.5/5.0 | 20 rating | 12 ulasan
             </div>
-       
+
             <div class="mt-2">
                 <div class="card">
                     <div class="card-body pt-2 pb-0">
@@ -126,7 +126,7 @@
                             <b>Budi</b>
                         </div>
                         <div class="">
-                            <p>
+                            <p style="text-align: justify">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae repellat esse suscipit
                                 nisi
                                 doloremque quasi nihil veniam sunt perspiciatis aspernatur enim quis hic, ullam eum!

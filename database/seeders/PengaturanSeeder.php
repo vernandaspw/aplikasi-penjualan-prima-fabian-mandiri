@@ -18,11 +18,16 @@ class PengaturanSeeder extends Seeder
         DB::table('pengaturans')->insert([
 
                 'nm_perusahaan' => 'PT. Prima Febian Mandiri',
-                'nm_toko' => 'Irama Baru',
                 'no_telp' => '0711412413',
                 'no_wa' => '8532532524',
                 'ig' => 'iramatoko',
-                'tentang' => ' Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
+                'sejarah' => ' Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
+                aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis,  Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
+                aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis',
+                'visi' => ' Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
+                aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis,  Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
+                aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis',
+                'misi' => ' Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
                 aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis,  Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam dipiscing elit ut
                 aliquam dipis ing elit ut aliquam dipiscing elit ut aliquam dipis',
                 'provinsi' => 'sumatera selatan',

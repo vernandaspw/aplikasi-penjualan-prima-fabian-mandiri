@@ -20,6 +20,14 @@
                                 class="form-control" id="nama" aria-describedby="namaHelp">
                         </div>
                         <div class="mb-2">
+                            <label for="jk">Jenis kelamin</label>
+                            <select wire:model='jeniskelamin' required class="form-control" id="jk">
+                                <option value="">Pilih jenis kelamin</option>
+                                <option value="laki laki">Laki laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
                             <label for="nohp" class="form-label">Nomor hp</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="nohp">+62</span>
@@ -43,7 +51,7 @@
                             <input placeholder="isi ulang password" required wire:model='ulangipassword' type="password"
                                 class="form-control" id="password2">
                         </div>
-                        <div class="mt-3"><b>Alamat</b></div>
+                        {{-- <div class="mt-3"><b>Data Alamat</b></div>
                         <div class="mb-2">
                             <label for="provinsi" class="form-label">provinsi</label>
                             <input placeholder="isi provinsi" required wire:model='provinsi' type="text"
@@ -73,7 +81,7 @@
                             <label for="kodepos" class="form-label">Kode Pos</label>
                             <input placeholder="kode pos" required wire:model='kodepos' type="text"
                                 class="form-control" id="kodepos" aria-describedby="kodeposHelp">
-                        </div>
+                        </div> --}}
 
 
                         {{-- <div class="mb-2 mt-1 form-check">

@@ -35,7 +35,7 @@
                             <div class="kanan text-start">
                                 <b style="font-size: 17px">{{ $perusahaan->nm_perusahaan }}</b>
                                 <p>
-                                    {{ Str::limit($perusahaan->tentang, 130, '...') }}
+                                    {{ Str::limit($perusahaan->sejarah, 130, '...') }}
                                 </p>
 
                             </div>

@@ -7,7 +7,7 @@
                                 class="btn btn-close btn-close-white"></a></b></span>
                 </li>
                 <li class="nav-item">
-                    <span class="text-white"><b>Tentang kami</b></span>
+                    <span class="text-white"><b>{{ $perusahaan->nm_perusahaan }}</b></span>
                 </li>
             </ul>
 
@@ -18,21 +18,36 @@
             </ul> --}}
         </div>
     </nav>
-    <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
+    <div class="body" style="padding-top: 85px; padding-bottom: 65px;">
         <div class="container">
             <h2>
-                {{ $perusahaan->nm_perusahaan }}
+
             </h2>
             <div>
                 <div class="">
-                    <h5><b>Tentang Perusahaan</b></h5>
+                    <h5><b>SEJARAH PERUSAHAAN</b></h5>
                 </div>
-                <p>
-                    {{ $perusahaan->tentang }}
+                <p style="text-align: justify">
+                    {{ $perusahaan->sejarah }}
+                </p>
+                <hr>
+                <div class="">
+                    <h5><b>VISI</b></h5>
+                </div>
+                <p style="text-align: justify">
+                    {{ $perusahaan->sejarah }}
+                </p>
+                <hr>
+                <div class="">
+                    <h5><b>MISI</b></h5>
+                </div>
+                <p style="text-align: justify">
+                    {{ $perusahaan->sejarah }}
                 </p>
             </div>
-            <div class="mt-2">
-                <h5><b>Alamat</b></h5>
+            <hr>
+            <div class="">
+                <h5><b>ALAMAT PERUSAHAAN</b></h5>
             </div>
             @if ($perusahaan->provinsi != null)
                 <div class="">
@@ -59,13 +74,10 @@
                     kodepos :{{ $perusahaan->kodepos }}
                 </div>
             @endif
-
-            <br>
-            @if ($perusahaan->nm_toko != null)
-                <div class="">
-                    <b> Toko :{{ $perusahaan->nm_toko }}</b>
-                </div>
-            @endif
+<hr>
+            <div class="">
+                <h5><b>KONTAK PERUSAHAAN</b></h5>
+            </div>
             @if ($perusahaan->no_telp != null)
                 <div class="">
                     telp :{{ $perusahaan->no_telp }}
