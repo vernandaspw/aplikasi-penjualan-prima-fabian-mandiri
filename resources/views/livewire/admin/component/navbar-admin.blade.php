@@ -1,7 +1,7 @@
 <div>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark d-print-none" style="background-color: {{ env('COLOR_PRIMARY') }}">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="{{ url('admin') }}">PT. Prima Febian Mandiri</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,30 +9,94 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link {{ Request::is('admin') == 'admin' ? 'active' : '' }}" aria-current="page"
+                            href="{{ url('admin') }}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
+                    @if (auth('pegawai')->user()->role == 'administrator')
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/kelola-akun') == 'admin/kelola-akun' ? 'active' : '' }}"
+                                href="{{ url('admin/kelola-akun') }}">kelola akun</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/kelola-pengaturan') == 'admin/kelola-pengaturan' ? 'active' : '' }}"
+                                href="{{ url('admin/kelola-pengaturan') }}">kelola pengaturan</a>
+                        </li>
+                    @endif
+                    @if (auth('pegawai')->user()->role == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/penjualan') == 'admin/penjualan' ? 'active' : '' }}"
+                                href="{{ url('admin/penjualan') }}">penjualan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/catat-transaksi') == 'admin/catat-transaksi' ? 'active' : '' }}"
+                                href="{{ url('admin/catat-transaksi') }}">catat transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/kelola-transaksi') == 'admin/kelola-transaksi' ? 'active' : '' }}"
+                                href="{{ url('admin/kelola-transaksi') }}">kelola transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/kelola-produk') == 'admin/kelola-produk' ? 'active' : '' }}"
+                                href="{{ url('admin/kelola-produk') }}">kelola produk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/kelola-stok') == 'admin/kelola-stok' ? 'active' : '' }}"
+                                href="{{ url('admin/kelola-stok') }}">kelola stok</a>
+                        </li>
+                    @endif
+                    @if (auth('pegawai')->user()->role == 'logistik')
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/pesanan-masuk') == 'admin/pesanan-masuk' ? 'active' : '' }}"
+                                href="{{ url('admin/pesanan-masuk') }}">Pesanan masuk</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/proses-antar') == 'admin/proses-antar' ? 'active' : '' }}"
+                                href="{{ url('admin/proses-antar') }}">Proses antar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/selesai') == 'admin/selesai' ? 'active' : '' }}"
+                                href="{{ url('admin/selesai') }}">Selesai</a>
+                        </li>
+                    @endif
+                    @if (auth('pegawai')->user()->role == 'admin')
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Master
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <li><a class="dropdown-item {{ Request::is('admin/metode-pengiriman') == 'admin/metode-pengiriman' ? 'active' : '' }}"
+                                        href="{{ url('admin/metode-pengiriman') }}">Metode
+                                        Pengiriman</a></li>
+                                <li><a class="dropdown-item {{ Request::is('admin/metode-pembayaran') == 'admin/metode-pembayaran' ? 'active' : '' }}"
+                                        href="{{ url('admin/metode-pembayaran') }}">Metode
+                                        Pembayaran</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                    @if (auth('pegawai')->user()->role == 'pimpinan')
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Laporan
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan-keuangan') == 'admin/laporan-keuangan' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan-keuangan') }}">Laporan
+                                        keuangan</a></li>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan-penjualan') == 'admin/laporan-penjualan' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan-penjualan') }}">Laporan
+                                        penjualan</a></li>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan-produk') == 'admin/laporan-produk' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan-produk') }}">Laporan produk</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
                 </ul>
-                <ul  class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +107,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li> --}}
-                            <li><button class="dropdown-item text-danger"   wire:click='logout'>Logout</button></li>
+                            <li><button class="dropdown-item text-danger" wire:click='logout'>Logout</button></li>
                         </ul>
                     </li>
                 </ul>

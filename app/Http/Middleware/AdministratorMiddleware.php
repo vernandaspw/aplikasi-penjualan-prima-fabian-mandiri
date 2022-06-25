@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminIsNotLoginMiddleware
+class AdministratorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class AdminIsNotLoginMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth('konsumen')->check()) {
-            return redirect('admin');
+        if (auth('pegawai')->user()->role == 'administrator') {
+            return $next($request);
         }
-        return $next($request);
+        return abort(401);
     }
 }

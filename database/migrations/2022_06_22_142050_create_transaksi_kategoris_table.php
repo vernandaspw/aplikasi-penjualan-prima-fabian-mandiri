@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi_logs', function (Blueprint $table) {
+        Schema::create('transaksi_kategoris', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('transaksi_id')->constrained('transaksis')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('status',['konfirm','porses_pembayaran', 'sedang_dikemas', 'sedang_antar','diterima','selesai', 'gagal', 'batal']);
-            $table->longText('keterangan')->nullable();
+            $table->string('nama',30)->nullable();
+            $table->boolean('isaktif')->default(true);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi_logs');
+        Schema::dropIfExists('transaksi_kategoris');
     }
 };
