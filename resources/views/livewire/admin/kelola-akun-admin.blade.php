@@ -59,7 +59,7 @@
                                 @enderror
                             </div>
                             <div class="mt-2">
-                                <label for="password">Password</label>
+                                <label for="password">Password </label>
                                 <input id="password" type="password" wire:model.lazy='password'
                                     class="form-control @error('password') is-invalid @enderror">
                                 @error('password')
