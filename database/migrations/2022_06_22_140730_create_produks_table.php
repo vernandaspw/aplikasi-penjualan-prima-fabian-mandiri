@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('harga_jual',19,2)->default(0);
             $table->decimal('harga_modal',19,2)->default(0);
             $table->decimal('berat_kg', 7,2)->nullable();
+            $table->longText('deskripsi')->nullable();
             $table->boolean('istersedia')->default(true);
             $table->timestamps();
         });

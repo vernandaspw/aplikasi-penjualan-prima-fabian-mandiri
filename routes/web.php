@@ -7,6 +7,8 @@ use App\Http\Livewire\Admin\KelolaPembayaranAdmin;
 use App\Http\Livewire\Admin\KelolaPengaturanAdmin;
 use App\Http\Livewire\Admin\KelolaPengirimAdmin;
 use App\Http\Livewire\Admin\KelolaProdukAdmin;
+use App\Http\Livewire\Admin\KelolaProdukKategoriAdmin;
+use App\Http\Livewire\Admin\KelolaProdukMerekAdmin;
 use App\Http\Livewire\Admin\KelolaStokAdmin;
 use App\Http\Livewire\Admin\KelolaTransaksiAdmin;
 use App\Http\Livewire\Admin\LaporanKeuanganAdmin;
@@ -66,6 +68,8 @@ Route::prefix('admin')->group(function () {
             Route::get('catat-transaksi', CatatTransaksiAdmin::class);
             Route::get('kelola-transaksi', KelolaTransaksiAdmin::class);
             Route::get('kelola-produk', KelolaProdukAdmin::class);
+            Route::get('kelola-produk-kategori', KelolaProdukKategoriAdmin::class);
+            Route::get('kelola-produk-merek', KelolaProdukMerekAdmin::class);
             Route::get('kelola-stok', KelolaStokAdmin::class);
             Route::get('metode-pengiriman]', KelolaPengirimAdmin::class);
             Route::get('metode-pembayaran', KelolaPembayaranAdmin::class);

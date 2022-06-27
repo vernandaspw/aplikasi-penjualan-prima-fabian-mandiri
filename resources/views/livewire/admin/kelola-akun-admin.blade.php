@@ -155,12 +155,14 @@
                             <label for="role">Role akses</label>
                             <select wire:model='role' id="role" class="form-control">
                                 <option value="">Pilih akses sebagai</option>
-                                <option value="administrator" @if($role == 'administrator')
-                                selected
-                                @endif>Administrator</option>
-                                <option value="admin">Admin</option>
-                                <option value="logistik">Logistik</option>
-                                <option value="pimpinan">Pimpinan</option>
+                                <option value="administrator" >Administrator</option>
+                                <option value="admin"
+
+                                >Admin</option>
+                                <option value="logistik"
+                              >Logistik</option>
+                                <option value="pimpinan"
+                            >Pimpinan</option>
                             </select>
                         </div>
                         <div class="mt-3">

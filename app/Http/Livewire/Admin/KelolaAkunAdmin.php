@@ -20,7 +20,7 @@ class KelolaAkunAdmin extends Component
 
     public function render()
     {
-        $this->akun = Pegawai::latest()->get();
+        $this->akun = Pegawai::get();
 
         return view('livewire.admin.kelola-akun-admin')->extends('layouts.main')->section('content');
     }
