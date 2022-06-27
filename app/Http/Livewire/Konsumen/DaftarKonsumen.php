@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class DaftarKonsumen extends Component
 {
-    public $nama, $jeniskelamin, $nohp, $email, $password, $ulangipassword;
+    public $nama, $jeniskelamin, $wilayah, $nohp, $email, $password, $ulangipassword;
 
     public function render()
     {

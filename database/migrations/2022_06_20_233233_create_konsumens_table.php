@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama', 25);
             $table->enum('jeniskelamin',['laki laki','perempuan']);
             $table->string('nohp',15)->unique();
+            $table->string('wilayah',30)->nullable();
             $table->string('email', 80)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',65);

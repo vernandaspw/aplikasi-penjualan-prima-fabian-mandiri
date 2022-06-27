@@ -28,21 +28,21 @@
                     <h5><b>SEJARAH PERUSAHAAN</b></h5>
                 </div>
                 <p style="text-align: justify">
-                    {{ $perusahaan->sejarah }}
+                    {!! $perusahaan->sejarah !!}
                 </p>
                 <hr>
                 <div class="">
                     <h5><b>VISI</b></h5>
                 </div>
                 <p style="text-align: justify">
-                    {{ $perusahaan->sejarah }}
+                    {!! $perusahaan->visi !!}
                 </p>
                 <hr>
                 <div class="">
                     <h5><b>MISI</b></h5>
                 </div>
                 <p style="text-align: justify">
-                    {{ $perusahaan->sejarah }}
+                    {!! $perusahaan->misi !!}
                 </p>
             </div>
             <hr>

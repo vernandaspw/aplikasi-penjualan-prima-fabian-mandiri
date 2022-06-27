@@ -37,7 +37,6 @@
                                 <p>
                                     {{ Str::limit($perusahaan->sejarah, 130, '...') }}
                                 </p>
-
                             </div>
                         </div>
                     </div>

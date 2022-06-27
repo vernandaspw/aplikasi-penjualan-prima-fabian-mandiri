@@ -19,14 +19,7 @@
                             <input placeholder="isi nama lengkap" required wire:model='nama' type="text"
                                 class="form-control" id="nama" aria-describedby="namaHelp">
                         </div>
-                        <div class="mb-2">
-                            <label for="jk">Jenis kelamin</label>
-                            <select wire:model='jeniskelamin' required class="form-control" id="jk">
-                                <option value="">Pilih jenis kelamin</option>
-                                <option value="laki laki">Laki laki</option>
-                                <option value="perempuan">Perempuan</option>
-                            </select>
-                        </div>
+
                         <div class="mb-2">
                             <label for="nohp" class="form-label">Nomor hp</label>
                             <div class="input-group">
@@ -50,6 +43,19 @@
                             <label for="password2" class="form-label">Ulangi Password</label>
                             <input placeholder="isi ulang password" required wire:model='ulangipassword' type="password"
                                 class="form-control" id="password2">
+                        </div>
+                        <div class="mb-2">
+                            <label for="jk">Jenis kelamin</label>
+                            <select wire:model='jeniskelamin' required class="form-control" id="jk">
+                                <option value="">Pilih jenis kelamin</option>
+                                <option value="laki laki">Laki laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="wilayah" class="form-label">Wilayah</label>
+                            <input placeholder="isi wilayah" required wire:model='wilayah' type="text"
+                                class="form-control" id="wilayah" aria-describedby="wilayahHelp">
                         </div>
                         {{-- <div class="mt-3"><b>Data Alamat</b></div>
                         <div class="mb-2">
