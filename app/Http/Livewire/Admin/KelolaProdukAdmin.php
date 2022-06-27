@@ -352,8 +352,6 @@ class KelolaProdukAdmin extends Component
             }
             
 
-
-
             $this->emit('success', ['pesan' => 'berhasil edit data']);
         } else {
             $this->emit('error', ['pesan' => 'gagal edit data']);
