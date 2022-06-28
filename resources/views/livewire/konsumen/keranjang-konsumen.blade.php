@@ -22,7 +22,7 @@
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container-fluid">
             @forelse($keranjangitem as $data)
-            <div class="card shadow-sm border border-light">
+            <div class="card mb-1 shadow-sm border border-light">
                 <div class="card-body pb-0">
                     <div class="d-flex justify-content-start">
                         @forelse ($data->produk->gambar as $gambar)
