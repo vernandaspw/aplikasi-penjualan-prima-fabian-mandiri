@@ -238,7 +238,8 @@ class KelolaProdukAdmin extends Component
         $this->pageedit = true;
         $this->pagebuat = false;
 
-        $data = Produk::with('gambar')->find($id);
+        $data = Produk::with('gambar', 'produkstok')->find($id);
+
         $gambar = ProdukGaleri::where('produk_id', $data->id)->orderBy('no')->get();
         $this->byid = $data->id;
         $this->nama = $data->nama;
@@ -255,11 +256,16 @@ class KelolaProdukAdmin extends Component
         $this->gambar4 = $gambar[3];
         $this->gambar5 = $gambar[4];
         $this->gambar6 = $gambar[5];
+
+        $stoks = ProdukStok::find($data->produkstok->id);
+        $this->isstok = $stoks->isstok;
+
+
     }
 
     public function edit($id)
     {
-        $data = Produk::find($id);
+        $data = Produk::with('produkstok')->find($id);
 
         $cek = $data->update([
             'nama' => $this->nama,
@@ -270,6 +276,10 @@ class KelolaProdukAdmin extends Component
             'harga_modal' => $this->harga_modal,
             'berat_kg' => $this->berat_kg,
             'deskripsi' => $this->deskripsi
+        ]);
+
+        ProdukStok::find($data->produkstok->id)->update([
+            'isstok' => $this->isstok
         ]);
 
         if ($cek) {
@@ -369,7 +379,7 @@ class KelolaProdukAdmin extends Component
                     'img' => $gambarstore6
                 ]);
             }
-            
+
 
             $this->emit('success', ['pesan' => 'berhasil edit data']);
         } else {

@@ -408,7 +408,7 @@
                                         <label for="gambar" class="form-label me-2">
                                             <img src="
                                             @if($editgambar != null)
-                                            {{ $editgambar->temporaryUrl() }}    
+                                            {{ $editgambar->temporaryUrl() }}
                                             @else
                                             {{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }}
                                             @endif
@@ -439,7 +439,7 @@
                                         <label for="gambar2" class="form-label me-2">
                                             <img src="
                                             @if($editgambar2 != null)
-                                            {{ $editgambar2->temporaryUrl() }}    
+                                            {{ $editgambar2->temporaryUrl() }}
                                             @else
                                             {{ $gambar2->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar2->img)) }}
                                             @endif
@@ -470,7 +470,7 @@
                                         <label for="gambar3" class="form-label me-2">
                                             <img src="
                                             @if($editgambar3 != null)
-                                            {{ $editgambar3->temporaryUrl() }}    
+                                            {{ $editgambar3->temporaryUrl() }}
                                             @else
                                             {{ $gambar3->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar3->img)) }}
                                             @endif
@@ -501,7 +501,7 @@
                                         <label for="gambar4" class="form-label me-2">
                                             <img src="
                                             @if($editgambar4 != null)
-                                            {{ $editgambar4->temporaryUrl() }}    
+                                            {{ $editgambar4->temporaryUrl() }}
                                             @else
                                             {{ $gambar4->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar4->img)) }}
                                             @endif
@@ -532,7 +532,7 @@
                                         <label for="gambar5" class="form-label me-2">
                                             <img src="
                                             @if($editgambar5 != null)
-                                            {{ $editgambar5->temporaryUrl() }}    
+                                            {{ $editgambar5->temporaryUrl() }}
                                             @else
                                             {{ $gambar5->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar5->img)) }}
                                             @endif
@@ -563,7 +563,7 @@
                                         <label for="gambar6" class="form-label me-2">
                                             <img src="
                                             @if($editgambar6 != null)
-                                            {{ $editgambar6->temporaryUrl() }}    
+                                            {{ $editgambar6->temporaryUrl() }}
                                             @else
                                             {{ $gambar6->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar6->img)) }}
                                             @endif
@@ -675,6 +675,12 @@
                                     @enderror
 
                                 </div>
+                                <div class="mt-2">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" wire:model='isstok' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Matikan, jika tidak membutuhkan stok pada transaksi produk ini</label>
+                                      </div>
+                                </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-success form-control">
                                         Ubah produk
@@ -749,7 +755,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                    @if ($take <= $jmlproduk)
+                    @if ($take < $jmlproduk)
                         <center>
                             <button class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
                         </center>
