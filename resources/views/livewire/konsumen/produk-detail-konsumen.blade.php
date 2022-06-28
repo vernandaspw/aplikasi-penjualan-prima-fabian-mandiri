@@ -141,12 +141,21 @@
         <div class="container">
             <ul class="py-1 navbar-nav nav-justified w-100 align-items-center">
                 <li class="nav-item" style="margin-right: 2px">
-                    <button href="javascript:void(0)" wire:click='pesanan' class="nav-link btn m-1 text-center"
-                        style=" border-color: {{ env('COLOR_PRIMARY') }};">
-                        <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
-                            Beli langsung
-                        </span>
-                    </button>
+                   @if(auth('konsumen')->check())
+                   <button href="javascript:void(0)" wire:click='pesanan' class="nav-link btn m-1 text-center"
+                   style=" border-color: {{ env('COLOR_PRIMARY') }};">
+                   <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
+                       Beli langsung
+                   </span>
+               </button>
+               @else
+               <a href="{{ url('login') }}" class="nav-link btn m-1 text-center"
+               style=" border-color: {{ env('COLOR_PRIMARY') }};">
+               <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
+                   Beli langsung
+               </span>
+           </a>
+                   @endif
                 </li>
                 <li class="nav-item" style="margin-left: 2px">
                    @if(auth('konsumen')->check())
