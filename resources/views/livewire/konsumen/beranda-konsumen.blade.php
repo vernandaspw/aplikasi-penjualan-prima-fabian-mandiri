@@ -19,7 +19,7 @@
         </div>
     </nav>
 
-    <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
+    <div class="body" style="padding-top: 65px; padding-bottom: 65px;">
         <div class="container-lg container-fluid">
             <a href="{{ url('perusahaan') }}" class="produkcard" style="text-decoration: none; color:black;">
                 <div class="card border border-orange-500">
@@ -31,15 +31,15 @@
                             <div class="kanan text-start">
                                 <b style="font-size: 17px">{{ $perusahaan->nm_perusahaan }}</b>
                                 <p>
-                                    {{ Str::limit($perusahaan->sejarah, 130, '...') }}
+                                    {{ Str::limit($perusahaan->sejarah, 90, '...') }}
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
-            <section class="kategori">
-                <div class="mt-3">
+            <section class="kategori mt-1">
+                <div class="mt-2">
                     <span style="font-size: 17px"><b>Kategori</b></span>
                 </div>
                 <div class="scrollmenu">
@@ -60,7 +60,7 @@
                 </div>
             </section>
             <section class="merek">
-                <div class="mt-3">
+                <div class="mt-2">
                     <span style="font-size: 17px"><b>Merek</b></span>
                 </div>
                 <div class="scrollmenu">
