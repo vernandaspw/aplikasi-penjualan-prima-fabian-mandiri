@@ -18,7 +18,7 @@
             </ul>
         </div>
     </nav>
-    <div class="body" style="padding-top: 65px; padding-bottom: 95px;">
+    <div class="body" style="padding-top: 60px; padding-bottom: 95px;">
         <div class="card border-top-0 shadow-sm border-0">
             <div class="card-body">
                 @if ($alamat->provinsi && $alamat->kota && $alamat->kecamatan && $alamat->alamat && $alamat->patokan && $alamat->kodepos)
