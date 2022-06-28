@@ -11,8 +11,8 @@
                             <img src="{{ asset('logo.png') }}" width="20px" alt="">
                         </span>
                     </li>
-                    <input wire:click='cariproduk' class="form-control rounded border border-right-0 border-1 py-2"
-                        type="cariproduk" placeholder="cari produk" aria-label="cariproduk">
+                    <input wire:model='cari' class="form-control rounded border border-right-0 border-1 py-2"
+                        type="cari no transaksi" placeholder="cari produk" aria-label="cariproduk">
                 </ul>
                 <ul class="navbar-nav ms-auto  w-full">
                     <li class="nav-item">

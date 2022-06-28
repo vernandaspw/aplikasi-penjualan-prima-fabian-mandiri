@@ -32,9 +32,6 @@
                         {{ $alamat->alamat }}
                     </div>
                     <div class="">
-                        {{ $alamat->patokan }}
-                    </div>
-                    <div class="">
                         {{ $alamat->kecamatan }}, {{ $alamat->kota }},{{ $alamat->provinsi }}
                     </div>
                     <div class="">
