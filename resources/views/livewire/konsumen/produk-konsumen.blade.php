@@ -1,26 +1,28 @@
 <div>
-    <nav class="p-3 navbar navbar-dark navbar-expand fixed-top shadow-sm"
+    <nav class="p-1 navbar navbar-dark navbar-expand fixed-top shadow-sm"
         style="background-color: {{ env('COLOR_PRIMARY') }}">
         <div class="container-fluid">
-
-            <ul class="navbar-nav me-2 form-control w-full align-items-centar p-0 rounded">
-                <li class="nav-item me-3 ms-1 ">
+            <ul class="navbar-nav ms-auto  w-full align-items-start">
+                <li class="nav-item me-3 ms-1 d-flex align-items-center">
                     <span class="text-dark"><b>
-                            <a href="{{ url('/') }}" class="btn btn-lg  btn-close btn-close-dark"></a>
+                            <a href="{{ url('/') }}" class="btn btn-lg  btn-close btn-close-white"></a>
                         </b>
                     </span>
                 </li>
-                <li class="nav-item">
+            </ul>
+            <ul class="navbar-nav me-2 form-control w-full align-items-centar p-0 rounded">
+                <li class="nav-item me-2 ms-1 d-flex align-items-center">
                     <span class="text-white">
+                        <img src="{{ asset('logo.png') }}" width="20px" alt="">
                     </span>
                 </li>
-                <input autofocus wire:model='nama' class="form-control rounded border border-right-0 border-1 p-1" type="cariproduk"
-                    placeholder="cari produk" aria-label="cariproduk">
+                <input autofocus wire:model='nama' class="form-control rounded border border-right-0 border-1 py-2"
+                type="text" placeholder="cari produk" aria-label="cariproduk">
+
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
-                    <a class="shadow-m px-3" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
-                            alt=""></a>
+                   <livewire:konsumen.component.icon-cart-konsumen />
                 </li>
             </ul>
         </div>

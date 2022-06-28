@@ -1,28 +1,24 @@
 <div>
-    <nav class="p-2 navbar navbar-dark navbar-expand fixed-top shadow-sm"
+    <nav class="p-1 navbar navbar-dark navbar-expand fixed-top shadow-sm"
         style="background-color: {{ env('COLOR_PRIMARY') }}">
         <div class="container-fluid">
-            <ul class="navbar-nav me-2 form-control w-full align-items-centar bg-white p-1 rounded">
+            <ul class="navbar-nav me-2 form-control w-full d-flex align-items-center bg-white p-0 rounded">
                 <li class="nav-item me-2 ms-1 ">
                     <span class="text-white">
                         <img src="{{ asset('logo.png') }}" width="20px" alt="">
                     </span>
                 </li>
-                <li class="nav-item">
-                    <span class="text-white">
-                    </span>
-                </li>
-                <input wire:click='cariproduk' class="form-control rounded border border-right-0 border-1 p-1"
+                <input wire:click='cariproduk' class="form-control rounded border border-right-0 border-1 py-2"
                     type="cariproduk" placeholder="cari produk" aria-label="cariproduk">
             </ul>
-            <ul class="navbar-nav ms-auto  w-full align-items-start">
+            <ul class="navbar-nav ms-auto  w-full">
                 <li class="nav-item">
-                    <a class="shadow-m px-2" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
-                            alt=""></a>
+                        <livewire:konsumen.component.icon-cart-konsumen />
                 </li>
             </ul>
         </div>
     </nav>
+
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container-lg container-fluid">
             <a href="{{ url('perusahaan') }}" class="produkcard" style="text-decoration: none; color:black;">

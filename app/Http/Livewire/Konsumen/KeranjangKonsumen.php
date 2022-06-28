@@ -18,15 +18,14 @@ class KeranjangKonsumen extends Component
     {
         $data = KeranjangItem::with('produk')->find($id);
         if ($data->qty <= 999999999) {
-
-            if ($data->qty <= $data->produk->produkstok->po) {
-            }else {
+            if ($data->qty < $data->produk->produkstok->po) {
                 $qty = $data->qty + 1;
                 $totalharga =  $data->produk->harga_jual * $qty;
                 $qty_update = $data->update([
                     'qty' => $qty,
                     'total_harga' => $totalharga
                 ]);
+            }else {
             }
         }else {
         }
@@ -34,14 +33,14 @@ class KeranjangKonsumen extends Component
     public function kurangitem($id)
     {
         $data = KeranjangItem::with('produk')->find($id);
-        if ($data->qty <= 1) {
-        }else {
+        if ($data->qty > 1) {
             $qty = $data->qty - 1;
             $totalharga =  $data->produk->harga_jual * $qty;
             $qty_update = $data->update([
                 'qty' => $qty,
                 'total_harga' => $totalharga
             ]);
+        }else {
         }
     }
     public function deleteitem($id)
@@ -52,7 +51,7 @@ class KeranjangKonsumen extends Component
     public function render()
     {
          $this->keranjangitem = KeranjangItem::with('produk','keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get();
-         $this->totalbelanja = KeranjangItem::with('produk','keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get()->sum('totalharga');
+         $this->totalbelanja = KeranjangItem::with('produk','keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get()->sum('total_harga');
 
         return view('livewire.konsumen.keranjang-konsumen')->extends('layouts.main')->section('content');
     }

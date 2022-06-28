@@ -98,7 +98,7 @@
                         Total Belanja
                     </div>
                     <div class="" style="font-size: 18px">
-                        <b>@uang(10000)</b>
+                        <b>@uang($totalbelanja)</b>
                     </div>
                 </div>
 
