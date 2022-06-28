@@ -149,13 +149,23 @@
                     </button>
                 </li>
                 <li class="nav-item" style="margin-left: 2px">
-                    <button type="button" wire:click="tambahkecart('{{ $produk->id }}')"
-                        class="nav-link btn m-1 text-white text-center"
-                        style="background-color: {{ env('COLOR_PRIMARY') }}">
-                        <span class="small d-block" style="font-size: 15px">
-                            + Keranjang
-                        </span>
-                    </button>
+                   @if(auth('konsumen')->check())
+                   <button type="button" wire:click="tambahkecart('{{ $produk->id }}')"
+                    class="nav-link btn m-1 text-white text-center"
+                    style="background-color: {{ env('COLOR_PRIMARY') }}">
+                    <span class="small d-block" style="font-size: 15px">
+                        + Keranjang
+                    </span>
+                </button>
+                @else
+                <a type="button" href="{{ url('login') }}"
+                    class="nav-link btn m-1 text-white text-center"
+                    style="background-color: {{ env('COLOR_PRIMARY') }}">
+                    <span class="small d-block" style="font-size: 15px">
+                        + Keranjang
+                    </span>
+                </a>
+                   @endif
                 </li>
             </ul>
         </div>
