@@ -1,7 +1,7 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark d-print-none" style="background-color: {{ env('COLOR_PRIMARY') }}">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url('admin') }}">PT. Prima Febian Mandiri</a>
+            <a class="navbar-brand" href="{{ url('admin') }}">PT. Prima Fabian Mandiri</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -17,7 +17,7 @@ class PengaturanSeeder extends Seeder
     {
         DB::table('pengaturans')->insert([
 
-                'nm_perusahaan' => 'PT. Prima Febian Mandiri',
+                'nm_perusahaan' => 'PT. Prima Fabian Mandiri',
                 'no_telp' => '0711412413',
                 'no_wa' => '8532532524',
                 'ig' => 'iramatoko',

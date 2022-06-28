@@ -163,6 +163,7 @@
         </div>
     </nav>
 
+  
 
     @push('script')
         <script>

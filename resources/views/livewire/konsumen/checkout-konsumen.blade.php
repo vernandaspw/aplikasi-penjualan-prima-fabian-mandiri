@@ -13,9 +13,7 @@
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
-                    <a class="shadow-m px-2" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
-                            alt="">
-                    </a>
+                    <livewire:konsumen.component.icon-cart-konsumen />
                 </li>
             </ul>
         </div>
@@ -23,28 +21,38 @@
     <div class="body" style="padding-top: 65px; padding-bottom: 95px;">
         <div class="card border-top-0 shadow-sm border-0">
             <div class="card-body">
-                <h5>
-                    <b>Alamat pengiriman</b>
-                </h5>
-                <div class="">
-                    {{ $alamat->nama }} | 0{{ $alamat->nohp }}
-                </div>
-                <div class="">
-                    {{ $alamat->alamat }}
-                </div>
-                <div class="">
-                    {{ $alamat->patokan }}
-                </div>
-                <div class="">
-                    {{ $alamat->kecamatan }}, {{ $alamat->kota }},{{ $alamat->provinsi }}
-                </div>
-                <div class="">
-                    {{ $alamat->kodepos }}
-                </div>
+                @if ($alamat->provinsi && $alamat->kota && $alamat->kecamatan && $alamat->alamat && $alamat->patokan && $alamat->kodepos)
+                    <h5>
+                        <b>Alamat pengiriman</b>
+                    </h5>
+                    <div class="">
+                        {{ $alamat->nama }} | 0{{ $alamat->nohp }}
+                    </div>
+                    <div class="">
+                        {{ $alamat->alamat }}
+                    </div>
+                    <div class="">
+                        {{ $alamat->patokan }}
+                    </div>
+                    <div class="">
+                        {{ $alamat->kecamatan }}, {{ $alamat->kota }},{{ $alamat->provinsi }}
+                    </div>
+                    <div class="">
+                        {{ $alamat->kodepos }}
+                    </div>
+                @else
+                    Alamat tidak lengkap, silakan
+                    <a href="{{ url('ubah-alamat') }}" class="text-decoration-none"
+                        style="color: {{ env('COLOR_PRIMARY') }}">
+                        lengkapi alamat
+                    </a>
+                @endif
+
             </div>
         </div>
         <br>
         <div class="container-fluid">
+            @forelse ($itemcart as $data)
             <div class="card mb-1 shadow-sm border border-light">
                 <div class="card-body ">
                     <div class="d-flex justify-content-start ">
@@ -62,6 +70,9 @@
                     </div>
                 </div>
             </div>
+            @empty
+            tidak ada produk
+            @endforelse
 
             <input type="text" placeholder="Catatan.."
                 class="py-2 mt-3 rounded shadow-sm border border-light form-control">
@@ -75,7 +86,6 @@
                         <option value="{{ $data->id }}">{{ $data->metode }}</option>
 
                     @empty
-
                     @endforelse
                 </select>
             </div>
@@ -84,7 +94,7 @@
                 <select id="metodepembayaran" class="form-control text-muted">
                     <option selected value="">Pilih pembayaran</option>
                     @forelse ($pembayaran as $data)
-                    <option value="">{{ $data->metode }} - {{ $data->nama }}</option>
+                        <option value="">{{ $data->metode }} - {{ $data->nama }}</option>
                     @empty
                     @endforelse
                 </select>
@@ -129,14 +139,49 @@
                 </div>
 
                 <div class="ms-auto">
-                    <a href="{{ url('checkout') }}" class="nav-link btn px-5 m-1 text-center btn-light"
-                        style="color: {{ env('COLOR_PRIMARY') }}">
-                        <span class="small d-block" style="font-size: 15px">
-                            <b>Buat pesanan</b>
-                        </span>
-                    </a>
+                    @if ($alamat->provinsi && $alamat->kota && $alamat->kecamatan && $alamat->alamat && $alamat->patokan && $alamat->kodepos)
+                        <a href="{{ url('checkout') }}" class="nav-link btn px-4 m-1 text-center btn-light"
+                            style="color: {{ env('COLOR_PRIMARY') }}">
+                            <span class="small d-block" style="font-size: 15px">
+                                <b>Buat pesanan</b>
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{  url('ubah-alamat') }}" class="nav-link btn px-3 m-1 text-center btn-light"
+                            style="color: {{ env('COLOR_PRIMARY') }}">
+                            <span class="small d-block" style="font-size: 15px">
+                                <b>Lengkapi alamat</b>
+                            </span>
+                        </a>
+
+                    @endif
+
                 </div>
             </ul>
         </div>
     </nav>
+
+
+    @push('script')
+        <script>
+            Livewire.on('success', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'success!',
+                    text: data.pesan,
+                    icon: 'success',
+                    confirmButtonText: 'oke'
+                })
+            })
+            Livewire.on('error', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'error!',
+                    text: data.pesan,
+                    icon: 'error',
+                    confirmButtonText: 'oke'
+                })
+            })
+        </script>
+    @endpush
 </div>

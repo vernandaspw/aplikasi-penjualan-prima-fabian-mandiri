@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('qty')->default(0);
             $table->decimal('total_harga',19,2)->default(0);
             $table->decimal('total_modal',19,2)->default(0);
+            $table->boolean('selected')->default(false);
             $table->timestamps();
         });
     }

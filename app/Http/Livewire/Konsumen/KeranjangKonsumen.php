@@ -14,6 +14,36 @@ class KeranjangKonsumen extends Component
 
     public $totalbelanja;
 
+    public $mySelected;
+
+    public function check($id)
+    {
+        $cek = KeranjangItem::find($id);
+        if ($cek->selected) {
+            $cek->update([
+                'selected' => false
+            ]);
+        } else {
+            $cek->update([
+                'selected' => true
+            ]);
+        }
+    }
+
+    public function mount()
+    {
+        $data = KeranjangItem::where('konsumen_id', auth('konsumen')->user()->id)->where('selected', true)->get();
+        if ($data) {
+            foreach ($data as $d) {
+                $cek = KeranjangItem::find($d->id)->update([
+                    'selected' => false
+                ]);
+            }
+        }
+
+
+    }
+
     public function tambahitem($id)
     {
         $data = KeranjangItem::with('produk')->find($id);
@@ -25,9 +55,9 @@ class KeranjangKonsumen extends Component
                     'qty' => $qty,
                     'total_harga' => $totalharga
                 ]);
-            }else {
+            } else {
             }
-        }else {
+        } else {
         }
     }
     public function kurangitem($id)
@@ -40,7 +70,7 @@ class KeranjangKonsumen extends Component
                 'qty' => $qty,
                 'total_harga' => $totalharga
             ]);
-        }else {
+        } else {
         }
     }
     public function deleteitem($id)
@@ -50,8 +80,8 @@ class KeranjangKonsumen extends Component
 
     public function render()
     {
-         $this->keranjangitem = KeranjangItem::with('produk','keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get();
-         $this->totalbelanja = KeranjangItem::with('produk','keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get()->sum('total_harga');
+        $this->keranjangitem = KeranjangItem::with('produk', 'keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get();
+        $this->totalbelanja = KeranjangItem::with('produk', 'keranjang')->where('konsumen_id', auth('konsumen')->user()->id)->latest()->get()->sum('total_harga');
 
         return view('livewire.konsumen.keranjang-konsumen')->extends('layouts.main')->section('content');
     }

@@ -21,7 +21,7 @@ class MetodePembayaranSeeder extends Seeder
                 'metode' => 'bank transfer',
                 'nama' => 'BANK BCA',
                 'norek' => '0450813311',
-                'an' => 'DANIEL FEBIAN S',
+                'an' => 'DANIEL FABIAN S',
                 'isaktif' => true
             ],
             [
