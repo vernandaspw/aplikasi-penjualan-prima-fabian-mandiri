@@ -18,7 +18,7 @@
             </ul> --}}
         </div>
     </nav>
-    <div class="body" style="padding-top: 85px; padding-bottom: 65px;">
+    <div class="body" style="padding-top: 70px; padding-bottom: 65px;">
         <div class="container">
             <h2>
 
@@ -50,28 +50,41 @@
                 <h5><b>ALAMAT PERUSAHAAN</b></h5>
             </div>
             @if ($perusahaan->provinsi != null)
-                <div class="">
-                    provinsi :{{ $perusahaan->provinsi }}
+                <div class="d-flex justify-content-between">
+                    Provinsi
+                    <div class="">
+                        {{ $perusahaan->provinsi }}
+                    </div>
                 </div>
             @endif
             @if ($perusahaan->kota != null)
-                <div class="">
-                    kota :{{ $perusahaan->kota }}
+                <div class="d-flex justify-content-between">
+                    Kota
+                    <div class="">
+                        {{ $perusahaan->kota }}
+                    </div>
                 </div>
             @endif
             @if ($perusahaan->kecamatan != null)
-                <div class="">
-                    kecamatan :{{ $perusahaan->kecamatan }}
+                <div class="d-flex justify-content-between">
+                    Kecamatan
+                    <div class="">
+                        {{ $perusahaan->kecamatan }}
+                    </div>
                 </div>
             @endif
             @if ($perusahaan->alamat != null)
-                <div class="">
-                    alamat :{{ $perusahaan->alamat }}
+                <div class="d-flex justify-content-between">
+                    Alamat
+                    <div class="">{{ $perusahaan->alamat }}</div>
                 </div>
             @endif
             @if ($perusahaan->kodepos != null)
-                <div class="">
-                    kodepos :{{ $perusahaan->kodepos }}
+                <div class="d-flex justify-content-between">
+                    Kode Pos
+                    <div class="">
+                        {{ $perusahaan->kodepos }}
+                    </div>
                 </div>
             @endif
 <hr>
@@ -79,18 +92,27 @@
                 <h5><b>KONTAK PERUSAHAAN</b></h5>
             </div>
             @if ($perusahaan->no_telp != null)
-                <div class="">
-                    telp :{{ $perusahaan->no_telp }}
+                <div class="d-flex justify-content-between">
+                    Telp
+                    <div class="">
+                        {{ $perusahaan->no_telp }}
+                    </div>
                 </div>
             @endif
             @if ($perusahaan->no_wa != null)
-                <div class="">
-                    whatsapp :{{ $perusahaan->no_wa }}
+                <div class="d-flex justify-content-between">
+                    Whatsapp
+                    <div class="">
+                        {{ $perusahaan->no_wa }}
+                    </div>
                 </div>
             @endif
             @if ($perusahaan->ig != null)
-                <div class="">
-                    instagram :{{ $perusahaan->ig }}
+                <div class="d-flex justify-content-between">
+                    Instagram
+                    <div class="">
+                        {{ $perusahaan->ig }}
+                    </div>
                 </div>
             @endif
 
