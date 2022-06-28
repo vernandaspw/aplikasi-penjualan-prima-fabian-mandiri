@@ -36,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
             return "{{ number_format($expression,0,',','.'); }} %";
         });
 
+        Blade::directive('rating', function ($expression) {
+            return "{{ number_format($expression,1,',','.'); }}";
+        });
+
         Paginator::useBootstrap();
     }
 }

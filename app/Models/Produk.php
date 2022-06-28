@@ -22,4 +22,17 @@ class Produk extends Model
     {
         return $this->hasMany(ProdukGaleri::class, 'produk_id', 'id');
     }
+
+    public function transaksiitem()
+    {
+        return $this->hasMany(TransaksiItem::class, 'produk_id', 'id');
+    }
+    public function produkulasan()
+    {
+        return $this->hasMany(ProdukUlasan::class, 'produk_id', 'id');
+    }
+    public function produkstok()
+    {
+        return $this->hasOne(ProdukStok::class, 'produk_id', 'id');
+    }
 }

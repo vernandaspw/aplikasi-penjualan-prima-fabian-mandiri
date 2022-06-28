@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\ProdukGaleri;
 use App\Models\ProdukKategori;
 use App\Models\ProdukMerek;
+use App\Models\ProdukStok;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -31,6 +32,10 @@ class KelolaProdukAdmin extends Component
     public $gambar, $gambar2, $gambar3, $gambar4, $gambar5, $gambar6;
     public $inputgambar2, $inputgambar3, $inputgambar4, $inputgambar5, $inputgambar6 = false;
     public $editgambar, $editgambar2, $editgambar3, $editgambar4, $editgambar5, $editgambar6;
+
+    public $stok, $stok_minimum = 0;
+    public $satuan_unit;
+    public $isstok = true;
 
     public function inputgambar2()
     {
@@ -120,6 +125,11 @@ class KelolaProdukAdmin extends Component
         $this->editgambar4 = null;
         $this->editgambar5 = null;
         $this->editgambar6 = null;
+
+        $this->stok = null;
+        $this->satuan_unit = null;
+        $this->stok_minimum = null;
+        $this->isstok = null;
     }
 
     public function buatform()
@@ -207,6 +217,15 @@ class KelolaProdukAdmin extends Component
             'no' => 6,
             'produk_id' => $data->id,
             'img' => $this->gambar6 == null ? null : $gambar6
+        ]);
+
+        ProdukStok::create([
+            'produk_id' => $data->id,
+            'satuan_unit' => $this->satuan_unit,
+            'po' => $this->stok,
+            'real' => $this->stok,
+            'stok_minimum' => $this->stok_minimum,
+            'isstok' => $this->isstok
         ]);
 
         $this->resetNull();

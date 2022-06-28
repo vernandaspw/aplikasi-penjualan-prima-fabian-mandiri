@@ -20,51 +20,45 @@
         </div>
     </nav>
     <div class="body" style="padding-top: 60px; padding-bottom: 85px;">
+        @if($lihatgambar)
+        <img src="{{ asset($lihatgambar->img == null ? 'imagenotfound.jpg' : Storage::url($lihatgambar->img)) }}" height="250" class="d-block w-100" alt="...">
+        @else
+        @forelse ($produk->gambar as $data)
+        @if($data->no == 1)
+        <img src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}" height="250" class="d-block w-100" alt="...">
+        @endif
+        @empty
+        <img src="{{ asset( 'imagenotfound.jpg') }}" height="250" class="d-block w-100" alt="...">
+        @endforelse
+        @endif
+       <div class="container">
 
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('parabola.jpg') }}" class="d-block w-100" height="300px" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('parabolabig.jpg') }}" class="d-block w-100" height="300px" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('antena.jpg') }}" class="d-block w-100" height="300px" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        <div class="scrollmenu mt-2">
+            @forelse ($produk->gambar as $data)
+
+            <img wire:click="lihatgambar('{{ $data->id }}')" src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}" height="60" width="60" class="btn btn-transparent p-0 m-0" alt="...">
+
+            @empty
+            <img src="{{ asset( 'imagenotfound.jpg') }}" height="59" class="" alt="...">
+            @endforelse
         </div>
+       </div>
 
         <div class="container mt-3">
             <div class="">
-                Kabel Adaptor
+                {{ $produk->nama }}
             </div>
             <div class="" style="font-size: 18px">
-                <b> @uang(10000)</b>
+                <b> @uang($produk->harga_jual)</b>
             </div>
             <div class="">
-                Terjual 29 | <img src="{{ asset('stars.svg') }}" alt=""> 4.5 (20)
+                Terjual {{ $produk->transaksiitem->count() }} | <img src="{{ asset('stars.svg') }}" alt="">
+                @rating($produk->produkulasan->avg('rating')) ({{ $produk->produkulasan->count() }})
             </div>
             <div class="">
-                Stok tersedia 20
+                Stok tersedia @if ($produk->produkstok->isstok == true)
+                    {{ $produk->produkstok->po }} {{ $produk->produkstok->satuan_unit }}
+                @endif
             </div>
 
             <hr style="margin: 0px">
@@ -77,7 +71,7 @@
                     Kategori
                 </div>
                 <div class="kanan text-end">
-                    Aksesoris
+                    {{ $produk->kategori->nama }}
                 </div>
             </div>
 
@@ -86,7 +80,7 @@
                     Merek
                 </div>
                 <div class="kanan text-end">
-                    Alpa
+                    {{ $produk->merek->nama }}
                 </div>
             </div>
 
@@ -95,12 +89,7 @@
             </div>
             <div class="">
                 <p style="text-align: justify">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ex. Magni possimus, eveniet enim
-                    ullam dignissimos sapiente vero minus officiis repellat sequi rerum numquam fugit consequuntur modi
-                    itaque delectus maxime
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore, quibusdam sed odit, nobis ipsum
-                    molestias expedita est architecto vel quasi sequi veritatis, beatae dolore doloribus voluptatum
-                    quaerat cupiditate repellat a.
+                    {{ $produk->deskripsi }}
                 </p>
             </div>
             <hr style="margin: 0px">
@@ -109,44 +98,50 @@
                 <b>Ulasan Pembeli</b>
             </div>
             <div class="">
-                Kabel Adaptor
+                {{ $produk->nama }}
             </div>
             <div class="">
-                <img src="{{ asset('stars.svg') }}" alt=""> 4.5/5.0 | 20 rating | 12 ulasan
+                <img src="{{ asset('stars.svg') }}" alt=""> @rating($produk->produkulasan->avg('rating'))/5.0 |
+                {{ $produk->produkulasan->count('rating') }} rating | {{ $jml_ulasan }} ulasan
             </div>
 
-            <div class="mt-2">
-                <div class="card">
-                    <div class="card-body pt-2 pb-0">
-                        <div>
-                            <img src="{{ asset('stars.svg') }}" alt=""> <img src="{{ asset('stars.svg') }}"
-                                alt=""> - 4 Hari yg lalu
-                        </div>
-                        <div class="">
-                            <b>Budi</b>
-                        </div>
-                        <div class="">
-                            <p style="text-align: justify">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae repellat esse suscipit
-                                nisi
-                                doloremque quasi nihil veniam sunt perspiciatis aspernatur enim quis hic, ullam eum!
-                                Exercitationem
-                            </p>
+            @forelse ($produk->produkulasan as $data)
+                <div class="mt-1">
+                    <div class="card">
+                        <div class="card-body pt-2 pb-0">
+                            <div>
+                                <img src="{{ asset('stars.svg') }}" alt=""> <img
+                                    src="{{ asset('stars.svg') }}" alt=""> -
+                                {{ \Carbon\Carbon::parse($data->created_at)->diffForHumans() }}
+                            </div>
+                            <div class="">
+                                <b>{{ $data->konsumen->nama }}</b>
+                            </div>
+                            <div class="">
+                                <p style="text-align: justify">
+                                    {{ Str::limit($data->ulasan, 100, '...') }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            @empty
+                Belum memiliki rating dan ulasan dari pembeli
+            @endforelse
+            @if ($produk->produkulasan->count() > $take)
                 <div class="mt-3">
-                    <center><button class="btn btn-transparent form-control">Lanjut</button></center>
+                    <center><button wire:click='lainnya' class="btn btn-transparent form-control">Lanjut</button>
+                    </center>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
     <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg" style="background-color: white">
         <div class="container">
             <ul class="py-1 navbar-nav nav-justified w-100 align-items-center">
                 <li class="nav-item" style="margin-right: 2px">
-                    <button href="javascript:void(0)" wire:click.prefetch='pesanan'
-                        class="nav-link btn m-1 text-center" style=" border-color: {{ env('COLOR_PRIMARY') }};">
+                    <button href="javascript:void(0)" wire:click.prefetch='pesanan' class="nav-link btn m-1 text-center"
+                        style=" border-color: {{ env('COLOR_PRIMARY') }};">
                         <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
                             Beli langsung
                         </span>

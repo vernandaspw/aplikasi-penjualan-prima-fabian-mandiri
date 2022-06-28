@@ -12,8 +12,8 @@
                     <span class="text-white">
                     </span>
                 </li>
-                <input wire:click='produk' class="form-control rounded border border-right-0 border-1 p-1" type="cariproduk"
-                    placeholder="cari produk" aria-label="cariproduk">
+                <input wire:click='produk' class="form-control rounded border border-right-0 border-1 p-1"
+                    type="cariproduk" placeholder="cari produk" aria-label="cariproduk">
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
@@ -90,30 +90,45 @@
                 </div>
                 <div class="mt-1">
                     <div class="row row-cols-lg-4 row-cols-sm-2 row-cols-md-3 row-cols-2">
-                        <div class="col mt-2">
-                            <a href="{{ url('produk', 1) }}" class="produkcard"
-                                style="text-decoration: none; color: black;">
-                                <div class="card produkitem shadow-sm border-0">
-                                    <img src="{{ asset('parabola.jpg') }}" class="card-img-top" width="100%"
-                                        height="170px" alt="">
-                                    <div class="card-body">
-                                        <div class="" style="font-size: 14px">
-                                            Antena Super
-                                        </div>
-                                        <div class=""
-                                            style="font-size: 16px; color: {{ env('COLOR_PRIMARY') }};">
-                                            <b>
-                                                @uang(10000)
-                                            </b>
-                                        </div>
+                        @forelse ($produk as $data)
+                            <div class="col mt-2">
+                                <a href="{{ url('produk', $data->id) }}" class="produkcard"
+                                    style="text-decoration: none; color: black;">
+                                    <div class="card produkitem shadow-sm border-0">
+                                        @foreach ($data->gambar as $gambar)
+                                            @if ($gambar->no == 1)
+                                                @if ($gambar->img == null)
+                                                    <img src="{{ asset('imagenotfound.jpg') }}" class="card-img-top"
+                                                        width="100%" height="170px" alt="">
+                                                @else
+                                                    <img src="{{ asset(Storage::url($gambar->img)) }}"
+                                                        class="card-img-top" width="100%" height="170px"
+                                                        alt="">
+                                                @endif
+                                            @endif
+                                        @endforeach
 
-                                        <div class="" style="font-size: 13px">
-                                            <img src="{{ asset('stars.svg') }}" alt=""> 4.5 | Terjual 29
+                                        <div class="card-body">
+                                            <div class="" style="font-size: 14px">
+                                                {{ $data->nama }}
+                                            </div>
+                                            <div class=""
+                                                style="font-size: 16px; color: {{ env('COLOR_PRIMARY') }};">
+                                                <b>
+                                                    @uang($data->harga_jual)
+                                                </b>
+                                            </div>
+
+                                            <div class="" style="font-size: 13px">
+                                                <img src="{{ asset('stars.svg') }}" alt=""> @rating($data->produkulasan->avg('rating')) | Terjual {{ $data->transaksiitem->count() }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        @empty
+                            belum ada produk
+                        @endforelse
                     </div>
                 </div>
             </section>
@@ -123,7 +138,7 @@
 </div>
 
 <style>
-body{
-    background-color: rgb(248, 248, 248);
-}
+    body {
+        background-color: rgb(248, 248, 248);
+    }
 </style>

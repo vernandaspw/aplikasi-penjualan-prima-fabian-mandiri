@@ -340,6 +340,48 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <hr>
+                                <div class="mt-2">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" wire:model='isstok' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Produk ini memiliki stok?</label>
+                                      </div>
+                                </div>
+                                @if($isstok)
+                                <div class="mt-2">
+                                    <label for="satuan_unit">Satuan unit</label>
+                                    <input maxlength="15" placeholder="cth: pcs, kg, dll" id="satuan_unit" type="text"
+                                        wire:model.lazy='satuan_unit'
+                                        class="form-control @error('satuan_unit') is-invalid @enderror">
+                                    @error('satuan_unit')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mt-2">
+                                    <label for="stok">Stok awal/akhir</label>
+                                    <input maxlength="15" placeholder="stok awal/akhir" id="stok" type="text"
+                                        wire:model.lazy='stok'
+                                        class="form-control @error('stok') is-invalid @enderror">
+                                    @error('stok')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="mt-2">
+                                    <label for="stok_minimum">Stok minumum</label>
+                                    <input maxlength="15" placeholder="stok minimum" id="stok_minimum" type="text"
+                                        wire:model.lazy='stok_minimum'
+                                        class="form-control @error('stok_minimum') is-invalid @enderror">
+                                    @error('stok_minimum')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                @endif
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-success form-control">
                                         Tambah akun
@@ -672,8 +714,13 @@
                                     <th>
                                         @foreach ($data->gambar as $gambar)
                                             @if ($gambar->no == 1)
+                                            @if($gambar->img == null)
+                                            <img width="60px" height="60"
+                                            src="{{ asset('imagenotfound.jpg') }}" alt="">
+                                                @else
                                                 <img width="60px" height="60"
-                                                    src="{{ asset(Storage::url($gambar->img)) }}" alt="">
+                                                src="{{ asset(Storage::url($gambar->img)) }}" alt="">
+                                            @endif
                                             @endif
                                         @endforeach
                                     </th>
