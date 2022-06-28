@@ -80,7 +80,7 @@
 
             <div class="">
                 <label for="metodepengiriman">Metode pengiriman</label>
-                <select wire:model='metode_pengiriman_id' id="metodepengiriman" class="form-control text-muted">
+                <select required wire:model='metode_pengiriman_id' id="metodepengiriman" class="form-control text-muted">
                     <option selected value="">Pilih pengiriman</option>
                     @forelse ($pengiriman as $data)
                         <option value="{{ $data->id }}">{{ $data->metode }}</option>
@@ -92,7 +92,7 @@
             @if($metode_pengiriman_id)
             <div class="mt-2">
                 <label for="metodepembayaran">Metode pembayaran</label>
-                <select id="metodepembayaran" class="form-control text-muted">
+                <select required id="metodepembayaran" class="form-control text-muted">
                     <option selected value="">Pilih pembayaran</option>
                     @forelse ($pembayaran as $data)
                         <option value="">{{ $data->metode }} - {{ $data->nama }}</option>

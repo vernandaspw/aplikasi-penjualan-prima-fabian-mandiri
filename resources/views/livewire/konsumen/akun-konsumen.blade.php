@@ -36,7 +36,7 @@
                     <div class="text-muted " style="font-size: 12px">Nomor handphone</div>
                     <div class="" style="font-size: 14px">{{ $akun->nohp }}</div>
                 </div>
-                <div class="mt-2">
+                <div class="mt-1">
                     <div class="text-muted " style="font-size: 12px">Jenis Kelamin</div>
                     <div class="" style="font-size: 14px">{{ $akun->jeniskelamin }}</div>
                 </div>

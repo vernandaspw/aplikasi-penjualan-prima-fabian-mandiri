@@ -100,9 +100,7 @@
             <div class="mt-3">
                 <b>Ulasan Pembeli</b>
             </div>
-            <div class="">
-                {{ $produk->nama }}
-            </div>
+
             <div class="">
                 <img src="{{ asset('stars.svg') }}" alt=""> @rating($produk->produkulasan->avg('rating'))/5.0 |
                 {{ $produk->produkulasan->count('rating') }} rating | {{ $jml_ulasan }} ulasan
