@@ -16,7 +16,10 @@ class IconCartKonsumen extends Component
 
     public function render()
     {
-        $this->jml_itemcart = KeranjangItem::with('produk')->where('konsumen_id', auth('konsumen')->user()->id)->get()->count();
+        if (auth('konsumen')->check()) {
+            $this->jml_itemcart = KeranjangItem::with('produk')->where('konsumen_id', auth('konsumen')->user()->id)->get()->count();
+        }
+
 
         return view('livewire.konsumen.component.icon-cart-konsumen')->extends('layouts.main')->section('content');
     }
