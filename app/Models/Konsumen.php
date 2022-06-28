@@ -53,4 +53,15 @@ class Konsumen extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function keranjang()
+    {
+        return $this->hasOne(Keranjang::class, 'konsumen_id', 'id');
+    }
+
+    public function keranjangitem()
+    {
+        return $this->hasMany(keranjangitem::class, 'konsumen_id', 'id');
+    }
 }

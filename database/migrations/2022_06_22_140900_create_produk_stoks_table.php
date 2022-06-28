@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('satuan_unit', 15)->nullable();
             $table->bigInteger('po')->default(0);
             $table->bigInteger('real')->default(0);
-            $table->integer('stok_minimum')->default(0);
+            $table->integer('stok_minimum')->nullable();
             $table->boolean('isstok')->default(true);
             $table->timestamps();
         });

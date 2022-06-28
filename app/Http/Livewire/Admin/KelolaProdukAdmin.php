@@ -37,6 +37,12 @@ class KelolaProdukAdmin extends Component
     public $satuan_unit;
     public $isstok = true;
 
+
+    public function lanjut()
+    {
+        $this->take = $this->take + 10;
+    }
+
     public function inputgambar2()
     {
         $this->inputgambar2 = true;
@@ -221,9 +227,9 @@ class KelolaProdukAdmin extends Component
 
         ProdukStok::create([
             'produk_id' => $data->id,
-            'satuan_unit' => $this->satuan_unit,
-            'po' => $this->stok,
-            'real' => $this->stok,
+            'satuan_unit' => $this->satuan_unit == null ? 'pcs' : $this->satuan_unit,
+            'po' => $this->stok == null ? 0 : $this->stok,
+            'real' => $this->stok == null ? 0 : $this->stok,
             'stok_minimum' => $this->stok_minimum,
             'isstok' => $this->isstok
         ]);

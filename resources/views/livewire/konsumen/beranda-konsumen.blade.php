@@ -12,7 +12,7 @@
                     <span class="text-white">
                     </span>
                 </li>
-                <input wire:click='produk' class="form-control rounded border border-right-0 border-1 p-1"
+                <input wire:click='cariproduk' class="form-control rounded border border-right-0 border-1 p-1"
                     type="cariproduk" placeholder="cari produk" aria-label="cariproduk">
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
@@ -120,7 +120,8 @@
                                             </div>
 
                                             <div class="" style="font-size: 13px">
-                                                <img src="{{ asset('stars.svg') }}" alt=""> @rating($data->produkulasan->avg('rating')) | Terjual {{ $data->transaksiitem->count() }}
+                                                <img src="{{ asset('stars.svg') }}" alt=""> @rating($data->produkulasan->avg('rating'))
+                                                | Terjual {{ $data->transaksiitem->count() }}
                                             </div>
                                         </div>
                                     </div>
@@ -129,6 +130,15 @@
                         @empty
                             belum ada produk
                         @endforelse
+
+                    </div>
+                    <div class="mt-2">
+                        @if ($take < $jmlproduk)
+                        <center>
+                            <button wire:click='lanjut'
+                                class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
+                        </center>
+                    @endif
                     </div>
                 </div>
             </section>

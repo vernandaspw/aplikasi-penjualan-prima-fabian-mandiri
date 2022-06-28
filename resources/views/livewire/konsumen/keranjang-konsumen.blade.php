@@ -14,49 +14,80 @@
 
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
-                    <a class="shadow-m px-2" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
-                            alt=""></a>
+                   <livewire:konsumen.component.icon-cart-konsumen />
                 </li>
             </ul>
         </div>
     </nav>
     <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container-fluid">
+            @forelse($keranjangitem as $data)
             <div class="card shadow-sm border border-light">
                 <div class="card-body pb-0">
-                    <div class="d-flex justify-content-start align-items-center">
-                        <img src="{{ asset('parabola.jpg') }}" width="100px" height="100px" class="rounded"
-                            alt="...">
+                    <div class="d-flex justify-content-start">
+                        @forelse ($data->produk->gambar as $gambar)
+                        @if($gambar->no == 1)
+                        <img src="{{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }}" width="75px" height="75px" class="rounded"
+                        alt="...">
+                        @endif
+                        @empty
+                        @if($gambar->no == 1)
+                        <img src="{{  asset('imagenotfound.jpg') }}" width="75px" height="75px" class="rounded"
+                        alt="...">
+                        @endif
+                        @endforelse
                         <div class="ms-3">
-
-                            <h5 class="card-title">Antena Parabola</h5>
-
-                            <p class="card-text">
-                                @uang(10000)
+                            <h6 class="card-title">{{ $data->produk->nama }}</h6>
+                            <p class="card-text text-muted mb-0">
+                                @uang($data->produk->harga_jual)
                             </p>
-
+                            <p class="card-text text-muted mb-0">
+                                    @if ( $data->produk->produkstok->isstok)
+                                    Sisa stok {{ $data->produk->produkstok->po }} {{ $data->produk->produkstok->satuan_unit }}
+                                @endif
+                                </p>
                         </div>
                     </div>
                     <p class="card-text">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="k d-flex">
-                            <button wire:click='tambah' class="btn text-white" style="background-color: {{ env('COLOR_PRIMARY') }}">
+                        <div class="d-flex justify-content-start align-items-center" >
+                            <button
+                            @if($data->qty >= $data->produk->produkstok->po)
+                            disabled
+                            @endif
+                            wire:click="tambahitem('{{ $data->id }}')"  class="px-3 btn btn-sm text-white" style="background-color: {{ env('COLOR_PRIMARY') }}">
                                 +
                             </button>
-                            <input min="1" class="w-25 text-center border border-light py-1 px-0" type="number"
-                                wire:model='qty'>
-                            <button wire:click='kurang' class="btn btn-warning text-white">
+                            <span class=" text-center border-0 px-sm-5 px-lg-5 px-xl-5 px-md-5 px-4
+                            ">
+                                {{ $data->qty }}
+                            </span>
+                            <button
+                            @if($data->qty <= 1)
+                            disabled
+                            @endif
+                            wire:click="kurangitem('{{ $data->id }}')" class="btn btn-sm btn-warning text-white px-3">
                                 -
                             </button>
+                            <span style="font-size: 12px" class=" text-center text-muted border-0 px-1
+                            ">
+                                @uang($data->total_harga)
+                            </span>
                         </div>
-                        <div class="kanan mt-2">
-                            <button wire:click="delete('1')" class="btn btn-danger">Hapus</button>
+                        <div class="kanan ">
+                            <button
+
+                            wire:click="deleteitem('{{ $data->id }}')" class="btn btn-sm btn-transparent">
+                                <img src="{{ asset('trash.png') }}" alt="">
+                            </button>
                         </div>
                     </div>
                     </p>
                 </div>
-
             </div>
+            @empty
+                Belum ada barang dikeranjang ini
+            @endforelse
         </div>
     </div>
     <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg" style="background-color: {{ env('COLOR_PRIMARY') }}">
@@ -70,7 +101,7 @@
                         <b>@uang(10000)</b>
                     </div>
                 </div>
-              
+
                 <div class="ms-auto">
                     <a href="{{ url('checkout') }}"
                         class="nav-link btn px-5 m-1 text-center btn-light"   style="color: {{ env('COLOR_PRIMARY') }}">

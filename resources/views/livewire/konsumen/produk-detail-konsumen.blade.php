@@ -13,36 +13,38 @@
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
                 <li class="nav-item">
-                    <a class="shadow-m px-3" href="{{ url('keranjang') }}"><img src="{{ asset('cart.svg') }}"
-                            alt=""></a>
+                    <livewire:konsumen.component.icon-cart-konsumen />
                 </li>
             </ul>
         </div>
     </nav>
     <div class="body" style="padding-top: 60px; padding-bottom: 85px;">
-        @if($lihatgambar)
-        <img src="{{ asset($lihatgambar->img == null ? 'imagenotfound.jpg' : Storage::url($lihatgambar->img)) }}" height="250" class="d-block w-100" alt="...">
+        @if ($lihatgambar)
+            <img src="{{ asset($lihatgambar->img == null ? 'imagenotfound.jpg' : Storage::url($lihatgambar->img)) }}"
+                height="250" class="d-block w-100" alt="...">
         @else
-        @forelse ($produk->gambar as $data)
-        @if($data->no == 1)
-        <img src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}" height="250" class="d-block w-100" alt="...">
-        @endif
-        @empty
-        <img src="{{ asset( 'imagenotfound.jpg') }}" height="250" class="d-block w-100" alt="...">
-        @endforelse
-        @endif
-       <div class="container">
-
-        <div class="scrollmenu mt-2">
             @forelse ($produk->gambar as $data)
-
-            <img wire:click="lihatgambar('{{ $data->id }}')" src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}" height="60" width="60" class="btn btn-transparent p-0 m-0" alt="...">
-
+                @if ($data->no == 1)
+                    <img src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}"
+                        height="250" class="d-block w-100" alt="...">
+                @endif
             @empty
-            <img src="{{ asset( 'imagenotfound.jpg') }}" height="59" class="" alt="...">
+                <img src="{{ asset('imagenotfound.jpg') }}" height="250" class="d-block w-100" alt="...">
             @endforelse
+        @endif
+        <div class="container">
+
+            <div class="scrollmenu mt-2">
+                @forelse ($produk->gambar as $data)
+                    <img wire:click="lihatgambar('{{ $data->id }}')"
+                        src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}"
+                        height="60" width="60" class="btn btn-transparent p-0 m-0" alt="...">
+
+                @empty
+                    <img src="{{ asset('imagenotfound.jpg') }}" height="59" class="" alt="...">
+                @endforelse
+            </div>
         </div>
-       </div>
 
         <div class="container mt-3">
             <div class="">
@@ -52,7 +54,8 @@
                 <b> @uang($produk->harga_jual)</b>
             </div>
             <div class="">
-                Terjual {{ $produk->transaksiitem->count() }} | <img src="{{ asset('stars.svg') }}" alt="">
+                Terjual {{ $produk->transaksiitem->count() }} | <img src="{{ asset('stars.svg') }}"
+                    alt="">
                 @rating($produk->produkulasan->avg('rating')) ({{ $produk->produkulasan->count() }})
             </div>
             <div class="">
@@ -140,7 +143,7 @@
         <div class="container">
             <ul class="py-1 navbar-nav nav-justified w-100 align-items-center">
                 <li class="nav-item" style="margin-right: 2px">
-                    <button href="javascript:void(0)" wire:click.prefetch='pesanan' class="nav-link btn m-1 text-center"
+                    <button href="javascript:void(0)" wire:click='pesanan' class="nav-link btn m-1 text-center"
                         style=" border-color: {{ env('COLOR_PRIMARY') }};">
                         <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
                             Beli langsung
@@ -148,7 +151,7 @@
                     </button>
                 </li>
                 <li class="nav-item" style="margin-left: 2px">
-                    <button href="javascript:void(0)" wire:click.prefetch='akun'
+                    <button type="button" wire:click="tambahkecart('{{ $produk->id }}')"
                         class="nav-link btn m-1 text-white text-center"
                         style="background-color: {{ env('COLOR_PRIMARY') }}">
                         <span class="small d-block" style="font-size: 15px">
@@ -159,4 +162,29 @@
             </ul>
         </div>
     </nav>
+
+
+    @push('script')
+        <script>
+            Livewire.on('success', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    text: data.pesan,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+            Livewire.on('error', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'error!',
+                    text: data.pesan,
+                    icon: 'error',
+                    confirmButtonText: 'oke'
+                })
+            })
+        </script>
+    @endpush
 </div>

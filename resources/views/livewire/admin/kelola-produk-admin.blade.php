@@ -331,7 +331,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="deskripsi">Deskripsi Produk <span class="text-muted">(bisa sisipkan
-                                            &lt;br&gt; untuk enter)</span></label>
+                                            &lt;br&gt; untuk enter dan &lt;b&gt; untuk bold)</span></label>
                                     <textarea placeholder="isi deskripsi produk" class="form-control @error('deskripsi') is-invalid @enderror"
                                         wire:model.lazy='deskripsi' id="deskripsi" cols="30" rows="7"></textarea>
                                     @error('deskripsi')
@@ -665,7 +665,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="deskripsi">Deskripsi Produk <span class="text-muted">(bisa sisipkan
-                                            &lt;br&gt; untuk enter)</span></label>
+                                        &lt;br&gt; untuk enter dan &lt;b&gt; untuk bold)</span></label>
                                     <textarea placeholder="isi deskripsi produk" class="form-control @error('deskripsi') is-invalid @enderror"
                                         wire:model.lazy='deskripsi' id="deskripsi" cols="30" rows="7"></textarea>
                                     @error('deskripsi')
@@ -756,10 +756,11 @@
                         </tbody>
                     </table>
                     @if ($take < $jmlproduk)
-                        <center>
-                            <button class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
-                        </center>
-                    @endif
+                    <center>
+                        <button wire:click='lanjut'
+                            class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
+                    </center>
+                @endif
                 </div>
             @endif
 
