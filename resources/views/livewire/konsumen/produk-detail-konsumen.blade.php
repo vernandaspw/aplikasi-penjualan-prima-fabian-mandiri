@@ -18,7 +18,7 @@
             </ul>
         </div>
     </nav>
-    <div class="body" style="padding-top: 60px; padding-bottom: 85px;">
+    <div class="body" style="padding-top: 55px; padding-bottom: 85px;">
         @if ($lihatgambar)
             <img src="{{ asset($lihatgambar->img == null ? 'imagenotfound.jpg' : Storage::url($lihatgambar->img)) }}"
                 height="250" class="d-block w-100" alt="...">
@@ -163,7 +163,7 @@
         </div>
     </nav>
 
-  
+
 
     @push('script')
         <script>
