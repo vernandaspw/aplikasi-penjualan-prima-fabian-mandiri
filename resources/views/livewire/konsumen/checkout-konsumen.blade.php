@@ -86,7 +86,6 @@
                     @endforelse
                 </select>
             </div>
-            @if($metode_pengiriman_id)
             <div class="mt-2">
                 <label for="metodepembayaran">Metode pembayaran</label>
                 <select required id="metodepembayaran" class="form-control text-muted">
@@ -97,7 +96,6 @@
                     @endforelse
                 </select>
             </div>
-            @endif
 
         </div>
         <br>
