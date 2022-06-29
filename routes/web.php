@@ -50,6 +50,7 @@ Route::middleware(['konsumenisnotlogin'])->group(function () {
 Route::middleware(['konsumenislogin'])->group(function () {
     Route::get('/keranjang', KeranjangKonsumen::class);
     Route::get('/checkout', CheckoutKonsumen::class);
+    
 });
 
 

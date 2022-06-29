@@ -17,7 +17,13 @@
                         <div class="mb-2">
                             <label for="nama" class="form-label">Nama</label>
                             <input placeholder="isi nama lengkap" required wire:model='nama' type="text"
-                                class="form-control" id="nama" aria-describedby="namaHelp">
+                                class="form-control @error('nama') is-invalid @enderror" id="nama"
+                                aria-describedby="namaHelp">
+                            @error('nama')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="mb-2">
@@ -25,38 +31,68 @@
                             <div class="input-group">
                                 <span class="input-group-text" id="nohp">+62</span>
                                 <input required placeholder="82144******" wire:model='nohp' type="tel"
-                                    minlength="5" maxlength="15" class="form-control" id="nohp"
+                                    minlength="5" maxlength="15" class="form-control @error('nohp') is-invalid @enderror" id="nohp"
                                     aria-describedby="nohpHelp">
+                                    @error('nohp')
+                                    <span class="invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-2">
                             <label for="email" class="form-label">Email address</label>
                             <input placeholder="example@example.com" required wire:model='email' type="email"
-                                class="form-control" id="email" aria-describedby="emailHelp">
+                                class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp">
+                                @error('email')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-2">
                             <label for="password" class="form-label">Password</label>
                             <input placeholder="isi password" required wire:model='password' type="password"
-                                class="form-control" id="password">
-                        </div>
+                                class="form-control @error('password') is-invalid @enderror" id="password">
+                                @error('password')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            </div>
                         <div class="mb-2">
                             <label for="password2" class="form-label">Ulangi Password</label>
-                            <input placeholder="isi ulang password" required wire:model='ulangipassword' type="password"
-                                class="form-control" id="password2">
-                        </div>
+                            <input placeholder="isi ulang password" required wire:model="ulangi_password"
+                                type="password" class="form-control @error('ulangi_password') is-invalid @enderror" id="password2">
+                                @error('ulangi_password')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            </div>
                         <div class="mb-2">
                             <label for="jk">Jenis kelamin</label>
-                            <select wire:model='jeniskelamin' required class="form-control" id="jk">
+                            <select wire:model='jeniskelamin' required class="form-control @error('jeniskelamin') is-invalid @enderror" id="jk">
                                 <option value="">Pilih jenis kelamin</option>
                                 <option value="laki laki">Laki laki</option>
                                 <option value="perempuan">Perempuan</option>
                             </select>
+                            @error('jeniskelamin')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                        @enderror
                         </div>
                         <div class="mb-2">
                             <label for="wilayah" class="form-label">Wilayah</label>
                             <input placeholder="isi wilayah" required wire:model='wilayah' type="text"
-                                class="form-control" id="wilayah" aria-describedby="wilayahHelp">
-                        </div>
+                                class="form-control @error('wilayah') is-invalid @enderror" id="wilayah" aria-describedby="wilayahHelp">
+                                @error('wilayah')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                            </div>
                         {{-- <div class="mt-3"><b>Data Alamat</b></div>
                         <div class="mb-2">
                             <label for="provinsi" class="form-label">provinsi</label>
@@ -94,13 +130,38 @@
                             <input checked type="checkbox" wire:model='ingat' class="form-check-input" id="remember">
                             <label class="form-check-label" for="remember">Ingat saya</label>
                         </div> --}}
-                        <button type="submit" class="btn mt-3 rounded-pill text-white form-control shadow-sm" style="background-color: {{ env('COLOR_PRIMARY') }};">Daftar</button>
+                        <button type="submit" class="btn mt-3 rounded-pill text-white form-control shadow-sm"
+                            style="background-color: {{ env('COLOR_PRIMARY') }};">Daftar</button>
                     </form>
-                    <a href="{{ url('login', []) }}" class="btn rounded-pill btn-transparent form-control shadow-sm mt-2">Login</a>
+                    <a href="{{ url('login', []) }}"
+                        class="btn rounded-pill btn-transparent form-control shadow-sm mt-2">Login</a>
                 </div>
             </div>
         </div>
     </div>
+
+    @push('script')
+        <script>
+            Livewire.on('success', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'success!',
+                    text: data.pesan,
+                    icon: 'success',
+                    confirmButtonText: 'oke'
+                })
+            })
+            Livewire.on('error', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'error!',
+                    text: data.pesan,
+                    icon: 'error',
+                    confirmButtonText: 'oke'
+                })
+            })
+        </script>
+    @endpush
 </div>
 
 

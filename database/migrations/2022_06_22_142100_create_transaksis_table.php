@@ -30,7 +30,9 @@ return new class extends Migration
             $table->decimal('biaya_kirim',10,2)->default(0);
             $table->decimal('total_pembayaran',19,2)->default(0);
             $table->decimal('total_modal',19,2)->default(0);
-            $table->decimal('total_berat_kg',7,2)->default(0);
+            $table->decimal('total_berat',7,2)->default(0);
+            $table->decimal('laba_penjualan_produk',19,2)->default(0);
+            $table->decimal('laba_penjualan_bersih',19,2)->default(0);
             $table->longText('catatan')->nullable();
             $table->enum('status',['konfirm','porses_pembayaran', 'sedang_dikemas', 'sedang_antar','diterima','selesai', 'gagal', 'batal']);
             $table->boolean('islunas')->default(true);

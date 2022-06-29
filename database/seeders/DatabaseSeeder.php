@@ -31,7 +31,9 @@ class DatabaseSeeder extends Seeder
             ProdukMerekSeeder::class,
             MetodeKirimSeeder::class,
             MetodePembayaranSeeder::class,
-            MetodeKirimPembayaranSeeder::class
+            MetodeKirimPembayaranSeeder::class,
+            TransaksiJenisSeeder::class,
+            TransaksiKategoriSeeder::class
         ]);
     }
 }

@@ -19,23 +19,22 @@
             </ul>
         </div>
     </nav>
-    <div class="body" style="padding-top: 75px; padding-bottom: 65px;">
+    <div wire:poll class="body" style="padding-top: 75px; padding-bottom: 65px;">
         <div class="container-fluid">
             @if (session()->has('error'))
-            <div class="alert alert-danger mt-2" role="alert">
-                Centang barang yang ingin di beli
-              </div>
+                <div class="alert alert-danger mt-2" role="alert">
+                    Centang barang yang ingin di beli
+                </div>
             @endif
             @forelse($keranjangitem as $data)
                 <div class="card mb-1 shadow-sm border border-light">
                     <div class="card-body pb-2">
                         <div class="d-flex">
-                            <div class="me-2 mt-2" wire:ignore>
-                                <input id="check{{ $data->id }}" class="p-1 form-check-input" type="checkbox"
-                                    wire:click="check('{{ $data->id }}')" @if($data->selected)
-                                    checked
-                                    @endif
-                                    >
+                            <div class="me-2 mt-2">
+                                <input @if ($data->produk->produkstok->po < $data->qty) disabled @endif id="check{{ $data->id }}"
+                                    class="p-1 form-check-input" type="checkbox"
+                                    wire:click="check('{{ $data->id }}')"
+                                    @if ($data->selected) checked @endif>
                             </div>
                             <div class="w-100">
                                 <label for="check{{ $data->id }}">

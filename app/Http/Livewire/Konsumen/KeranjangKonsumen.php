@@ -16,17 +16,23 @@ class KeranjangKonsumen extends Component
 
     public $mySelected;
 
+
+
     public function check($id)
     {
         $cek = KeranjangItem::find($id);
+
         if ($cek->selected) {
             $cek->update([
                 'selected' => false
             ]);
         } else {
-            $cek->update([
-                'selected' => true
-            ]);
+            if ($cek->produk->produkstok->po >= $cek->qty) {
+                $cek->update([
+                    'selected' => true
+                ]);
+            } else {
+            }
         }
     }
 
@@ -40,8 +46,6 @@ class KeranjangKonsumen extends Component
                 ]);
             }
         }
-
-
     }
 
     public function tambahitem($id)
@@ -51,9 +55,13 @@ class KeranjangKonsumen extends Component
             if ($data->qty < $data->produk->produkstok->po) {
                 $qty = $data->qty + 1;
                 $totalharga =  $data->produk->harga_jual * $qty;
+                $totalmodal =  $data->produk->harga_modal * $qty;
+                $totalberat =  $data->produk->berat_kg * $qty;
                 $qty_update = $data->update([
                     'qty' => $qty,
-                    'total_harga' => $totalharga
+                    'total_harga' => $totalharga,
+                    'total_modal' => $totalmodal,
+                    'total_berat' => $totalberat
                 ]);
             } else {
             }
@@ -66,9 +74,13 @@ class KeranjangKonsumen extends Component
         if ($data->qty > 1) {
             $qty = $data->qty - 1;
             $totalharga =  $data->produk->harga_jual * $qty;
+            $totalmodal =  $data->produk->harga_modal * $qty;
+            $totalberat =  $data->produk->berat_kg * $qty;
             $qty_update = $data->update([
                 'qty' => $qty,
-                'total_harga' => $totalharga
+                'total_harga' => $totalharga,
+                'total_modal' => $totalmodal,
+                'total_berat' => $totalberat
             ]);
         } else {
         }

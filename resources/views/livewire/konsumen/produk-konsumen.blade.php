@@ -62,17 +62,17 @@
                                 @endforeach
 
                                 <div class="card-body">
-                                    <div class="" style="font-size: 14px">
+                                    <div class="" style="font-size: 13px">
                                         {{ $data->nama }}
                                     </div>
                                     <div class=""
-                                        style="font-size: 16px; color: {{ env('COLOR_PRIMARY') }};">
+                                        style="font-size: 14px; color: {{ env('COLOR_PRIMARY') }};">
                                         <b>
                                             @uang($data->harga_jual)
                                         </b>
                                     </div>
 
-                                    <div class="" style="font-size: 13px">
+                                    <div class="" style="font-size: 12px">
                                         <img src="{{ asset('stars.svg') }}" alt=""> @rating($data->produkulasan->avg('rating'))
                                         | Terjual {{ $data->transaksiitem->count() }}
                                     </div>

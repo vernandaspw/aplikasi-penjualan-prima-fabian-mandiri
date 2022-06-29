@@ -17,22 +17,10 @@ class TransaksiJenisSeeder extends Seeder
     {
         DB::table('transaksi_jenis')->insert([
             [
-                'nama' => 'penjualan'
+                'nama' => 'pemasukan'
             ],
             [
-                'nama' => 'pendapatan diluar usaha'
-            ],
-            [
-                'nama' => 'penagihan utang'
-            ],
-            [
-                'nama' => 'terima pinjaman'
-            ],
-            [
-                'nama' => 'penambahan modal'
-            ],
-            [
-                'nama' => 'pendapatan lain lain'
+                'nama' => 'pengeluaran'
             ]
         ]);
     }

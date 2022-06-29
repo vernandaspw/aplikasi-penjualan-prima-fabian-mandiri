@@ -56,9 +56,13 @@ class ProdukDetailKonsumen extends Component
                 if ($cart_item->qty < $cart_item->produk->produkstok->po) {
                     $qty = $cart_item->qty + 1;
                     $totalharga =  $cart_item->produk->harga_jual * $qty;
+                    $totalmodal =  $cart_item->produk->harga_modal * $qty;
+                    $totalberat =  $cart_item->produk->berat_kg * $qty;
                     $qty_update = $cart_item->update([
                         'qty' => $qty,
-                        'total_harga' => $totalharga
+                        'total_harga' => $totalharga,
+                        'total_modal' => $totalmodal,
+                        'total_berat' => $totalberat
                     ]);
                     $this->emit('success', ['pesan' => 'berhasil tambah produk ke keranjang']);
                 } else {
@@ -74,7 +78,9 @@ class ProdukDetailKonsumen extends Component
                     'keranjang_id' => $konsumen->keranjang->id,
                     'produk_id' => $produkid,
                     'qty' => 1,
-                    'total_harga' => $produk->harga_jual
+                    'total_harga' => $produk->harga_jual,
+                    'total_modal' => $produk->harga_modal,
+                    'total_berat' => $produk->berat_kg
                 ]);
                 $this->emit('success', ['pesan' => 'berhasil tambah produk ke keranjang']);
             }else {

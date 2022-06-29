@@ -25,6 +25,7 @@ class Konsumen extends Authenticatable
         'email',
         'password',
         'avatar',
+        'wilayah',
         'provinsi',
         'kota',
         'kecamatan',
