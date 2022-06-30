@@ -26,6 +26,7 @@ use App\Http\Livewire\Konsumen\KeranjangKonsumen;
 use App\Http\Livewire\Konsumen\LoginKonsumen;
 use App\Http\Livewire\Konsumen\MainPageKonsumen;
 use App\Http\Livewire\Konsumen\PerusahaanKonsumen;
+use App\Http\Livewire\Konsumen\PesananDetailKonsumen;
 use App\Http\Livewire\Konsumen\ProdukDetailKonsumen;
 use App\Http\Livewire\Konsumen\ProdukKonsumen;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +51,9 @@ Route::middleware(['konsumenisnotlogin'])->group(function () {
 Route::middleware(['konsumenislogin'])->group(function () {
     Route::get('/keranjang', KeranjangKonsumen::class);
     Route::get('/checkout', CheckoutKonsumen::class);
-    
+
+    Route::get('pesanan-detail/{no}', PesananDetailKonsumen::class);
+
 });
 
 

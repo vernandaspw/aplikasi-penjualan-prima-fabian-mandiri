@@ -26,6 +26,7 @@
                 @forelse ($transaksi as $data)
                     <div class="card mt-1 shadow-sm border-light">
                         <div class="card-body py-2">
+                           <a href="{{ url('pesanan-detail', $data->no_transaksi) }}" class="text-decoration-none text-dark">
                             <div class="d-flex justify-content-between">
                                 <div class="kiri">
                                     {{ $data->no_transaksi }}
@@ -63,6 +64,7 @@
                                 @endif
 
                             </div>
+                           </a>
                             <hr class="my-0">
                             <div class="mt-2 d-flex justify-content-between align-items-center">
                                 <div class="kir">
@@ -74,10 +76,19 @@
                                     </div>
                                 </div>
                                 <div class="kanan">
-                                    <button class="btn btn rounded text-white"
+                                    @if ($data->status == 'selesai')
+                                        <button class="btn btn rounded text-white"
+                                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                            Beri ulasan
+                                        </button>
+                                        @elseif($data->status == 'konfirm')
+                                        <button
+                                        onclick="confirm('Yakin sudah bayar?') || event.stopImmediatePropagation()"
+                                        class="btn btn rounded text-white"
                                         style="background-color: {{ env('COLOR_PRIMARY') }}">
-                                        Beri ulasan
+                                        sudah bayar
                                     </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
