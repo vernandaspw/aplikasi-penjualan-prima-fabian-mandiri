@@ -99,10 +99,10 @@
 
             <div class="container">
                 <hr class="my-2">
-                <button wire:click='ubahpassword' class="btn rounded-pill mt-2 form-control text-white"
+                <a href="{{ url('ubah-password') }}" class="btn rounded-pill mt-2 form-control text-white"
                     style="background-color: {{ env('COLOR_PRIMARY') }}">
                     Ubah password
-                </button>
+                </a>
                 <button wire:click='logout' class="btn rounded-pill btn-danger mt-2 form-control">
                     Logout
                 </button>
