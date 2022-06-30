@@ -138,8 +138,10 @@ class CheckoutKonsumen extends Component
                 }
             }
 
-            
+
             $this->emit('success', ['pesan' => 'Berhasil buat pesanan']);
+
+            redirect()->to('/');
         } catch (\Exception $e) {
             $this->emit('error', ['pesan' => $e->getMessage()]);
         }

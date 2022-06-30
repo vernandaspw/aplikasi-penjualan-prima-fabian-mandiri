@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Keranjang;
 use App\Models\Konsumen;
 use App\Models\Pegawai;
 use Illuminate\Support\Facades\Hash;
@@ -52,6 +53,9 @@ class KelolaAkunAdmin extends Component
             'email' => $this->email,
             'password' => Hash::make($this->password),
             'role' => $this->role
+        ]);
+        Keranjang::create([
+            'pwgawai_id' => $data->id
         ]);
 
         $this->resetNull();

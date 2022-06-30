@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nama_produk',90)->nullable();
             $table->decimal('harga_jual',19,2)->default(0);
             $table->decimal('harga_modal',19,2)->default(0);
+            $table->decimal('berat',7,2)->default(0);
             $table->integer('qty')->default(0);
             $table->decimal('total_harga',19,2)->default(0);
             $table->decimal('total_modal',19,2)->default(0);

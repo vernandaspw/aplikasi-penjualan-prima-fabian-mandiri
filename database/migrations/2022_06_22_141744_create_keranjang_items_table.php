@@ -19,6 +19,10 @@ return new class extends Migration
             $table->foreignId('pegawai_id')->nullable()->constrained('pegawais')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('keranjang_id')->constrained('keranjangs')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('produk_id')->nullable()->constrained('produks')->onUpdate('cascade')->onDelete('set null');
+            $table->string('nama_produk',90)->nullable();
+            $table->decimal('harga_jual',19,2)->default(0);
+            $table->decimal('harga_modal',19,2)->default(0);
+            $table->decimal('berat',7,2)->default(0);
             $table->integer('qty')->default(0);
             $table->decimal('total_harga',19,2)->default(0);
             $table->decimal('total_modal',19,2)->default(0);
