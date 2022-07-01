@@ -6,6 +6,7 @@ use App\Models\KeranjangItem;
 use App\Models\MetodeKirim;
 use App\Models\MetodeKirimPembayaran;
 use App\Models\MetodePembayaran;
+use App\Models\ProdukStok;
 use App\Models\Transaksi;
 use App\Models\TransaksiItem;
 use App\Models\TransaksiJenis;
@@ -133,16 +134,25 @@ class CheckoutKonsumen extends Component
                     'total_modal' => $item->total_modal,
                     'total_berat' => $item->total_berat
                 ]);
+
+                $produkstok = ProdukStok::where('produk_id', $item->produk_id)->first();
+                $produkstok->update([
+                    'po' => $produkstok->po - $item->qty,
+                ]);
+
                 if ($buat_transaksi_item) {
                     KeranjangItem::find($item->id)->delete();
                 }
             }
 
 
+
+
             $this->emit('success', ['pesan' => 'Berhasil buat pesanan']);
 
             redirect()->to('/');
         } catch (\Exception $e) {
+            dd($e);
             $this->emit('error', ['pesan' => $e->getMessage()]);
         }
     }
