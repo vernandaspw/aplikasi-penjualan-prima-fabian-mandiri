@@ -16,6 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth('pegawai')->user()->role == 'admin') {
+            return $next($request);
+        }
+        return abort(401);
     }
 }

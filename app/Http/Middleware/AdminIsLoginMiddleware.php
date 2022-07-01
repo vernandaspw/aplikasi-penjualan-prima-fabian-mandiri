@@ -18,14 +18,13 @@ class AdminIsLoginMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (auth('pegawai')->check()) {
-            $p =  Pegawai::find(auth('pegawai')->user()->id);
-            if ($p->isaktif == true) {
+            if (auth('pegawai')->user()->isaktif == true) {
                 return $next($request);
             } else {
                 auth('pegawai')->logout();
                 session()->invalidate();
                 session()->regenerateToken();
-                redirect('admin/login');
+                return redirect('admin/login');
             }
         }
         return redirect('admin/login');

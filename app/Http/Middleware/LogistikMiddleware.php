@@ -16,6 +16,9 @@ class LogistikMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth('pegawai')->user()->role == 'logistik') {
+            return $next($request);
+        }
+        return abort(401);
     }
 }
