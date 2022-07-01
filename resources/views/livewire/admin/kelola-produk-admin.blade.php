@@ -347,7 +347,7 @@
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Produk ini memiliki stok?</label>
                                       </div>
                                 </div>
-                                @if($isstok)
+                            
                                 <div class="mt-2">
                                     <label for="satuan_unit">Satuan unit</label>
                                     <input maxlength="15" placeholder="cth: pcs, kg, dll" id="satuan_unit" type="text"
@@ -381,7 +381,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                @endif
+                            
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-success form-control">
                                         Tambah akun
