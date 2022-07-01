@@ -17,7 +17,7 @@ class DaftarKonsumen extends Component
         $this->validate([
             'nama' => 'required|max:25',
             'jeniskelamin' => 'required',
-            'nohp' => 'required|max:15',
+            'nohp' => 'required|max:15|unique:konsumens,nohp',
             'email' => 'required|max:80|email',
             'password' => ['required', Password::min(6)->numbers()->mixedCase()],
             'ulangi_password' => 'same:password',
@@ -42,7 +42,7 @@ class DaftarKonsumen extends Component
                 redirect()->to('/');
             }
         } catch (\Exception $e) {
-            $this->emit('error', ['pesan' => $e->getMessage()]);
+            // $this->emit('error', ['pesan' => $e->getMessage()]);
         }
     }
 
