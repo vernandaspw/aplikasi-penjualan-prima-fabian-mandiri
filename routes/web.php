@@ -19,6 +19,7 @@ use App\Http\Livewire\Admin\PenjualanAdmin;
 use App\Http\Livewire\Admin\PesananMasukAdmin;
 use App\Http\Livewire\Admin\ProsesAntarAdmin;
 use App\Http\Livewire\Admin\SelesaiAdmin;
+use App\Http\Livewire\Konsumen\BeliLangsungKonsumen;
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\CheckoutKonsumen;
 use App\Http\Livewire\Konsumen\DaftarKonsumen;
@@ -52,8 +53,9 @@ Route::middleware(['konsumenisnotlogin'])->group(function () {
     Route::get('daftar', DaftarKonsumen::class);
 });
 Route::middleware(['konsumenislogin'])->group(function () {
-    Route::get('/keranjang', KeranjangKonsumen::class);
-    Route::get('/checkout', CheckoutKonsumen::class);
+    Route::get('keranjang', KeranjangKonsumen::class);
+    Route::get('beli-langsung/{id}', BeliLangsungKonsumen::class);
+    Route::get('checkout', CheckoutKonsumen::class);
 
     Route::get('pesanan-detail/{no}', PesananDetailKonsumen::class);
     Route::get('ubah-profil', UbahProfilKonsumen::class);

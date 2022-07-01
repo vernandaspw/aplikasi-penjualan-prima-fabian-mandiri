@@ -4,11 +4,11 @@
         <div class="container-fluid">
             <ul class="navbar-nav me-auto w-full align-items-centar">
                 <li class="nav-item me-3">
-                    <span class="text-white"><b><a href="{{ url('/keranjang') }}"
+                    <span class="text-white"><b><a href="{{ url('produk', $produk->id) }}"
                                 class="btn btn-close btn-close-white"></a></b></span>
                 </li>
                 <li class="nav-item">
-                    <span class="text-white"><b>Chekcout</b></span>
+                    <span class="text-white"><b>Beli langsung</b></span>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto  w-full align-items-start">
@@ -29,9 +29,9 @@
                             </h5>
                             <div class="">
                                 <a href="{{ url('ubah-alamat') }}" class="text-decoration-none"
-                                style="color: {{ env('COLOR_PRIMARY') }}">
+                                    style="color: {{ env('COLOR_PRIMARY') }}">
                                     Ubah
-                            </a>
+                                </a>
                             </div>
                         </div>
                         <div class="">
@@ -58,31 +58,63 @@
             </div>
             <br>
             <div class="container-fluid">
-                @forelse ($itemcart as $data)
                 <div class="card mb-1 shadow-sm border border-light">
-                    <div class="card-body ">
-                        <div class="d-flex justify-content-start ">
-                            <img src="{{ asset('parabola.jpg') }}" width="60px" height="60px" class="rounded"
-                                alt="...">
-                            <div class="ms-3">
-                                <h6 class="card-title">{{ $data->produk->nama }}</h6>
-                                <div style="font-size: 13px" class="card-text text-muted my-0">
-                                    @uang($data->produk->harga_jual) x {{ $data->qty }} {{ $data->produk->produkstok->satuan_unit }} (@rating($data->produk->berat_kg) kg)
-                                </div>
-                                <div style="font-size: 12px" class="card-text text-muted my-0">
-                                    Total @uang($data->produk->harga_jual * $data->qty)
+                    <div class="card-body pb-2">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <label for="check{{ $produk->id }}">
+                                    <div class="d-flex text-start">
+                                        @forelse ($produk->gambar as $gambar)
+                                            @if ($gambar->no == 1)
+                                                <img src="{{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }}"
+                                                    width="75px" height="75px" class="rounded" alt="...">
+                                            @endif
+                                        @empty
+                                            @if ($gambar->no == 1)
+                                                <img src="{{ asset('imagenotfound.jpg') }}" width="75px"
+                                                    height="75px" class="rounded" alt="...">
+                                            @endif
+                                        @endforelse
+                                        <div class="ms-3">
+                                            <h6 class="card-title">{{ $produk->nama }}</h6>
+                                            <p class="card-text text-muted mb-0">
+                                                @uang($produk->harga_jual)
+                                            </p>
+                                            <p class="card-text text-muted mb-0">
+                                                @if ($produk->produkstok->isstok)
+                                                    Sisa stok {{ $produk->produkstok->po }}
+                                                    {{ $produk->produkstok->satuan_unit }}
+                                                @endif
+                                            </p>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="d-flex justify-content-between pt-1 align-items-center">
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <button type="button" @if ($qty >= $produk->produkstok->po) disabled @endif
+                                            wire:click="tambahitem" class="px-3 btn btn-sm text-white"
+                                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                            +
+                                        </button>
+                                        <span class=" text-center border-0 px-sm-5 px-lg-5 px-xl-5 px-md-5 px-4">
+                                            {{ $qty }}
+                                        </span>
+                                        <button type="button" @if ($qty <= 1) disabled @endif
+                                            wire:click="kurangitem" class="btn btn-sm btn-warning text-white px-3">
+                                            -
+                                        </button>
+                                        <span style="font-size: 12px" class=" text-center text-muted border-0 px-1">
+                                            @uang($produk->harga_jual * $qty)
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @empty
-                tidak ada produk
-                @endforelse
-
                 <input wire:model='catatan' type="text" placeholder="Catatan.."
                     class="py-2 mt-3 @error('catatan') is-invalid @enderror rounded shadow-sm border border-light form-control">
-                    @error('catatan')
+                @error('catatan')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -91,7 +123,8 @@
 
                 <div class="">
                     <label for="metodekirim">Metode pengiriman</label>
-                    <select required wire:model='metode_kirim_id' id="metodekirim" class="form-control text-muted @error('metode_kirim_id') is-invalid @enderror">
+                    <select required wire:model='metode_kirim_id' id="metodekirim"
+                        class="form-control text-muted @error('metode_kirim_id') is-invalid @enderror">
                         <option selected value="">Pilih pengiriman</option>
                         @forelse ($pengiriman as $data)
                             <option value="{{ $data->id }}">{{ $data->metode }}</option>
@@ -99,14 +132,15 @@
                         @endforelse
                     </select>
                     @error('metode_kirim_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mt-2">
                     <label for="metodepembayaran">Metode pembayaran</label>
-                    <select wire:model='metode_pembayaran_id' required id="metodepembayaran" class="form-control text-muted @error('metode_pembayaran_id') is-invalid @enderror">
+                    <select wire:model='metode_pembayaran_id' required id="metodepembayaran"
+                        class="form-control text-muted @error('metode_pembayaran_id') is-invalid @enderror">
                         <option selected value="">Pilih pembayaran</option>
                         @forelse ($pembayaran as $data)
                             <option value="{{ $data->id }}">{{ $data->metode }} - {{ $data->nama }}</option>
@@ -114,10 +148,10 @@
                         @endforelse
                     </select>
                     @error('metode_pembayaran_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
             </div>
@@ -127,7 +161,7 @@
                     <h5><b>Ringkasan belanja</b></h5>
                     <div class="d-flex justify-content-between">
                         <div class="">Total belanja</div>
-                        <div class="">@uang($itemcart->sum('total_harga'))</div>
+                        <div class="">@uang($produk->harga_jual * $qty)</div>
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class="">Kode unik</div>
@@ -139,7 +173,7 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <div class=""><b>Total pembayaran</b></div>
-                        <div class=""><b>@uang($itemcart->sum('total_harga') + $kode_unik + $biaya_kirim)</b></div>
+                        <div class=""><b>@uang($produk->harga_jual * $qty + $kode_unik + $biaya_kirim)</b></div>
                     </div>
                 </div>
             </div>
@@ -153,7 +187,7 @@
                             Total Pembayaran
                         </div>
                         <div class="" style="font-size: 18px">
-                            <b>@uang($itemcart->sum('total_harga') + $kode_unik + $biaya_kirim)</b>
+                            <b>@uang($produk->harga_jual * $qty + $kode_unik + $biaya_kirim)</b>
                         </div>
                     </div>
 
@@ -166,13 +200,12 @@
                                 </span>
                             </button>
                         @else
-                            <a href="{{  url('ubah-alamat') }}" class="nav-link btn px-3 m-1 text-center btn-light"
+                            <a href="{{ url('ubah-alamat') }}" class="nav-link btn px-3 m-1 text-center btn-light"
                                 style="color: {{ env('COLOR_PRIMARY') }}">
                                 <span class="small d-block" style="font-size: 15px">
                                     <b>Lengkapi alamat</b>
                                 </span>
                             </a>
-
                         @endif
 
                     </div>

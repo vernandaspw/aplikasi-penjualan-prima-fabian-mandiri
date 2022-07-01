@@ -54,8 +54,7 @@
                 <b> @uang($produk->harga_jual)</b>
             </div>
             <div class="">
-                Terjual {{ $produk->transaksiitem->count() }} | <img src="{{ asset('stars.svg') }}"
-                    alt="">
+                Terjual {{ $produk->transaksiitem->count() }} | <img src="{{ asset('stars.svg') }}" alt="">
                 @rating($produk->produkulasan->avg('rating')) ({{ $produk->produkulasan->count() }})
             </div>
             <div class="">
@@ -141,40 +140,40 @@
         <div class="container">
             <ul class="py-1 navbar-nav nav-justified w-100 align-items-center">
                 <li class="nav-item" style="margin-right: 2px">
-                   @if(auth('konsumen')->check())
-                   <button href="javascript:void(0)" wire:click='pesanan' class="nav-link btn m-1 text-center"
-                   style=" border-color: {{ env('COLOR_PRIMARY') }};">
-                   <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
-                       Beli langsung
-                   </span>
-               </button>
-               @else
-               <a href="{{ url('login') }}" class="nav-link btn m-1 text-center"
-               style=" border-color: {{ env('COLOR_PRIMARY') }};">
-               <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
-                   Beli langsung
-               </span>
-           </a>
-                   @endif
+                    @if (auth('konsumen')->check())
+                        <a href="{{ url('beli-langsung', $produk->id) }}" class="nav-link btn m-1 text-center"
+                            style=" border-color: {{ env('COLOR_PRIMARY') }};">
+                            <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
+                                Beli langsung
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{ url('login') }}" class="nav-link btn m-1 text-center"
+                            style=" border-color: {{ env('COLOR_PRIMARY') }};">
+                            <span class="small d-block" style="font-size: 15px; color: {{ env('COLOR_PRIMARY') }}">
+                                Beli langsung
+                            </span>
+                        </a>
+                    @endif
                 </li>
                 <li class="nav-item" style="margin-left: 2px">
-                   @if(auth('konsumen')->check())
-                   <button type="button" wire:click="tambahkecart('{{ $produk->id }}')"
-                    class="nav-link btn m-1 text-white text-center"
-                    style="background-color: {{ env('COLOR_PRIMARY') }}">
-                    <span class="small d-block" style="font-size: 15px">
-                        + Keranjang
-                    </span>
-                </button>
-                @else
-                <a type="button" href="{{ url('login') }}"
-                    class="nav-link btn m-1 text-white text-center"
-                    style="background-color: {{ env('COLOR_PRIMARY') }}">
-                    <span class="small d-block" style="font-size: 15px">
-                        + Keranjang
-                    </span>
-                </a>
-                   @endif
+                    @if (auth('konsumen')->check())
+                        <button type="button" wire:click="tambahkecart('{{ $produk->id }}')"
+                            class="nav-link btn m-1 text-white text-center"
+                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                            <span class="small d-block" style="font-size: 15px">
+                                + Keranjang
+                            </span>
+                        </button>
+                    @else
+                        <a type="button" href="{{ url('login') }}"
+                            class="nav-link btn m-1 text-white text-center"
+                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                            <span class="small d-block" style="font-size: 15px">
+                                + Keranjang
+                            </span>
+                        </a>
+                    @endif
                 </li>
             </ul>
         </div>
