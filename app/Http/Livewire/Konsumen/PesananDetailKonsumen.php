@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire\Konsumen;
 
+use App\Models\Transaksi;
 use Livewire\Component;
 
 class PesananDetailKonsumen extends Component
 {
+    public $transaksi = [];
     public function mount($no)
     {
-        dd($no);
+        $this->transaksi = Transaksi::with('konsumen','transaksiitem', 'metodekirim', 'metodepembayaran')->where('no_transaksi', $no)->where('konsumen_id', auth('konsumen')->user()->id)->first();
+
     }
     public function render()
     {

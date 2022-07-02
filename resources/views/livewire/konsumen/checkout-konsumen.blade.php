@@ -62,7 +62,7 @@
                     <div class="card mb-1 shadow-sm border border-light">
                         <div class="card-body ">
                             <div class="d-flex justify-content-start ">
-                                @forelse ($produk->gambar as $gambar)
+                                @forelse ($data->produk->gambar as $gambar)
                                     @if ($gambar->no == 1)
                                         <img src="{{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }}"
                                             width="60px" height="60px" class="rounded" alt="...">

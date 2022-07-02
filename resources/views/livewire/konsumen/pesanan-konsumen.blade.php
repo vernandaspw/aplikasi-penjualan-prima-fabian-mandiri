@@ -72,7 +72,7 @@
                                         Total pesanan
                                     </div>
                                     <div class="">
-                                        <b>@uang($data->total_pembayaran)</b>
+                                        <b>@uang($data->total_pembayaran)</b> <span style="color: {{ $data->islunas == 1 ? 'green' : 'red' }}">({{ $data->islunas == 1 ? 'sudah bayar' : 'belum bayar' }})</span>
                                     </div>
                                 </div>
                                 <div class="kanan">

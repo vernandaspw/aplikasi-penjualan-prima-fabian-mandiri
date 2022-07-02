@@ -14,4 +14,19 @@ class Transaksi extends Model
     {
         return $this->hasMany(TransaksiItem::class, 'transaksi_id', 'id');
     }
+
+    public function metodekirim()
+    {
+        return $this->belongsTo(MetodeKirim::class, 'metode_kirim_id', 'id');
+    }
+
+    public function konsumen()
+    {
+        return $this->belongsTo(Konsumen::class, 'konsumen_id', 'id');
+    }
+
+    public function metodepembayaran()
+    {
+        return $this->belongsTo(MetodePembayaran::class, 'metode_pembayaran_id', 'id');
+    }
 }

@@ -361,7 +361,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="stok">Stok awal/akhir</label>
-                                    <input maxlength="15" placeholder="stok awal/akhir" id="stok" type="text"
+                                    <input maxlength="10" placeholder="stok awal/akhir" id="stok" type="number"
                                         wire:model.lazy='stok'
                                         class="form-control @error('stok') is-invalid @enderror">
                                     @error('stok')
@@ -372,7 +372,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="stok_minimum">Stok minumum</label>
-                                    <input maxlength="15" placeholder="stok minimum" id="stok_minimum" type="text"
+                                    <input maxlength="10" placeholder="stok minimum" id="stok_minimum" type="number"
                                         wire:model.lazy='stok_minimum'
                                         class="form-control @error('stok_minimum') is-invalid @enderror">
                                     @error('stok_minimum')
