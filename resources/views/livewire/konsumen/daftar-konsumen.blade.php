@@ -31,9 +31,10 @@
                             <div class="input-group">
                                 <span class="input-group-text" id="nohp">+62</span>
                                 <input required placeholder="82144******" wire:model='nohp' type="tel"
-                                    minlength="5" maxlength="15" class="form-control @error('nohp') is-invalid @enderror" id="nohp"
+                                    minlength="5" maxlength="15"
+                                    class="form-control @error('nohp') is-invalid @enderror" id="nohp"
                                     aria-describedby="nohpHelp">
-                                    @error('nohp')
+                                @error('nohp')
                                     <span class="invalid-feedback">
                                         {{ $message }}
                                     </span>
@@ -43,8 +44,9 @@
                         <div class="mb-2">
                             <label for="email" class="form-label">Email address</label>
                             <input placeholder="example@example.com" required wire:model='email' type="email"
-                                class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp">
-                                @error('email')
+                                class="form-control @error('email') is-invalid @enderror" id="email"
+                                aria-describedby="emailHelp">
+                            @error('email')
                                 <span class="invalid-feedback">
                                     {{ $message }}
                                 </span>
@@ -54,45 +56,48 @@
                             <label for="password" class="form-label">Password</label>
                             <input placeholder="isi password" required wire:model='password' type="password"
                                 class="form-control @error('password') is-invalid @enderror" id="password">
-                                @error('password')
+                            @error('password')
                                 <span class="invalid-feedback">
                                     {{ $message }}
                                 </span>
                             @enderror
-                            </div>
+                        </div>
                         <div class="mb-2">
                             <label for="password2" class="form-label">Ulangi Password</label>
                             <input placeholder="isi ulang password" required wire:model="ulangi_password"
-                                type="password" class="form-control @error('ulangi_password') is-invalid @enderror" id="password2">
-                                @error('ulangi_password')
+                                type="password" class="form-control @error('ulangi_password') is-invalid @enderror"
+                                id="password2">
+                            @error('ulangi_password')
                                 <span class="invalid-feedback">
                                     {{ $message }}
                                 </span>
                             @enderror
-                            </div>
+                        </div>
                         <div class="mb-2">
                             <label for="jk">Jenis kelamin</label>
-                            <select wire:model='jeniskelamin' required class="form-control @error('jeniskelamin') is-invalid @enderror" id="jk">
+                            <select wire:model='jeniskelamin' required
+                                class="form-control @error('jeniskelamin') is-invalid @enderror" id="jk">
                                 <option value="">Pilih jenis kelamin</option>
                                 <option value="laki laki">Laki laki</option>
                                 <option value="perempuan">Perempuan</option>
                             </select>
                             @error('jeniskelamin')
-                            <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
-                        @enderror
-                        </div>
-                        <div class="mb-2">
-                            <label for="wilayah" class="form-label">Wilayah</label>
-                            <input placeholder="isi wilayah" required wire:model='wilayah' type="text"
-                                class="form-control @error('wilayah') is-invalid @enderror" id="wilayah" aria-describedby="wilayahHelp">
-                                @error('wilayah')
                                 <span class="invalid-feedback">
                                     {{ $message }}
                                 </span>
                             @enderror
-                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label for="wilayah" class="form-label">Wilayah</label>
+                            <input placeholder="isi wilayah" required wire:model='wilayah' type="text"
+                                class="form-control @error('wilayah') is-invalid @enderror" id="wilayah"
+                                aria-describedby="wilayahHelp">
+                            @error('wilayah')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
                         {{-- <div class="mt-3"><b>Data Alamat</b></div>
                         <div class="mb-2">
                             <label for="provinsi" class="form-label">provinsi</label>

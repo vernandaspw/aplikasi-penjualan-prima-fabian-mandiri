@@ -64,6 +64,7 @@ class BeliLangsungKonsumen extends Component
             $this->biaya_kirim = $cek_pengiriman->biaya;
         }
         // cek pembayaran ,kode unik, status. lunas
+
         if ($this->metode_pembayaran_id) {
             $cek_pembayaran = MetodePembayaran::find($this->metode_pembayaran_id);
             if ($cek_pembayaran->metode == 'bank transfer') {
@@ -77,7 +78,7 @@ class BeliLangsungKonsumen extends Component
                 $this->kode_unik = 0;
             } elseif ($cek_pembayaran->metode == 'tunai') {
                 $this->kode_unik = 0;
-                $this->status = 'konfirm';
+                $this->status = 'porses_pembayaran';
             }
         }
     }

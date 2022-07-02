@@ -29,9 +29,9 @@
                             </h5>
                             <div class="">
                                 <a href="{{ url('ubah-alamat') }}" class="text-decoration-none"
-                                style="color: {{ env('COLOR_PRIMARY') }}">
+                                    style="color: {{ env('COLOR_PRIMARY') }}">
                                     Ubah
-                            </a>
+                                </a>
                             </div>
                         </div>
                         <div class="">
@@ -59,30 +59,41 @@
             <br>
             <div class="container-fluid">
                 @forelse ($itemcart as $data)
-                <div class="card mb-1 shadow-sm border border-light">
-                    <div class="card-body ">
-                        <div class="d-flex justify-content-start ">
-                            <img src="{{ asset('parabola.jpg') }}" width="60px" height="60px" class="rounded"
-                                alt="...">
-                            <div class="ms-3">
-                                <h6 class="card-title">{{ $data->produk->nama }}</h6>
-                                <div style="font-size: 13px" class="card-text text-muted my-0">
-                                    @uang($data->produk->harga_jual) x {{ $data->qty }} {{ $data->produk->produkstok->satuan_unit }} (@rating($data->produk->berat_kg) kg)
-                                </div>
-                                <div style="font-size: 12px" class="card-text text-muted my-0">
-                                    Total @uang($data->produk->harga_jual * $data->qty)
+                    <div class="card mb-1 shadow-sm border border-light">
+                        <div class="card-body ">
+                            <div class="d-flex justify-content-start ">
+                                @forelse ($produk->gambar as $gambar)
+                                    @if ($gambar->no == 1)
+                                        <img src="{{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }}"
+                                            width="60px" height="60px" class="rounded" alt="...">
+                                    @endif
+                                @empty
+                                    @if ($gambar->no == 1)
+                                        <img src="{{ asset('imagenotfound.jpg') }}" width="60px" height="60px"
+                                            class="rounded" alt="...">
+                                    @endif
+                                @endforelse
+
+                                <div class="ms-3">
+                                    <h6 class="card-title">{{ $data->produk->nama }}</h6>
+                                    <div style="font-size: 13px" class="card-text text-muted my-0">
+                                        @uang($data->produk->harga_jual) x {{ $data->qty }}
+                                        {{ $data->produk->produkstok->satuan_unit }} (@rating($data->produk->berat_kg) kg)
+                                    </div>
+                                    <div style="font-size: 12px" class="card-text text-muted my-0">
+                                        Total @uang($data->produk->harga_jual * $data->qty)
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @empty
-                tidak ada produk
+                    tidak ada produk
                 @endforelse
 
                 <input wire:model='catatan' type="text" placeholder="Catatan.."
                     class="py-2 mt-3 @error('catatan') is-invalid @enderror rounded shadow-sm border border-light form-control">
-                    @error('catatan')
+                @error('catatan')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -91,7 +102,8 @@
 
                 <div class="">
                     <label for="metodekirim">Metode pengiriman</label>
-                    <select required wire:model='metode_kirim_id' id="metodekirim" class="form-control text-muted @error('metode_kirim_id') is-invalid @enderror">
+                    <select required wire:model='metode_kirim_id' id="metodekirim"
+                        class="form-control text-muted @error('metode_kirim_id') is-invalid @enderror">
                         <option selected value="">Pilih pengiriman</option>
                         @forelse ($pengiriman as $data)
                             <option value="{{ $data->id }}">{{ $data->metode }}</option>
@@ -99,14 +111,15 @@
                         @endforelse
                     </select>
                     @error('metode_kirim_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mt-2">
                     <label for="metodepembayaran">Metode pembayaran</label>
-                    <select wire:model='metode_pembayaran_id' required id="metodepembayaran" class="form-control text-muted @error('metode_pembayaran_id') is-invalid @enderror">
+                    <select wire:model='metode_pembayaran_id' required id="metodepembayaran"
+                        class="form-control text-muted @error('metode_pembayaran_id') is-invalid @enderror">
                         <option selected value="">Pilih pembayaran</option>
                         @forelse ($pembayaran as $data)
                             <option value="{{ $data->id }}">{{ $data->metode }} - {{ $data->nama }}</option>
@@ -114,10 +127,10 @@
                         @endforelse
                     </select>
                     @error('metode_pembayaran_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
             </div>
@@ -166,13 +179,12 @@
                                 </span>
                             </button>
                         @else
-                            <a href="{{  url('ubah-alamat') }}" class="nav-link btn px-3 m-1 text-center btn-light"
+                            <a href="{{ url('ubah-alamat') }}" class="nav-link btn px-3 m-1 text-center btn-light"
                                 style="color: {{ env('COLOR_PRIMARY') }}">
                                 <span class="small d-block" style="font-size: 15px">
                                     <b>Lengkapi alamat</b>
                                 </span>
                             </a>
-
                         @endif
 
                     </div>

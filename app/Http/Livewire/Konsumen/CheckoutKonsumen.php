@@ -70,7 +70,7 @@ class CheckoutKonsumen extends Component
                 $this->kode_unik = 0;
             } elseif ($cek_pembayaran->metode == 'tunai') {
                 $this->kode_unik = 0;
-                $this->status = 'konfirm';
+                $this->status = 'porses_pembayaran';
             }
         }
     }

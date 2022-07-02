@@ -32,6 +32,7 @@ class ProdukDetailKonsumen extends Component
     public function mount($id)
     {
         $this->produk = Produk::with('gambar', 'kategori', 'merek', 'transaksiitem', 'produkulasan', 'produkstok')->where('istersedia', true)->find($id);
+        
         $this->gambar = ProdukGaleri::where('produk_id', $this->produk->id)->orderBy('no', 'desc')->get();
         // dd($this->gambar);
         $this->jml_ulasan = ProdukUlasan::with('konsumen', 'produk')->where('produk_id', $id)->where('ulasan', '!=', null)->count();

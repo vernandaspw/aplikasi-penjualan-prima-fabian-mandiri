@@ -74,7 +74,8 @@
 
                                     <div class="" style="font-size: 12px">
                                         <img src="{{ asset('stars.svg') }}" alt=""> @rating($data->produkulasan->avg('rating'))
-                                        | Terjual {{ $data->transaksiitem->count() }}
+                                        | Terjual {{ $data->transaksiitem->where('terjual', true)->count() }}
+
                                     </div>
                                 </div>
                             </div>

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->decimal('total_harga',19,2)->default(0);
             $table->decimal('total_modal',19,2)->default(0);
             $table->decimal('total_berat',7,2)->default(0);
+            $table->boolean('terjual')->default(false);
             $table->foreignId('produk_ulasan_id')->nullable()->constrained('produk_ulasans')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
