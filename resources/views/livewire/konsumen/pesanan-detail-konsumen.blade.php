@@ -19,13 +19,13 @@
         </div>
     </nav>
 
-    <div class="container" style="padding-top: 70px; padding-bottom: 70px;">
+    <div class="container" style="padding-top: 75px; padding-bottom: 80px;">
         <div class="d-flex justify-content-between">
             <div class="" style="text-transform: uppercase">
                 <b>{{ $transaksi->status }}</b>
             </div>
             <div class="" style="color: {{ env('COLOR_PRIMARY') }}">
-                <a href="{{ url('/') }}" class="text-decoration-none">Lihat Perjalanan</a>
+                <a href="{{ url('riwayat-perjalanan', $transaksi->no_transaksi) }}" class="text-decoration-none">Lihat Perjalanan</a>
             </div>
         </div>
         <div class="mt-2">
@@ -104,7 +104,7 @@
         <div class="mt-2">
             <b>Rincian pengiriman</b>
         </div>
-        <div class="mt-2 d-flex justify-content-between">
+        <div class="mt-1 d-flex justify-content-between">
             <div class="">
                 Kurir
             </div>
@@ -112,7 +112,7 @@
                 {{ $transaksi->metodekirim->metode }}
             </div>
         </div>
-        <div class="mt-2 d-flex justify-content-between">
+        <div class="mt-1 d-flex justify-content-between">
             <div class="">
                 No Resi
             </div>
@@ -120,7 +120,7 @@
                 {{ $transaksi->no_resi != null ? $transaksi->no_resi : '-' }}
             </div>
         </div>
-        <div class="mt-2 d-flex justify-content-between">
+        <div class="mt-1 d-flex justify-content-between">
             <div class="">
                 Alamat
             </div>
@@ -190,13 +190,41 @@
 
                 <li class="nav-item" style="margin-left: 2px">
 
-                    <button type="button" wire:click="konfirm('{{ $transaksi->id }}')"
+                    {{-- <button type="button" wire:click="konfirm('{{ $transaksi->id }}')"
                         class="nav-link rounded-pill btn m-1 text-white text-center"
                         style="background-color: {{ env('COLOR_PRIMARY') }}">
                         <span class="small d-block" style="font-size: 15px">
                             Konfirm Pembayaran
                         </span>
-                    </button>
+                    </button> --}}
+                    @if ($transaksi->status == 'konfirm')
+                        @if (now() < $transaksi->pembayaran_expired_at)
+                            <a href="{{ url('pembayaran', $transaksi->no_transaksi) }}"
+                                class="nav-link rounded-pill btn m-1 text-white text-center"
+                                style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                <span class="small d-block" style="font-size: 15px">
+                                    Konfirm Pembayaran
+                                </span>
+                            </a>
+                        @else
+                            <button disabled type="button"
+                                class="nav-link rounded-pill btn m-1 text-white text-center"
+                                style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                <span class="small d-block" style="font-size: 15px">
+                                    Pembayaran expired
+                                </span>
+                            </button>
+                        @endif
+                    @elseif($transaksi->status == 'proses_pembayaran')
+                        <button disabled type="button" class="nav-link rounded-pill btn m-1 text-white text-center"
+                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                            <span class="small d-block" style="font-size: 15px">
+                                Pembayaran sedang di cek admin
+                            </span>
+                        </button>
+                    @else
+                    @endif
+
 
                 </li>
             </ul>

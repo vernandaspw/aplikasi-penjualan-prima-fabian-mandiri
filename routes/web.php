@@ -24,12 +24,14 @@ use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\CheckoutKonsumen;
 use App\Http\Livewire\Konsumen\DaftarKonsumen;
 use App\Http\Livewire\Konsumen\KeranjangKonsumen;
+use App\Http\Livewire\Konsumen\KonfirmPembayaranKonsumen;
 use App\Http\Livewire\Konsumen\LoginKonsumen;
 use App\Http\Livewire\Konsumen\MainPageKonsumen;
 use App\Http\Livewire\Konsumen\PerusahaanKonsumen;
 use App\Http\Livewire\Konsumen\PesananDetailKonsumen;
 use App\Http\Livewire\Konsumen\ProdukDetailKonsumen;
 use App\Http\Livewire\Konsumen\ProdukKonsumen;
+use App\Http\Livewire\Konsumen\RiwayatPesananKonsumen;
 use App\Http\Livewire\Konsumen\UbahAlamatKonsumen;
 use App\Http\Livewire\Konsumen\UbahPasswordKonsumen;
 use App\Http\Livewire\Konsumen\UbahProfilKonsumen;
@@ -58,6 +60,9 @@ Route::middleware(['konsumenislogin'])->group(function () {
     Route::get('checkout', CheckoutKonsumen::class);
 
     Route::get('pesanan-detail/{no}', PesananDetailKonsumen::class);
+    Route::get('pembayaran/{no}', KonfirmPembayaranKonsumen::class);
+    Route::get('riwayat-perjalanan/{no}', RiwayatPesananKonsumen::class);
+
     Route::get('ubah-profil', UbahProfilKonsumen::class);
     Route::get('ubah-alamat', UbahAlamatKonsumen::class);
     Route::get('ubah-password', UbahPasswordKonsumen::class);

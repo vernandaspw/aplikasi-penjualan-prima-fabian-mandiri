@@ -7,6 +7,7 @@ use App\Models\MetodeKirim;
 use App\Models\MetodeKirimPembayaran;
 use App\Models\MetodePembayaran;
 use App\Models\ProdukStok;
+use App\Models\ProdukStokLog;
 use App\Models\Transaksi;
 use App\Models\TransaksiItem;
 use App\Models\TransaksiJenis;
@@ -23,7 +24,7 @@ class CheckoutKonsumen extends Component
     public $itemcart = [];
 
     public $metode_kirim_id, $metode_pembayaran_id, $catatan;
-    public $biaya_kirim, $kode_unik, $status;
+    public $biaya_kirim, $kode_unik, $status, $expired_at;
 
     public function mount()
     {
@@ -62,15 +63,19 @@ class CheckoutKonsumen extends Component
             if ($cek_pembayaran->metode == 'bank transfer') {
                 $this->kode_unik = rand(100, 999);
                 $this->status = 'konfirm';
+                $this->expired_at = date('Y-m-d H:i:s', strtotime("+1 day", strtotime(date('Y-m-d H:i:s'))));
             } elseif ($cek_pembayaran->metode == 'dompet digital') {
                 $this->kode_unik = rand(100, 999);
                 $this->status = 'konfirm';
+                $this->expired_at = date('Y-m-d H:i:s', strtotime("+1 day", strtotime(date('Y-m-d H:i:s'))));
             } elseif ($cek_pembayaran->metode == 'cod') {
                 $this->status = 'sedang_dikemas';
                 $this->kode_unik = 0;
+                $this->expired_at = null;
             } elseif ($cek_pembayaran->metode == 'tunai') {
                 $this->kode_unik = 0;
-                $this->status = 'porses_pembayaran';
+                $this->status = 'proses_pembayaran';
+                $this->expired_at = date('Y-m-d H:i:s', strtotime("+7 day", strtotime(date('Y-m-d H:i:s'))));
             }
         }
     }
@@ -117,7 +122,8 @@ class CheckoutKonsumen extends Component
                 'laba_penjualan_bersih' => $laba_penjualan_bersih,
                 'catatan' => $this->catatan,
                 'status' => $this->status,
-                'islunas' => false
+                'islunas' => false,
+                'pembayaran_expired_at' => $this->expired_at
             ]);
 
             TransaksiLog::create([
@@ -140,6 +146,13 @@ class CheckoutKonsumen extends Component
                     'po' => $produkstok->po - $item->qty,
                 ]);
 
+                ProdukStokLog::create([
+                    'produk_stok_id' => $produkstok->id,
+                    'jenis' => 'keluar',
+                    'po' => $produkstok->po - $item->qty,
+                    'keterangan' => 'pre order'
+                ]);
+
                 if ($buat_transaksi_item) {
                     KeranjangItem::find($item->id)->delete();
                 }
@@ -150,7 +163,7 @@ class CheckoutKonsumen extends Component
 
             $this->emit('success', ['pesan' => 'Berhasil buat pesanan']);
 
-            redirect()->to('/');
+            redirect()->to('pesanan-detail/'. $buattransaksi->no_transaksi);
         } catch (\Exception $e) {
             dd($e);
             $this->emit('error', ['pesan' => $e->getMessage()]);

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transaksi_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaksi_id')->constrained('transaksis')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('status',['konfirm','porses_pembayaran', 'sedang_dikemas', 'sedang_antar','diterima','selesai', 'gagal', 'batal']);
+            $table->enum('status',['konfirm','proses_pembayaran', 'sedang_dikemas', 'sedang_antar','diterima','selesai', 'gagal', 'batal']);
             $table->longText('keterangan')->nullable();
             $table->timestamps();
         });
