@@ -34,4 +34,14 @@ class Transaksi extends Model
     {
         return $this->hasMany(transaksilog::class, 'transaksi_id', 'id');
     }
+
+    public function transaksi_jenis()
+    {
+        return $this->belongsTo(TransaksiJenis::class, 'transaksi_jenis_id', 'id');
+    }
+
+    public function transaksi_kategori()
+    {
+        return $this->belongsTo(TransaksiKategori::class, 'transaksi_kategori_id', 'id');
+    }
 }

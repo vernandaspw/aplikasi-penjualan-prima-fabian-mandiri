@@ -54,8 +54,7 @@
                 <b> @uang($produk->harga_jual)</b>
             </div>
             <div class="">
-
-                Terjual {{ $produk->transaksiitem->count() }} | <img src="{{ asset('stars.svg') }}" alt="">
+                Terjual {{ $produk->transaksiitem->where('terjual', true)->count() }} | <img src="{{ asset('stars.svg') }}" alt="">
                 @rating($produk->produkulasan->avg('rating')) ({{ $produk->produkulasan->count() }})
             </div>
             <div class="">

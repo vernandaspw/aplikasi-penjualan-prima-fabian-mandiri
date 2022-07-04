@@ -157,7 +157,7 @@
                         @else
                             <nav class="p-2 navbar navbar-expand bg-white shadow-lg fixed-bottom">
                                 <div class="container-fluid">
-                                    <a href="{{ url('/') }}"
+                                    <a href="{{ url('pesanan-detail', $transaksi->no_transaksi) }}"
                                         class="btn  btn-danger shadow text-white form-control rounded-pill">Waktu
                                         pembayaran sudah habis</a>
                                 </div>

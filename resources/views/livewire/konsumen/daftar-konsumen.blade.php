@@ -41,6 +41,32 @@
                                 @enderror
                             </div>
                         </div>
+                       
+                        <div class="mb-2">
+                            <label for="jk">Jenis kelamin</label>
+                            <select wire:model='jeniskelamin' required
+                                class="form-control @error('jeniskelamin') is-invalid @enderror" id="jk">
+                                <option value="">Pilih jenis kelamin</option>
+                                <option value="laki laki">Laki laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
+                            @error('jeniskelamin')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-2">
+                            <label for="wilayah" class="form-label">Wilayah</label>
+                            <input placeholder="isi wilayah" required wire:model='wilayah' type="text"
+                                class="form-control @error('wilayah') is-invalid @enderror" id="wilayah"
+                                aria-describedby="wilayahHelp">
+                            @error('wilayah')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
                         <div class="mb-2">
                             <label for="email" class="form-label">Email address</label>
                             <input placeholder="example@example.com" required wire:model='email' type="email"
@@ -68,31 +94,6 @@
                                 type="password" class="form-control @error('ulangi_password') is-invalid @enderror"
                                 id="password2">
                             @error('ulangi_password')
-                                <span class="invalid-feedback">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="mb-2">
-                            <label for="jk">Jenis kelamin</label>
-                            <select wire:model='jeniskelamin' required
-                                class="form-control @error('jeniskelamin') is-invalid @enderror" id="jk">
-                                <option value="">Pilih jenis kelamin</option>
-                                <option value="laki laki">Laki laki</option>
-                                <option value="perempuan">Perempuan</option>
-                            </select>
-                            @error('jeniskelamin')
-                                <span class="invalid-feedback">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="mb-2">
-                            <label for="wilayah" class="form-label">Wilayah</label>
-                            <input placeholder="isi wilayah" required wire:model='wilayah' type="text"
-                                class="form-control @error('wilayah') is-invalid @enderror" id="wilayah"
-                                aria-describedby="wilayahHelp">
-                            @error('wilayah')
                                 <span class="invalid-feedback">
                                     {{ $message }}
                                 </span>

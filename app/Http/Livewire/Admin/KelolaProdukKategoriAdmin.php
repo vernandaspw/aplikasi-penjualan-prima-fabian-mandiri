@@ -8,6 +8,7 @@ class KelolaProdukKategoriAdmin extends Component
 {
     public function render()
     {
-        return view('livewire.admin.kelola-produk-kategori-admin');
+        return view('livewire.admin.kelola-produk-kategori-admin')->extends('layouts.main')->section('content');
     }
+
 }

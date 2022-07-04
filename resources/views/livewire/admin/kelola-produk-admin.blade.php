@@ -343,15 +343,17 @@
                                 <hr>
                                 <div class="mt-2">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" wire:model='isstok' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Produk ini memiliki stok?</label>
-                                      </div>
+                                        <input class="form-check-input" wire:model='isstok' type="checkbox"
+                                            role="switch" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Produk ini
+                                            memiliki stok?</label>
+                                    </div>
                                 </div>
 
                                 <div class="mt-2">
                                     <label for="satuan_unit">Satuan unit</label>
-                                    <input maxlength="15" placeholder="cth: pcs, kg, dll" id="satuan_unit" type="text"
-                                        wire:model.lazy='satuan_unit'
+                                    <input maxlength="15" placeholder="cth: pcs, kg, dll" id="satuan_unit"
+                                        type="text" wire:model.lazy='satuan_unit'
                                         class="form-control @error('satuan_unit') is-invalid @enderror">
                                     @error('satuan_unit')
                                         <div class="invalid-feedback">
@@ -361,8 +363,8 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="stok">Stok awal/akhir</label>
-                                    <input maxlength="10" placeholder="stok awal/akhir" id="stok" type="number"
-                                        wire:model.lazy='stok'
+                                    <input maxlength="10" placeholder="stok awal/akhir" id="stok"
+                                        type="number" wire:model.lazy='stok'
                                         class="form-control @error('stok') is-invalid @enderror">
                                     @error('stok')
                                         <div class="invalid-feedback">
@@ -372,8 +374,8 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="stok_minimum">Stok minumum</label>
-                                    <input maxlength="10" placeholder="stok minimum" id="stok_minimum" type="number"
-                                        wire:model.lazy='stok_minimum'
+                                    <input maxlength="10" placeholder="stok minimum" id="stok_minimum"
+                                        type="number" wire:model.lazy='stok_minimum'
                                         class="form-control @error('stok_minimum') is-invalid @enderror">
                                     @error('stok_minimum')
                                         <div class="invalid-feedback">
@@ -407,18 +409,17 @@
                                     <div class="d-flex justify-content-start align-items-start">
                                         <label for="gambar" class="form-label me-2">
                                             <img src="
-                                            @if($editgambar != null)
-                                            {{ $editgambar->temporaryUrl() }}
+                                            @if ($editgambar != null) {{ $editgambar->temporaryUrl() }}
                                             @else
-                                            {{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }}
-                                            @endif
+                                            {{ $gambar->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar->img)) }} @endif
                                             "
-                                            class="" width="65" height="65" />
+                                                class="" width="65" height="65" />
                                         </label>
                                         <div class="w-100">
                                             <label for="gambar" class="form-label mb-0">
                                                 <div class="">
-                                                    Gambar {{ $gambar->no }} <span class="text-muted">(optional)</span>
+                                                    Gambar {{ $gambar->no }} <span
+                                                        class="text-muted">(optional)</span>
                                                 </div>
                                             </label>
                                             <input wire:model='editgambar'
@@ -438,18 +439,17 @@
                                     <div class="d-flex justify-content-start align-items-start">
                                         <label for="gambar2" class="form-label me-2">
                                             <img src="
-                                            @if($editgambar2 != null)
-                                            {{ $editgambar2->temporaryUrl() }}
+                                            @if ($editgambar2 != null) {{ $editgambar2->temporaryUrl() }}
                                             @else
-                                            {{ $gambar2->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar2->img)) }}
-                                            @endif
+                                            {{ $gambar2->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar2->img)) }} @endif
                                             "
-                                            class="" width="65" height="65" />
+                                                class="" width="65" height="65" />
                                         </label>
                                         <div class="w-100">
                                             <label for="gambar2" class="form-label mb-0">
                                                 <div class="">
-                                                    Gambar {{ $gambar2->no }} <span class="text-muted">(optional)</span>
+                                                    Gambar {{ $gambar2->no }} <span
+                                                        class="text-muted">(optional)</span>
                                                 </div>
                                             </label>
                                             <input wire:model='editgambar2'
@@ -469,18 +469,17 @@
                                     <div class="d-flex justify-content-start align-items-start">
                                         <label for="gambar3" class="form-label me-2">
                                             <img src="
-                                            @if($editgambar3 != null)
-                                            {{ $editgambar3->temporaryUrl() }}
+                                            @if ($editgambar3 != null) {{ $editgambar3->temporaryUrl() }}
                                             @else
-                                            {{ $gambar3->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar3->img)) }}
-                                            @endif
+                                            {{ $gambar3->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar3->img)) }} @endif
                                             "
-                                            class="" width="65" height="65" />
+                                                class="" width="65" height="65" />
                                         </label>
                                         <div class="w-100">
                                             <label for="gambar3" class="form-label mb-0">
                                                 <div class="">
-                                                    Gambar3 {{ $gambar3->no }} <span class="text-muted">(optional)</span>
+                                                    Gambar3 {{ $gambar3->no }} <span
+                                                        class="text-muted">(optional)</span>
                                                 </div>
                                             </label>
                                             <input wire:model='editgambar3'
@@ -500,18 +499,17 @@
                                     <div class="d-flex justify-content-start align-items-start">
                                         <label for="gambar4" class="form-label me-2">
                                             <img src="
-                                            @if($editgambar4 != null)
-                                            {{ $editgambar4->temporaryUrl() }}
+                                            @if ($editgambar4 != null) {{ $editgambar4->temporaryUrl() }}
                                             @else
-                                            {{ $gambar4->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar4->img)) }}
-                                            @endif
+                                            {{ $gambar4->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar4->img)) }} @endif
                                             "
-                                            class="" width="65" height="65" />
+                                                class="" width="65" height="65" />
                                         </label>
                                         <div class="w-100">
                                             <label for="gambar4" class="form-label mb-0">
                                                 <div class="">
-                                                    Gambar4 {{ $gambar4->no }} <span class="text-muted">(optional)</span>
+                                                    Gambar4 {{ $gambar4->no }} <span
+                                                        class="text-muted">(optional)</span>
                                                 </div>
                                             </label>
                                             <input wire:model='editgambar4'
@@ -531,18 +529,17 @@
                                     <div class="d-flex justify-content-start align-items-start">
                                         <label for="gambar5" class="form-label me-2">
                                             <img src="
-                                            @if($editgambar5 != null)
-                                            {{ $editgambar5->temporaryUrl() }}
+                                            @if ($editgambar5 != null) {{ $editgambar5->temporaryUrl() }}
                                             @else
-                                            {{ $gambar5->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar5->img)) }}
-                                            @endif
+                                            {{ $gambar5->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar5->img)) }} @endif
                                             "
-                                            class="" width="65" height="65" />
+                                                class="" width="65" height="65" />
                                         </label>
                                         <div class="w-100">
                                             <label for="gambar5" class="form-label mb-0">
                                                 <div class="">
-                                                    Gambar5 {{ $gambar5->no }} <span class="text-muted">(optional)</span>
+                                                    Gambar5 {{ $gambar5->no }} <span
+                                                        class="text-muted">(optional)</span>
                                                 </div>
                                             </label>
                                             <input wire:model='editgambar5'
@@ -562,18 +559,17 @@
                                     <div class="d-flex justify-content-start align-items-start">
                                         <label for="gambar6" class="form-label me-2">
                                             <img src="
-                                            @if($editgambar6 != null)
-                                            {{ $editgambar6->temporaryUrl() }}
+                                            @if ($editgambar6 != null) {{ $editgambar6->temporaryUrl() }}
                                             @else
-                                            {{ $gambar6->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar6->img)) }}
-                                            @endif
+                                            {{ $gambar6->img == null ? asset('imagenotfound.jpg') : asset(Storage::url($gambar6->img)) }} @endif
                                             "
-                                            class="" width="65" height="65" />
+                                                class="" width="65" height="65" />
                                         </label>
                                         <div class="w-100">
                                             <label for="gambar6" class="form-label mb-0">
                                                 <div class="">
-                                                    Gambar6 {{ $gambar6->no }} <span class="text-muted">(optional)</span>
+                                                    Gambar6 {{ $gambar6->no }} <span
+                                                        class="text-muted">(optional)</span>
                                                 </div>
                                             </label>
                                             <input wire:model='editgambar6'
@@ -665,7 +661,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <label for="deskripsi">Deskripsi Produk <span class="text-muted">(bisa sisipkan
-                                        &lt;br&gt; untuk enter dan &lt;b&gt; untuk bold)</span></label>
+                                            &lt;br&gt; untuk enter dan &lt;b&gt; untuk bold)</span></label>
                                     <textarea placeholder="isi deskripsi produk" class="form-control @error('deskripsi') is-invalid @enderror"
                                         wire:model.lazy='deskripsi' id="deskripsi" cols="30" rows="7"></textarea>
                                     @error('deskripsi')
@@ -677,9 +673,11 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" wire:model='isstok' type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                        <label class="form-check-label" for="flexSwitchCheckChecked">Matikan, jika tidak membutuhkan stok pada transaksi produk ini</label>
-                                      </div>
+                                        <input class="form-check-input" wire:model='isstok' type="checkbox"
+                                            role="switch" id="flexSwitchCheckChecked" checked>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Matikan, jika
+                                            tidak membutuhkan stok pada transaksi produk ini</label>
+                                    </div>
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit" class="btn btn-success form-control">
@@ -720,13 +718,14 @@
                                     <th>
                                         @foreach ($data->gambar as $gambar)
                                             @if ($gambar->no == 1)
-                                            @if($gambar->img == null)
-                                            <img width="60px" height="60"
-                                            src="{{ asset('imagenotfound.jpg') }}" alt="">
+                                                @if ($gambar->img == null)
+                                                    <img width="60px" height="60"
+                                                        src="{{ asset('imagenotfound.jpg') }}" alt="">
                                                 @else
-                                                <img width="60px" height="60"
-                                                src="{{ asset(Storage::url($gambar->img)) }}" alt="">
-                                            @endif
+                                                    <img width="60px" height="60"
+                                                        src="{{ asset(Storage::url($gambar->img)) }}"
+                                                        alt="">
+                                                @endif
                                             @endif
                                         @endforeach
                                     </th>
@@ -756,11 +755,11 @@
                         </tbody>
                     </table>
                     @if ($take < $jmlproduk)
-                    <center>
-                        <button wire:click='lanjut'
-                            class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
-                    </center>
-                @endif
+                        <center>
+                            <button wire:click='lanjut'
+                                class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
+                        </center>
+                    @endif
                 </div>
             @endif
 

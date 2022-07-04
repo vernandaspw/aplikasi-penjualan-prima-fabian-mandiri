@@ -90,11 +90,21 @@
                                                 Sudah bayar
                                             </a>
                                         @else
-                                           <button type="button" disabled class="btn btn rounded text-white"
-                                                style="background-color: {{ env('COLOR_PRIMARY') }}">
-                                                Sudah bayar
-                                            </button>
+                                        <a href="{{ url('pembayaran', $data->no_transaksi) }}" class="btn btn rounded text-white"
+                                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                            Sudah bayar
+                                        </a>
                                         @endif
+                                    @endif
+                                    @if($data->status == 'sedang_antar')
+                                    <button
+                                    onclick="confirm('yakin pesanan telah diterima?') || event.stopImmediatePropagation()"
+                                    wire:click="diterima('{{ $data->id }}')" type="button"
+                                    class="btn btn-sm text-white m-1 rounded btn-primary"
+                                    style="font-size: 12px">
+                                Terima <span
+                                       >{{ $data->islunas == true ? '' : 'dan dibayar' }}</span>
+                                </button>
                                     @endif
                                 </div>
                             </div>

@@ -149,7 +149,7 @@ class CheckoutKonsumen extends Component
                 ProdukStokLog::create([
                     'produk_stok_id' => $produkstok->id,
                     'jenis' => 'keluar',
-                    'po' => $produkstok->po - $item->qty,
+                    'po' => $item->qty,
                     'keterangan' => 'pre order'
                 ]);
 

@@ -158,7 +158,7 @@ class BeliLangsungKonsumen extends Component
             ProdukStokLog::create([
                 'produk_stok_id' => $produkstok->id,
                 'jenis' => 'keluar',
-                'po' => $produkstok->po - $this->qty,
+                'po' => $this->qty,
                 'keterangan' => 'pre order'
             ]);
 
