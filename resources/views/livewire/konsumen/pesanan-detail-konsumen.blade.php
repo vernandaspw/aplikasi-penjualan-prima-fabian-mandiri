@@ -25,7 +25,8 @@
                 <b>{{ $transaksi->status }}</b>
             </div>
             <div class="" style="color: {{ env('COLOR_PRIMARY') }}">
-                <a href="{{ url('riwayat-perjalanan', $transaksi->no_transaksi) }}" class="text-decoration-none">Lihat Perjalanan</a>
+                <a href="{{ url('riwayat-perjalanan', $transaksi->no_transaksi) }}" class="text-decoration-none">Lihat
+                    Perjalanan</a>
             </div>
         </div>
         <div class="mt-2">
@@ -222,10 +223,19 @@
                                 Pembayaran sedang di cek admin
                             </span>
                         </button>
+                    @elseif($transaksi->status == 'sedang_antar')
+                        <button onclick="confirm('yakin pesanan telah diterima?') || event.stopImmediatePropagation()"
+                            wire:click="diterima('{{ $transaksi->id }}')" type="button"
+                            class="nav-link rounded-pill btn m-1 text-white text-center"
+                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                            <span class="small d-block" style="font-size: 15px">
+                                Terima <span>{{ $transaksi->islunas == true ? '' : 'dan dibayar' }}</span>
+                            </span>
+                        </button>
+
+                        </button>
                     @else
                     @endif
-
-
                 </li>
             </ul>
         </div>

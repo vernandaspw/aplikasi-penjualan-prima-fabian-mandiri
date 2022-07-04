@@ -51,6 +51,24 @@ class PesananDetailKonsumen extends Component
         return view('livewire.konsumen.pesanan-detail-konsumen')->extends('layouts.main')->section('content');
     }
 
+    public function diterima($id)
+    {
+        $transaksi =  Transaksi::with('transaksiitem', 'konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
+
+        $transaksi->update([
+            'status' => 'diterima',
+            'islunas' => $transaksi->islunas == true ? $transaksi->islunas : true
+        ]);
+        TransaksiLog::create([
+            'transaksi_id' => $id,
+            'status' => 'diterima',
+            'keterangan' => 'diterima oleh'. auth('konsumen')->user()->nama
+        ]);
+        $this->emit('success', ['pesan' => 'berhasil terima pesanan']);
+
+        redirect()->to('pesanan-detail/'. $transaksi->no_transaksi);
+    }
+
     // public function konfirm($id)
     // {
     //     $data = Transaksi::find($id);

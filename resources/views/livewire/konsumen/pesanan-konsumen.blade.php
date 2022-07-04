@@ -103,7 +103,7 @@
                                     class="btn btn-sm text-white m-1 rounded btn-primary"
                                     style="font-size: 12px">
                                 Terima <span
-                                       >{{ $data->islunas == true ? '' : 'dan dibayar' }}</span>
+                                       >{{ $data->islunas == true ? '' : 'dan bayar' }}</span>
                                 </button>
                                     @endif
                                 </div>
