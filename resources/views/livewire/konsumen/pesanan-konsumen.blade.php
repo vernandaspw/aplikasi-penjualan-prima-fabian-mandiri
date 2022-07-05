@@ -75,21 +75,20 @@
                                         Total pesanan
                                     </div>
                                     <div class="">
-                                        <b>@uang($data->total_pembayaran)</b> <span
+                                        <b>@uang($data->total_pembayaran)</b><span
                                             style="color: {{ $data->islunas == 1 ? 'green' : 'red' }}">({{ $data->islunas == 1 ? 'sudah bayar' : 'belum bayar' }})</span>
                                     </div>
                                 </div>
                                 <div class="kanan">
                                     @if ($data->status == 'selesai')
                                         @foreach ($data->transaksiitem as $data)
-                                            @if ($data->produk_ulasan_id)
+                                            @if ($data->produkulasan)
                                             @else
                                                 @php
                                                     $tampil = true;
                                                 @endphp
                                             @endif
                                         @endforeach
-
                                         @if (!empty($tampil))
                                             <a href="{{ url('beri-ulasan') }}" class="btn btn rounded text-white"
                                                 style="background-color: {{ env('COLOR_PRIMARY') }}">
