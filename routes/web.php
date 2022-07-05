@@ -2,6 +2,10 @@
 
 use App\Http\Livewire\Admin\CatatTransaksiAdmin;
 use App\Http\Livewire\Admin\DashboardAdmin;
+use App\Http\Livewire\Admin\KasirAdmin;
+use App\Http\Livewire\Admin\KasirDetailAdmin;
+use App\Http\Livewire\Admin\KasirPenjualanManualAdmin;
+use App\Http\Livewire\Admin\KasirPenjualanProdukAdmin;
 use App\Http\Livewire\Admin\KelolaAkunAdmin;
 use App\Http\Livewire\Admin\KelolaPembayaranAdmin;
 use App\Http\Livewire\Admin\KelolaPengaturanAdmin;
@@ -52,7 +56,6 @@ Route::get('/perusahaan', PerusahaanKonsumen::class);
 Route::get('/produk', ProdukKonsumen::class);
 Route::get('/produk/{id}', ProdukDetailKonsumen::class);
 
-
 Route::middleware(['konsumenisnotlogin'])->group(function () {
     Route::get('login', LoginKonsumen::class);
     Route::get('daftar', DaftarKonsumen::class);
@@ -86,7 +89,11 @@ Route::prefix('admin')->group(function () {
             Route::get('kelola-pengaturan', KelolaPengaturanAdmin::class);
         });
         Route::middleware(['admin'])->group(function () {
-            Route::get('penjualan', PenjualanAdmin::class);
+            Route::get('kasir', KasirAdmin::class);
+            Route::get('kasir-detail/{id}', KasirDetailAdmin::class);
+            Route::get('kasir-penjualan-produk/{id}', KasirPenjualanProdukAdmin::class);
+            Route::get('kasir-penjualan-manual/{id}', KasirPenjualanManualAdmin::class);
+
             Route::get('catat-transaksi', CatatTransaksiAdmin::class);
             Route::get('kelola-transaksi-penjualan', KelolaTransaksiPenjualanAdmin::class);
             Route::get('kelola-transaksi-lainnya', KelolaTransaksiAdmin::class);

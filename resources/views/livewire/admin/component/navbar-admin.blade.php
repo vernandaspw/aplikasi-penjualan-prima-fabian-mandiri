@@ -24,8 +24,8 @@
                     @endif
                     @if (auth('pegawai')->user()->role == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('admin/penjualan') == 'admin/penjualan' ? 'active' : '' }}"
-                                href="{{ url('admin/penjualan') }}">penjualan</a>
+                            <a class="nav-link {{ Request::is('admin/kasir') == 'admin/kasir' ? 'active' : '' }}"
+                                href="{{ url('admin/kasir') }}">Kasir</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('admin/catat-transaksi') == 'admin/catat-transaksi' ? 'active' : '' }}"
