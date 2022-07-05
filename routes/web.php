@@ -22,6 +22,8 @@ use App\Http\Livewire\Admin\ProsesAntarAdmin;
 use App\Http\Livewire\Admin\SelesaiAdmin;
 use App\Http\Livewire\Konsumen\BeliLangsungKonsumen;
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
+use App\Http\Livewire\Konsumen\BeriUlasanInputKonsumen;
+use App\Http\Livewire\Konsumen\BeriUlasanKonsumen;
 use App\Http\Livewire\Konsumen\CheckoutKonsumen;
 use App\Http\Livewire\Konsumen\DaftarKonsumen;
 use App\Http\Livewire\Konsumen\KeranjangKonsumen;
@@ -63,6 +65,9 @@ Route::middleware(['konsumenislogin'])->group(function () {
     Route::get('pesanan-detail/{no}', PesananDetailKonsumen::class);
     Route::get('pembayaran/{no}', KonfirmPembayaranKonsumen::class);
     Route::get('riwayat-perjalanan/{no}', RiwayatPesananKonsumen::class);
+
+    Route::get('beri-ulasan', BeriUlasanKonsumen::class);
+    Route::get('beri-ulasan-input/{id}', BeriUlasanInputKonsumen::class);
 
     Route::get('ubah-profil', UbahProfilKonsumen::class);
     Route::get('ubah-alamat', UbahAlamatKonsumen::class);

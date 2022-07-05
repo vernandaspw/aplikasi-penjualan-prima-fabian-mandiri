@@ -44,4 +44,6 @@ class Transaksi extends Model
     {
         return $this->belongsTo(TransaksiKategori::class, 'transaksi_kategori_id', 'id');
     }
+
+
 }

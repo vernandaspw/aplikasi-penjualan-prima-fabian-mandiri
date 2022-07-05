@@ -42,8 +42,10 @@
                                     {{-- @foreach ($data->transaksiitem->first() as $item) --}}
 
                                     <div class="kiri">
-                                        <img src="{{ asset('parabola.jpg') }}" width="65px" height="65px"
-                                            class="rounded" alt="...">
+                                        <img src="{{ $data->transaksiitem->first()->produk->gambar->first()->img == null ? asset('imagenotfound.jpg') : Storage::url($data->transaksiitem->first()->produk->gambar->first()->img) }}"
+                                            width="65px" height="65px" class="rounded" alt="...">
+
+
                                     </div>
                                     <div class="kanan ms-2">
                                         <b><span
@@ -79,32 +81,44 @@
                                 </div>
                                 <div class="kanan">
                                     @if ($data->status == 'selesai')
-                                        <button class="btn btn rounded text-white"
-                                            style="background-color: {{ env('COLOR_PRIMARY') }}">
-                                            Beri ulasan
-                                        </button>
+                                        @foreach ($data->transaksiitem as $data)
+                                            @if ($data->produk_ulasan_id)
+                                            @else
+                                                @php
+                                                    $tampil = true;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+
+                                        @if ($tampil)
+                                            <a href="{{ url('beri-ulasan') }}" class="btn btn rounded text-white"
+                                                style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                                Beri ulasan
+                                            </a>
+                                        @endif
                                     @elseif($data->status == 'konfirm')
                                         @if (now() < $data->pembayaran_expired_at)
-                                            <a href="{{ url('pembayaran', $data->no_transaksi) }}" class="btn btn rounded text-white"
+                                            <a href="{{ url('pembayaran', $data->no_transaksi) }}"
+                                                class="btn btn rounded text-white"
                                                 style="background-color: {{ env('COLOR_PRIMARY') }}">
                                                 Sudah bayar
                                             </a>
                                         @else
-                                        <a href="{{ url('pembayaran', $data->no_transaksi) }}" class="btn btn rounded text-white"
-                                            style="background-color: {{ env('COLOR_PRIMARY') }}">
-                                            Sudah bayar
-                                        </a>
+                                            <a href="{{ url('pembayaran', $data->no_transaksi) }}"
+                                                class="btn btn rounded text-white"
+                                                style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                                Sudah bayar
+                                            </a>
                                         @endif
                                     @endif
-                                    @if($data->status == 'sedang_antar')
-                                    <button
-                                    onclick="confirm('yakin pesanan telah diterima?') || event.stopImmediatePropagation()"
-                                    wire:click="diterima('{{ $data->id }}')" type="button"
-                                    class="btn btn-sm text-white m-1 rounded btn-primary"
-                                    style="font-size: 12px">
-                                Terima <span
-                                       >{{ $data->islunas == true ? '' : 'dan bayar' }}</span>
-                                </button>
+                                    @if ($data->status == 'sedang_antar')
+                                        <button
+                                            onclick="confirm('yakin pesanan telah diterima?') || event.stopImmediatePropagation()"
+                                            wire:click="diterima('{{ $data->id }}')" type="button"
+                                            class="btn btn-sm text-white m-1 rounded btn-primary"
+                                            style="font-size: 12px">
+                                            Terima <span>{{ $data->islunas == true ? '' : 'dan bayar' }}</span>
+                                        </button>
                                     @endif
                                 </div>
                             </div>

@@ -89,6 +89,21 @@
                                 </div>
                             </div>
                             <div class="kanan">
+                                @if ($data->transaksi->status == 'selesai')
+                                    @if ($data->produkulasan)
+                                    <a href="{{ url('produk', $data->produk_id) }}"
+                                        class="btn btn rounded text-white"
+                                        style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                        Beli lagi
+                                    </a>
+                                    @else
+                                        <a href="{{ url('beri-ulasan-input', $data->id) }}"
+                                            class="btn btn rounded text-white"
+                                            style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                            Beri ulasan
+                                        </a>
+                                    @endif
+                                @endif
                                 {{-- <button wire:click="deleteitem('{{ $data->id }}')"
                                         class="btn btn-sm btn-transparent">
                                         <img src="{{ asset('trash.png') }}" alt="">

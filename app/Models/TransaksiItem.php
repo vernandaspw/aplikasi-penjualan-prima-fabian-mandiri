@@ -20,4 +20,9 @@ class TransaksiItem extends Model
     {
         return $this->belongsTo(Transaksi::class, 'transaksi_id', 'id');
     }
+
+    public function produkulasan()
+    {
+        return $this->belongsTo(ProdukUlasan::class, 'produk_ulasan_id', 'id');
+    }
 }
