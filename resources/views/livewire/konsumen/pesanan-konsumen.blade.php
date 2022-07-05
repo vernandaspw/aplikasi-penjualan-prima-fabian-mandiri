@@ -81,19 +81,12 @@
                                 </div>
                                 <div class="kanan">
                                     @if ($data->status == 'selesai')
-                                        @foreach ($data->transaksiitem as $data)
-                                            @if ($data->produk_ulasan_id != null)
-                                            @else
-                                                @php
-                                                    $tampil = true;
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                        @if (!empty($tampil))
-                                            <a href="{{ url('beri-ulasan') }}" class="btn btn rounded text-white"
-                                                style="background-color: {{ env('COLOR_PRIMARY') }}">
-                                                Beri ulasan
-                                            </a>
+                                        {{-- cek transaksiitem yang produkulasan kosong --}}
+                                        @if($data->transaksiitem->whereNull('produk_ulasan_id')->first())
+                                        <a href="{{ url('beri-ulasan') }}" class="btn btn rounded text-white"
+                                        style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                        Beri ulasan
+                                    </a>
                                         @endif
                                     @elseif($data->status == 'konfirm')
                                         @if (now() < $data->pembayaran_expired_at)
