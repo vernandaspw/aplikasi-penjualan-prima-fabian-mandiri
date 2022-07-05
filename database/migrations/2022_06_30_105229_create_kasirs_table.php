@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('kasirs', function (Blueprint $table) {
             $table->id();
+            // $table
             $table->timestamps();
         });
     }
