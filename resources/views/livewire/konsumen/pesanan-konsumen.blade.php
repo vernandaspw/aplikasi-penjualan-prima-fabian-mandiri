@@ -82,7 +82,7 @@
                                 <div class="kanan">
                                     @if ($data->status == 'selesai')
                                         @foreach ($data->transaksiitem as $data)
-                                            @if ($data->produkulasan)
+                                            @if ($data->produk_ulasan_id != null)
                                             @else
                                                 @php
                                                     $tampil = true;
