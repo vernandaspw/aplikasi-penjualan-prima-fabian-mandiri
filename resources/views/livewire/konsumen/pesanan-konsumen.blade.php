@@ -90,7 +90,7 @@
                                             @endif
                                         @endforeach
 
-                                        @if ($tampil)
+                                        @if (!empty($tampil))
                                             <a href="{{ url('beri-ulasan') }}" class="btn btn rounded text-white"
                                                 style="background-color: {{ env('COLOR_PRIMARY') }}">
                                                 Beri ulasan
