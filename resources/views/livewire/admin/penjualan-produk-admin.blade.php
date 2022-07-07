@@ -20,7 +20,7 @@
         </ul>
     </nav>
 
-    <div class="container mt-3 mb-5">
+    <div class="container mt-2 mb-5">
         <div class="mb-2 d-flex">
             <input wire:model='cariproduk' class="form-control me-1 rounded-pill" type="text"
                 placeholder="Cari produk/kode">
