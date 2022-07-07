@@ -134,7 +134,7 @@
     @else
     hide
     @endif offcanvas-bottom" style="background-color: {{ env('COLOR_PRIMARY') }}" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-    <div class="offcanvas-header py-2  border-bottom">
+    <div class="offcanvas-header pb-2 pt-3">
             <h5 class="offcanvas-title" id="offcanvasBottomLabel"> <span class="text-white">
                 <div class=""  style="font-size: 16px">
                     {{ $jml_belanja }} Produk | <b>@uang($totalbelanja)</b>
