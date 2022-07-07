@@ -28,6 +28,7 @@ class CheckoutKonsumen extends Component
 
     public function mount()
     {
+
         $this->itemcart = KeranjangItem::with('produk')->where('konsumen_id', auth('konsumen')->user()->id)->where('selected', true)->get();
 
         $cek = KeranjangItem::where('konsumen_id', auth('konsumen')->user()->id)->where('selected', true)->first();
