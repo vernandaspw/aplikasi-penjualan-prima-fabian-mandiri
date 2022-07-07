@@ -34,7 +34,7 @@
         <div class="">
             @forelse ($produk as $data)
                 <div class="card mb-1 shadow-sm border border-light">
-                    <div class="card-body py-2">
+                    <div class="card-body py-2 px-2">
                         <div class="d-flex">
                             <div class="w-100">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -125,7 +125,6 @@
         </div>
     </nav>
 
-
     @if($show)
     <div class="offcanvas-backdrop show"></div>
     @else
@@ -135,15 +134,20 @@
     @else
     hide
     @endif offcanvas-bottom" style="background-color: {{ env('COLOR_PRIMARY') }}" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-    <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel"> <span class="text-white">Cek transaksi</span></h5>
+    <div class="offcanvas-header py-2  border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasBottomLabel"> <span class="text-white">
+                <div class=""  style="font-size: 15px">
+                    {{ $jml_belanja }} Produk | <b>@uang($totalbelanja)</b>
+                </div>
+
+            </span></h5>
             <button wire:click="showOff" type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body mb-5 pb-5">
             <div class="">
                 @forelse ($keranjangitem as $data)
                     <div class="card mb-1 shadow-sm border border-light">
-                        <div class="card-body py-2 px-2">
+                        <div class="card-body py-1 px-2">
                             <div class="d-flex">
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between align-items-start">
@@ -159,11 +163,11 @@
                                                         height="20px" class="rounded" alt="...">
                                                 @endif
                                             @endforelse
-                                            <div class="ms-3">
+                                            <div class="ms-2">
                                                 <b class="" style="font-size: 14px">{{ $data->produk->nama }}</b>
                                                 <p class="card-text text-muted mb-0" style="font-size: 13px">
-                                                    @uang($data->produk->harga_jual) | @if ($data->produk->produkstok->isstok)
-                                                        Stok {{ $data->produk->produkstok->po }}
+                                                    @uang($data->produk->harga_jual) @if ($data->produk->produkstok->isstok)
+                                                       | Stok {{ $data->produk->produkstok->po }}
                                                         {{ $data->produk->produkstok->satuan_unit }}
                                                     @endif
                                                 </p>
@@ -218,10 +222,10 @@
                         <ul class="py-2 navbar-nav justify-content-between w-100 align-items-center">
                             <div class="me-auto text-dark">
                                 <div class="">
-                                    {{ $jml_belanja }} Produk
+                                    Total pembayaran
                                 </div>
                                 <div class="" style="font-size: 18px">
-                                    <b>@uang($totalbelanja)</b>
+                                    {{-- <b>@uang($totalbelanja)</b> --}}
                                 </div>
                             </div>
 
@@ -274,7 +278,7 @@
 
 <style>
     .offcanvas {
-        height: 85% !important;
+        height: 89% !important;
     }
 
 
