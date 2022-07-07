@@ -46,4 +46,8 @@ class Pegawai extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function keranjang()
+    {
+        return $this->hasOne(Keranjang::class, 'pegawai_id', 'id');
+    }
 }

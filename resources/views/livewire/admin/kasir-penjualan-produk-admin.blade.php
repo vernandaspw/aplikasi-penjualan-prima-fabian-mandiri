@@ -46,7 +46,6 @@
 
     <div class="container mt-3 mb-5">
         <div class="mb-2 d-flex">
-
             <input wire:model='cariproduk' class="form-control me-1 rounded-pill" type="text"
                 placeholder="Cari produk/kode">
             <select wire:model='kategori_id' class="px-1 form-inline rounded-pill" id="">
@@ -79,15 +78,14 @@
                                             <b class="">{{ $data->nama }}</b>
                                             <p class="card-text text-muted mb-0" style="font-size: 14px">
                                                 @uang($data->harga_jual) | @if ($data->produkstok->isstok)
-                                                Stok {{ $data->produkstok->po }}
-                                                {{ $data->produkstok->satuan_unit }}
-                                            @endif
+                                                    Stok {{ $data->produkstok->po }}
+                                                    {{ $data->produkstok->satuan_unit }}
+                                                @endif
                                             </p>
-           
                                         </div>
                                     </div>
                                     <div class="me-1">
-                                        <button class="btn btn-white">
+                                        <button  class="btn btn-white">
                                             <img src="{{ asset('add-filled.png') }}" alt="">
                                         </button>
                                     </div>
@@ -122,4 +120,74 @@
             @endforelse
         </div>
     </div>
+
+    <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg"
+        style="background-color: {{ env('COLOR_PRIMARY') }}">
+        <div class="container-fluid">
+            <ul class="py-2 navbar-nav justify-content-between w-100 align-items-center">
+                <div class="me-auto text-white">
+                    <div class="">
+                        Total Belanja
+                    </div>
+                    <div class="" style="font-size: 18px">
+                        {{-- <b>@uang($totalbelanja)</b> --}}
+                    </div>
+                </div>
+
+                <div class="ms-auto">
+                    <button class="nav-link btn px-5 m-1 text-center btn-light" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"
+                        style="color: {{ env('COLOR_PRIMARY') }}">
+                        <span class="small d-block" style="font-size: 15px">
+                            <b>Checkout</b>
+                        </span></button>
+
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div class=" offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Cek transaksi</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="">
+                d
+            </div>
+        </div>
+    </div>
+
+    @push('script')
+        <script>
+            Livewire.on('success', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    text: data.pesan,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+            Livewire.on('error', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'error!',
+                    text: data.pesan,
+                    icon: 'error',
+                    confirmButtonText: 'oke'
+                })
+            })
+        </script>
+    @endpush
 </div>
+
+<style>
+    .offcanvas {
+        height: 80% !important;
+    }
+</style>

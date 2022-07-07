@@ -26,8 +26,7 @@ class DatabaseSeeder extends Seeder
             PegawaiSeeder::class,
             KeranjangSeeder::class,
             PengaturanSeeder::class,
-            KasirKasJenisSeeder::class,
-            KasirKasKategoriSeeder::class,
+          
 
             ProdukKategoriSeeder::class,
             ProdukMerekSeeder::class,

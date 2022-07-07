@@ -21,7 +21,8 @@ return new class extends Migration
             $table->foreignId('konsumen_id')->nullable()->constrained('konsumens')->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('pegawai_id')->nullable()->constrained('pegawais')->onUpdate('cascade')->onDelete('set null');
             $table->string('nama_konsumen',25)->nullable();
-            $table->foreignId('produk_id')->nullable()->constrained('produks')->onUpdate('cascade')->onDelete('set null');
+            $table->string('nowa_konsumen',15)->nullable();
+            $table->longText('alamat_konsumen')->nullable();
             $table->foreignId('metode_kirim_id')->nullable()->constrained('metode_kirims')->onUpdate('cascade')->onDelete('set null');
             $table->string('no_resi',30)->nullable();
             $table->foreignId('metode_pembayaran_id')->nullable()->constrained('metode_pembayarans')->onUpdate('cascade')->onDelete('set null');

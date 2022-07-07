@@ -6,6 +6,9 @@ use App\Models\Kasir;
 use App\Models\KasirKas;
 use App\Models\KasirKasJenis;
 use App\Models\KasirKasKategori;
+use App\Models\KasirTransaksi;
+use App\Models\KasirTransaksiJenis;
+use App\Models\KasirTransaksiKategori;
 use Livewire\Component;
 
 class KasirAdmin extends Component
@@ -15,7 +18,7 @@ class KasirAdmin extends Component
 
     public $kasir = [];
 
-    public $namabaru, $kasbaru;
+    public $namabaru, $modalbaru;
 
     public $byid, $nama;
 
@@ -53,30 +56,31 @@ class KasirAdmin extends Component
 
     public function kasirbaru()
     {
+        // dd($this->modalbaru);
         $this->validate([
             'namabaru' => 'required|max:25',
-            'kasbaru' => '',
+            'modalbaru' => '',
         ]);
 
-        $masuk = KasirKasJenis::where('nama', 'masuk')->first();
-        $kasawal = KasirKasKategori::where('nama', 'kas awal')->first();
+        $masuk = KasirTransaksiJenis::where('nama', 'modal')->first();
+        $kasawal = KasirTransaksiKategori::where('nama', 'modal awal')->first();
 
         $kasir = Kasir::create([
             'nama' => $this->namabaru,
-            'kas' => $this->kasbaru == null ? 0 : $this->kasbaru
+            'modal' => $this->modalbaru == null ? 0 : $this->modalbaru
         ]);
 
-        KasirKas::create([
+        KasirTransaksi::create([
             'kasir_id' => $kasir->id,
-            'kasir_kas_jenis_id' => $masuk->id,
-            'kasir_kas_kategori_id' => $kasawal->id,
-            'nominal' => $this->kasbaru == null ? 0 : $this->kasbaru
+            'kasir_transaksi_jenis_id' => $masuk->id,
+            'kasir_transaksi_kategori_id' => $kasawal->id,
+            'nominal' => $this->modalbaru == null ? 0 : $this->modalbaru
         ]);
 
         $this->emit('success', ['pesan' => 'Berhasil buat pesanan']);
 
         $this->namabaru = null;
-        $this->kasbaru = null;
+        $this->modalbaru = null;
     }
 
     public function formedit($id)

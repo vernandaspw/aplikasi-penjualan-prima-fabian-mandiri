@@ -99,68 +99,94 @@
         </div>
         <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="">
-                Kas
+                Nama Toko 
             </div>
             <div class="">
-                @uang($kasir->kas)
-            </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center ">
-            <div class="">
-                Kas masuk
-            </div>
-            <div class="">
-                @uang($kasmasuk)
+                Irama Baru
             </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center ">
+        <div class="d-flex justify-content-between align-items-center">
             <div class="">
-                Kas keluar
+                Kasir
             </div>
             <div class="">
-                @uang($kaskeluar)
+                {{ $kasir->nama }}
+            </div>
+        </div>
+        <hr class="my-1 py-0">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="">
+                Start time
+            </div>
+            <div class="">
+                @if($start)
+                {{ \Carbon\Carbon::parse($start->created_at)->isoFormat('D MMMM Y H:M') }}
+                @else 
+                -
+                @endif
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="">
+                End time
+            </div>
+            <div class="">
+            
+                @if($end)
+                {{ \Carbon\Carbon::parse($end->created_at)->isoFormat('D MMMM Y H:M') }}
+                @else 
+                -
+                @endif
+                
+            </div>
+        </div>
+        <hr class="my-1 py-0">
+        <center>PENJUALAN</center>
+        <hr class="my-1 py-0">
+        <div class="d-flex justify-content-between align-items-center ">
+            <div class="">
+                Total penjualan
+            </div>
+            <div class="">
+                @uang($Dpenjualantunai)
+            </div>
+        </div>
+        <hr class="my-1 py-0">
+        <center>PAYMENT</center>
+        <hr class="my-1 py-0">
+        <div class="d-flex justify-content-between align-items-center ">
+            <div class="">
+                Transaksi
+            </div>
+            <div class="">
+                @dump($paymentcash)
+                @uang(2)
             </div>
         </div>
         <hr class="my-1 py-0">
         <b>Hari ini</b>
         <div class="d-flex justify-content-between align-items-center ">
             <div class="">
-                Kas awal
+                Total Modal
             </div>
             <div class="">
-                @uang($Dkasawal)
-            </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center ">
-            <div class="">
-                Penjualan tunai
-            </div>
-            <div class="">
-                @uang($Dpenjualantunai)
+                @uang($kasir->modal)
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center ">
             <div class="">
-                Kas ditambah
+                Modal awal
             </div>
             <div class="">
-                @uang($Dtambahkas)
-            </div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center ">
-            <div class="">
-                Kas ditarik
-            </div>
-            <div class="">
-                @uang($Dtarikkas)
+                @uang($Dmodalawal)
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center ">
             <div class="">
-                Kas akhir
+                Modal akhir
             </div>
             <div class="">
-                @uang($Dkasakhir)
+                @uang($Dmodalakhir)
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center ">
@@ -182,7 +208,8 @@
             <b>Riwayat Transaksi</b>
         </div>
         <div class="mt-1">
-            @foreach ($kasirkas as $data)
+      
+            @foreach ($kasirtransaksi as $data)
                 <div class="card mb-1 shadow-sm rounded">
                     <div class="card-body py-2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -205,7 +232,7 @@
                     </div>
                 </div>
             @endforeach
-            @if ($take < $kasirkas->count())
+            @if ($take < $kasirtransaksi->count())
                 <div class="mt-2">
                     <button wire:click='lanjut' type="button" class="form-control text-white rounded-pill btn btn-warning">Lanjut</button>
                 </div>

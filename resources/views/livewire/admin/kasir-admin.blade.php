@@ -37,8 +37,7 @@
                             </div>
                             <div class="mt-2">
                                 <button type="submit" class="form-control btn text-white rounded-pill"
-                                    style="background-color: {{ env('COLOR_PRIMARY') }}">Buat kasir
-                                    baru</button>
+                                    style="background-color: {{ env('COLOR_PRIMARY') }}">Simpan</button>
                             </div>
                         </form>
                         <button wire:click='tutup' type="button" class="form-control mt-1 btn btn-secondary text-white rounded-pill"
@@ -67,11 +66,11 @@
                                     @enderror
                                 </div>
                                 <div class="mt-2">
-                                    <label for="kasbaru" class="">Kas awal</label>
-                                    <input placeholder="(optional)" wire:model='kasbaru' type="number"
-                                        class="form-control @error('kasbaru') is-invalid @enderror" id="kasbaru"
-                                        aria-describedby="kasbaruHelp">
-                                    @error('kasbaru')
+                                    <label for="modalbaru" class="">Modal awal</label>
+                                    <input placeholder="(optional)" wire:model='modalbaru' type="number"
+                                        class="form-control @error('modalbaru') is-invalid @enderror" id="modalbaru"
+                                        aria-describedby="modalbaruHelp">
+                                    @error('modalbaru')
                                         <span class="invalid-feedback">
                                             {{ $message }}
                                         </span>
@@ -132,18 +131,18 @@
                                     Kas
                                 </div>
                                 <div class="">
-                                    @uang($data->kas)
+                                    @uang($data->modal)
                                 </div>
                             </div>
                             @if ($data->isaktif)
                                 <div class="d-flex justify-content-between align-items-center mt-2">
                                     <div class="w-100 me-1">
-                                        <a href="{{ url('admin/kasir-penjualan-produk', $data->id) }}"
+                                        <a href="{{ url('admin/kasir/penjualan-produk', $data->id) }}"
                                             class="btn btn-sm form-control text-white rounded-pill"
                                             style="background-color: {{ env('COLOR_PRIMARY') }}">Penjualan</a>
                                     </div>
                                     <div class="w-100 ms-1">
-                                        <a href="{{ url('admin/kasir-detail', $data->id) }}"
+                                        <a href="{{ url('admin/kasir/detail', $data->id) }}"
                                             class="btn btn-sm form-control text-white rounded-pill"
                                             style="background-color: {{ env('COLOR_PRIMARY') }}">Detail kasir</a>
                                     </div>
