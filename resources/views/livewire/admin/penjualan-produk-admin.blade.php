@@ -31,7 +31,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="">
+        <div class="" style="margin-bottom: 90px">
             @forelse ($produk as $data)
                 <div class="card mb-1 shadow-sm border border-light">
                     <div class="card-body py-2 px-2">
