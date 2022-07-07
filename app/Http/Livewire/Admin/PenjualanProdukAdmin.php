@@ -12,6 +12,8 @@ class PenjualanProdukAdmin extends Component
 {
     public $keranjangitem, $kategori = [];
 
+    public $jml_belanja, $totalbelanja;
+
     public $show = false;
     public $take;
     public $produk = [];
@@ -37,6 +39,8 @@ class PenjualanProdukAdmin extends Component
         $this->produk = $produk->take($this->take)->latest()->get();
 
         $this->keranjangitem = KeranjangItem::with('produk')->where('pegawai_id', auth('pegawai')->user()->id)->get();
+        $this->jml_belanja = KeranjangItem::with('produk', 'keranjang')->where('pegawai_id', auth('pegawai')->user()->id)->get()->count();
+        $this->totalbelanja = KeranjangItem::with('produk', 'keranjang')->where('pegawai_id', auth('pegawai')->user()->id)->get()->sum('total_harga');
 
         return view('livewire.admin.penjualan-produk-admin')->extends('layouts.main')->section('content');
     }
@@ -120,8 +124,27 @@ class PenjualanProdukAdmin extends Component
                     'total_modal' => $totalmodal,
                     'total_berat' => $totalberat
                 ]);
+                $this->show = true;
             } else {
             }
+        } else {
+        }
+    }
+    public function kurangitem($id)
+    {
+        $data = KeranjangItem::with('produk')->find($id);
+        if ($data->qty > 1) {
+            $qty = $data->qty - 1;
+            $totalharga =  $data->produk->harga_jual * $qty;
+            $totalmodal =  $data->produk->harga_modal * $qty;
+            $totalberat =  $data->produk->berat_kg * $qty;
+            $qty_update = $data->update([
+                'qty' => $qty,
+                'total_harga' => $totalharga,
+                'total_modal' => $totalmodal,
+                'total_berat' => $totalberat
+            ]);
+            $this->show = true;
         } else {
         }
     }
