@@ -188,7 +188,7 @@
                                             <div class="me-2">
                                                 <button @if ($data->qty >= $data->produk->produkstok->po) disabled @endif
                                                     wire:click="tambahitem('{{ $data->id }}')"
-                                                    class="px-3 py-0 btn btn-sm text-white"
+                                                    class="px-3 py-1 btn btn-sm text-white"
                                                     style="background-color: {{ env('COLOR_PRIMARY') }}">
                                                     +
                                                 </button>
@@ -197,7 +197,7 @@
                                                     {{ $data->qty }}
                                                 </span>
                                                 <button type="button" wire:click="kurangitem('{{ $data->id }}')"
-                                                    class="btn btn-sm btn-warning text-white px-3 py-0">
+                                                    class="btn btn-sm btn-warning text-white px-3 py-1">
                                                     -
                                                 </button>
                                             </div>
