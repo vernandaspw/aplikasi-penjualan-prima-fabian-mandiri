@@ -60,7 +60,7 @@ Route::get('/perusahaan', PerusahaanKonsumen::class);
 Route::get('/produk', ProdukKonsumen::class);
 Route::get('/produk/{id}', ProdukDetailKonsumen::class);
 
-Route::middleware(['konsumenisnotlogin'])->group(function () {
+Route::middleware(['konsumenisnotlogin', 'adminisnotlogin'])->group(function () {
     Route::get('login', LoginKonsumen::class);
     Route::get('daftar', DaftarKonsumen::class);
 });
@@ -83,9 +83,9 @@ Route::middleware(['konsumenislogin'])->group(function () {
 
 
 Route::prefix('admin')->group(function () {
-    Route::middleware(['adminisnotlogin'])->group(function () {
-        Route::get('login', LoginAdmin::class);
-    });
+    // Route::middleware([''])->group(function () {
+    //     Route::get('login', LoginAdmin::class);
+    // });
     Route::middleware(['adminislogin'])->group(function () {
         Route::get('/', DashboardAdmin::class);
         Route::middleware(['administrator'])->group(function () {

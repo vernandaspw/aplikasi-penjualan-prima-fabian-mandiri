@@ -24,9 +24,9 @@ class AdminIsLoginMiddleware
                 auth('pegawai')->logout();
                 session()->invalidate();
                 session()->regenerateToken();
-                return redirect('admin/login');
+                return redirect('login');
             }
         }
-        return redirect('admin/login');
+        return redirect('login');
     }
 }

@@ -11,7 +11,7 @@ class NavbarAdmin extends Component
         auth('pegawai')->logout();
         session()->invalidate();
         session()->regenerateToken();
-        redirect('admin/login');
+        redirect('login');
     }
 
     public function render()
