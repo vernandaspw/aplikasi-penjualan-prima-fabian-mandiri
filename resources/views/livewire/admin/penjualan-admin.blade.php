@@ -157,9 +157,10 @@
 
             </div>
             <hr class="mt-3 mb-2 text-white">
-            <div class="mt-0 text-white">
-                {{-- <div class="">Form</div> --}}
-                <form wire:submit.prevent='buatpesanan'>
+            <form wire:submit.prevent='buatpesanan'>
+                <div class="mt-0 text-white">
+                    {{-- <div class="">Form</div> --}}
+
                     <div class="">
                         <div class="">
                             {{-- <label for="metodekirim">Metode pengiriman</label> --}}
@@ -194,35 +195,42 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="mt-2 d-flex w-100">
+                        {{-- <div class="mt-2 d-flex w-100">
                             <div class="w-100 me-1">
                                 <input type="datetime-local" wire:model='created_at' id=""
                                     class="form-control form-control-sm">
                             </div>
                             <div class="ms-1 w-100">
                                 <select wire:model='islunas' class="form-control form-control-sm">
-                                    <option value="1" selected>Lunas</option>
-                                    <option value="0">Belum bayar</option>
+                                    <option value="true">Lunas
+                                    </option>
+                                    <option value="false">Belum
+                                        bayar</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <div class="accordion mt-2" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button py-2 collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                        aria-expanded="false" aria-controls="collapseThree">
-                                        (optional)
+                                    <button class="accordion-button py-2 " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        @if ($bukanambilditempat)
+                                            (ada yg wajib diisi)
+                                        @else
+                                            (optional)
+                                        @endif
                                     </button>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
+                                <div id="collapseThree" class="accordion-collapse collapse  @if ($bukanambilditempat) show @endif"
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="mt-0">
-                                            <input wire:model.lazy='nama_konsumen' type="text"
-                                                placeholder="nama konsumen (optional)"
+                                            <input @if ($bukanambilditempat) required @endif
+                                                wire:model.lazy='nama_konsumen' type="text"
+                                                placeholder="nama konsumen {{ $bukanambilditempat == true ? '(wajib)' : '(optional)' }}"
                                                 class="form-control-sm @error('nama_konsumen') is-invalid @enderror rounded shadow-sm border border-light form-control">
                                             @error('nama_konsumen')
                                                 <div class="invalid-feedback">
@@ -231,8 +239,9 @@
                                             @enderror
                                         </div>
                                         <div class="mt-2">
-                                            <input wire:model.lazy='nowa_konsumen' type="text"
-                                                placeholder="nomor telp konsumen.. (optional)"
+                                            <input @if ($bukanambilditempat) required @endif
+                                                wire:model.lazy='nowa_konsumen' type="text"
+                                                placeholder="nomor telp konsumen.. {{ $bukanambilditempat == true ? '(wajib)' : '(optional)' }}"
                                                 class="form-control-sm @error('nowa_konsumen') is-invalid @enderror rounded shadow-sm border border-light form-control">
                                             @error('nowa_konsumen')
                                                 <div class="invalid-feedback">
@@ -241,8 +250,9 @@
                                             @enderror
                                         </div>
                                         <div class="mt-2">
-                                            <input wire:model.lazy='alamat_konsumen' type="text"
-                                                placeholder="alamat konsumen (optional)"
+                                            <input @if ($bukanambilditempat) required @endif
+                                                wire:model.lazy='alamat_konsumen' type="text"
+                                                placeholder="alamat konsumen {{ $bukanambilditempat == true ? '(wajib)' : '(optional)' }}"
                                                 class="form-control-sm @error('alamat_konsumen') is-invalid @enderror rounded shadow-sm border border-light form-control">
                                             @error('alamat_konsumen')
                                                 <div class="invalid-feedback">
@@ -306,57 +316,56 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="">
-                <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg"
-                    style="background-color: white">
-                    <div class="container-fluid">
-                        <ul class="py-2 navbar-nav justify-content-between w-100 align-items-center">
-                            <div class="me-auto text-dark">
-                                <div class="">
-                                    Total pembayaran
+
+                </div>
+                <div class="">
+                    <nav class="p-0 navbar navbar-dark navbar-expand fixed-bottom shadow-lg"
+                        style="background-color: white">
+                        <div class="container-fluid">
+                            <ul class="py-2 navbar-nav justify-content-between w-100 align-items-center">
+                                <div class="me-auto text-dark">
+                                    <div class="">
+                                        Total pembayaran
+                                    </div>
+                                    <div class="" style="font-size: 18px">
+                                        <b>@uang($keranjangitem->sum('total_harga') + $kode_unik + $biaya_kirim + $biaya_kirim_tambahan)</b>
+                                    </div>
                                 </div>
-                                <div class="" style="font-size: 18px">
-                                    <b>@uang($keranjangitem->sum('total_harga') + $kode_unik + $biaya_kirim + $biaya_kirim_tambahan)</b>
+
+                                <div class="ms-auto bg-info">
+
                                 </div>
-                            </div>
-
-                            <div class="ms-auto bg-info">
-
-                            </div>
-                            <div class="ms-auto d-flex">
-                                @if ($jml_belanja >= 1)
-                                    <button type="button"
-                                        onclick="confirm('Are you sure delete all produk?') || event.stopImmediatePropagation()"
-                                        wire:click="deleteallcartitem" class="btn border-0 bg-white btn-white">
-                                        <img src="{{ asset('trash.png') }}" alt="">
-                                    </button>
-                                    <button
-                                        onclick="confirm('Telah yakin cek pesanan?') || event.stopImmediatePropagation()"
-                                        type="submit" class="nav-link btn px-3 my-1 mx-1 text-center btn-light"
-                                        style="background-color: {{ env('COLOR_PRIMARY') }}; color: white;"> <span
-                                            class="small d-block" style="font-size: 15px">
-                                            <b>Buat pesanan</b>
-                                        </span>
-                                    </button>
-                                @else
-                                    <button class="nav-link btn px-3 my-1 mx-1 text-center btn-light" type="button"
-                                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
-                                        aria-controls="offcanvasBottom"
-                                        style="background-color: {{ env('COLOR_PRIMARY') }}; color: white;">
-                                        <span class="small d-block" style="font-size: 15px">
-                                            <b>Buat pesanan</b>
-                                        </span>
-                                    </button>
-                                @endif
-
-
-                            </div>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+                                <div class="ms-auto d-flex">
+                                    @if ($jml_belanja >= 1)
+                                        <button type="button"
+                                            onclick="confirm('Are you sure delete all produk?') || event.stopImmediatePropagation()"
+                                            wire:click="deleteallcartitem" class="btn border-0 bg-white btn-white">
+                                            <img src="{{ asset('trash.png') }}" alt="">
+                                        </button>
+                                        <button
+                                            onclick="confirm('Pastikan tidak ada perubahan pada pesanan!') || event.stopImmediatePropagation()"
+                                            type="submit" class="nav-link btn px-3 my-1 mx-1 text-center btn-light"
+                                            style="background-color: {{ env('COLOR_PRIMARY') }}; color: white;">
+                                            <span class="small d-block" style="font-size: 15px">
+                                                <b>Bayar</b>
+                                            </span>
+                                        </button>
+                                    @else
+                                        <button class="nav-link btn px-3 my-1 mx-1 text-center btn-light"
+                                            type="button" data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom"
+                                            style="background-color: {{ env('COLOR_PRIMARY') }}; color: white;">
+                                            <span class="small d-block" style="font-size: 15px">
+                                                <b>Cari produk</b>
+                                            </span>
+                                        </button>
+                                    @endif
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </form>
         </div>
     </div>
 </div>

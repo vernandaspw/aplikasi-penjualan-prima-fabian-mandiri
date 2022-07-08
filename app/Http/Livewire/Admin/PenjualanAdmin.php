@@ -7,7 +7,10 @@ use App\Models\MetodeKirim;
 use App\Models\MetodePembayaran;
 use App\Models\Produk;
 use App\Models\ProdukKategori;
+use App\Models\ProdukStok;
+use App\Models\ProdukStokLog;
 use App\Models\Transaksi;
+use App\Models\TransaksiItem;
 use App\Models\TransaksiJenis;
 use App\Models\TransaksiKategori;
 use App\Models\TransaksiLog;
@@ -28,9 +31,11 @@ class PenjualanAdmin extends Component
 
     public $nama_konsumen, $nowa_konsumen, $alamat_konsumen;
 
-    public $islunas = true;
+    public $islunas = false;
 
-    public $biaya_kirim, $kode_unik, $biaya_kirim_tambahan;
+    public $bukanambilditempat;
+
+    public $biaya_kirim, $kode_unik, $biaya_kirim_tambahan, $status, $expired_at;
 
     protected $listeners = ['refresh' => '$refresh'];
 
@@ -40,7 +45,31 @@ class PenjualanAdmin extends Component
         $kirim = MetodeKirim::where('metode', 'ambil ditempat')->first();
         $this->metode_kirim_id = $kirim->id;
         $this->biaya_kirim = $kirim->biaya == 0 ? null : $kirim->biaya;
+
+        $this->bukanambilditempat = $kirim->metode != 'ambil ditempat' ? true : false;
         $this->metode_pembayaran_id = MetodePembayaran::where('metode', 'tunai')->first()->id;
+        $cek_pembayaran = MetodePembayaran::find($this->metode_pembayaran_id);
+        if ($cek_pembayaran->metode == 'bank transfer') {
+            $this->kode_unik = rand(100, 999);
+            $this->status = 'proses_pembayaran';
+            $this->islunas = false;
+            $this->expired_at = null;
+        } elseif ($cek_pembayaran->metode == 'dompet digital') {
+            $this->kode_unik = rand(100, 999);
+            $this->status = 'proses_pembayaran';
+            $this->islunas = false;
+            $this->expired_at = null;
+        } elseif ($cek_pembayaran->metode == 'cod') {
+            $this->status = 'sedang_dikemas';
+            $this->kode_unik = 0;
+            $this->islunas = false;
+            $this->expired_at = null;
+        } elseif ($cek_pembayaran->metode == 'tunai') {
+            $this->kode_unik = 0;
+            $this->status = 'proses_pembayaran';
+            $this->islunas = false;
+            $this->expired_at = null;
+        }
     }
 
     public function updated()
@@ -48,9 +77,32 @@ class PenjualanAdmin extends Component
         if ($this->metode_kirim_id) {
             $kirim = MetodeKirim::find($this->metode_kirim_id);
             $this->biaya_kirim = $kirim->biaya;
+            $this->bukanambilditempat = $kirim->metode != 'ambil ditempat' ? true : false;
             $this->show = true;
         }
         if ($this->metode_pembayaran_id) {
+            $cek_pembayaran = MetodePembayaran::find($this->metode_pembayaran_id);
+            if ($cek_pembayaran->metode == 'bank transfer') {
+                $this->kode_unik = rand(100, 999);
+                $this->status = 'proses_pembayaran';
+                $this->islunas = false;
+                $this->expired_at = null;
+            } elseif ($cek_pembayaran->metode == 'dompet digital') {
+                $this->kode_unik = rand(100, 999);
+                $this->status = 'proses_pembayaran';
+                $this->islunas = false;
+                $this->expired_at = null;
+            } elseif ($cek_pembayaran->metode == 'cod') {
+                $this->status = 'sedang_dikemas';
+                $this->kode_unik = 0;
+                $this->islunas = false;
+                $this->expired_at = null;
+            } elseif ($cek_pembayaran->metode == 'tunai') {
+                $this->kode_unik = 0;
+                $this->status = 'proses_pembayaran';
+                $this->islunas = false;
+                $this->expired_at = null;
+            }
             $this->show = true;
         }
         if ($this->created_at) {
@@ -189,7 +241,7 @@ class PenjualanAdmin extends Component
     public function buatpesanan()
     {
         $this->validate([
-            'catatan' => 'max:100',
+            'catatan' => 'nullable|max:100',
             'metode_kirim_id' => 'required',
             'metode_pembayaran_id' => 'required'
         ]);
@@ -202,19 +254,44 @@ class PenjualanAdmin extends Component
         $cek_jenis_pemasukan = TransaksiJenis::where('nama', 'pemasukan')->first();
         $cek_kategori_penjualan = TransaksiKategori::where('nama', 'penjualan')->first();
 
-        $total_belanja = KeranjangItem::with('produk')->where('konsumen_id', auth('konsumen')->user()->id)->where('selected', true)->get()->sum('total_harga');
-        $total_modal = KeranjangItem::with('produk')->where('konsumen_id', auth('konsumen')->user()->id)->where('selected', true)->get()->sum('total_modal');
-        $total_berat = KeranjangItem::with('produk')->where('konsumen_id', auth('konsumen')->user()->id)->where('selected', true)->get()->sum('total_berat');
+        $total_belanja = KeranjangItem::with('produk')->where('pegawai_id', auth('pegawai')->user()->id)->get()->sum('total_harga');
+        $total_modal = KeranjangItem::with('produk')->where('pegawai_id', auth('pegawai')->user()->id)->get()->sum('total_modal');
+        $total_berat = KeranjangItem::with('produk')->where('pegawai_id', auth('pegawai')->user()->id)->get()->sum('total_berat');
 
         $total_pembayaran = $total_belanja + $this->biaya_kirim + $this->biaya_kirim_tambahan + $this->kode_unik;
         $laba_penjualan_produk = $total_belanja - $total_modal;
         $laba_penjualan_bersih = $laba_penjualan_produk + $this->biaya_kirim + $this->biaya_kirim_tambahan + $this->kode_unik;
+
+        // dd([
+        //     'no_transaksi' => $make_no,
+        //     'transaksi_jenis_id' => $cek_jenis_pemasukan->id,
+        //     'transaksi_kategori_id' => $cek_kategori_penjualan->id,
+        //     'pegawai_id' => auth('pegawai')->user()->id,
+        //     'nama_konsumen' => $this->nama_konsumen,
+        //     'nowa_konsumen' => $this->nowa_konsumen,
+        //     'alamat_konsumen' => $this->alamat_konsumen,
+        //     'metode_kirim_id' => $this->metode_kirim_id,
+        //     'metode_pembayaran_id' => $this->metode_pembayaran_id,
+        //     'total_belanja' => $total_belanja,
+        //     'total_modal' => $total_modal,
+        //     'total_berat' => $total_berat,
+        //     'kode_unik' =>  $this->kode_unik,
+        //     'biaya_kirim' => $this->biaya_kirim + $this->biaya_kirim_tambahan,
+        //     'total_pembayaran' => $total_pembayaran,
+        //     'laba_penjualan_produk' => $laba_penjualan_produk,
+        //     'laba_penjualan_bersih' => $laba_penjualan_bersih,
+        //     'catatan' => $this->catatan,
+        //     'status' => $this->status,
+        //     'islunas' => $this->islunas,
+        //     'pembayaran_expired_at' => $this->expired_at
+        // ]);
 
         try {
             $buattransaksi = Transaksi::create([
                 'no_transaksi' => $make_no,
                 'transaksi_jenis_id' => $cek_jenis_pemasukan->id,
                 'transaksi_kategori_id' => $cek_kategori_penjualan->id,
+                'pegawai_id' => auth('pegawai')->user()->id,
                 'nama_konsumen' => $this->nama_konsumen,
                 'nowa_konsumen' => $this->nowa_konsumen,
                 'alamat_konsumen' => $this->alamat_konsumen,
@@ -224,7 +301,7 @@ class PenjualanAdmin extends Component
                 'total_modal' => $total_modal,
                 'total_berat' => $total_berat,
                 'kode_unik' =>  $this->kode_unik,
-                'biaya_kirim' => $this->biaya_kirim,
+                'biaya_kirim' => $this->biaya_kirim + $this->biaya_kirim_tambahan,
                 'total_pembayaran' => $total_pembayaran,
                 'laba_penjualan_produk' => $laba_penjualan_produk,
                 'laba_penjualan_bersih' => $laba_penjualan_bersih,
@@ -239,27 +316,33 @@ class PenjualanAdmin extends Component
                 'status' => $this->status,
             ]);
 
-            foreach ($this->itemcart as $item) {
+            foreach ($this->keranjangitem as $item) {
                 $buat_transaksi_item = TransaksiItem::create([
                     'transaksi_id' => $buattransaksi->id,
-                    'produk_id' => $item->produk_id,
+                    'produk_id' => $item->produk_id != null ? $item->produk_id : null,
+                    'nama_produk' => $item->nama_produk,
+                    'harga_jual' => $item->harga_jual,
+                    'harga_modal' => $item->harga_modal,
+                    'berat' => $item->berat,
                     'qty' => $item->qty,
                     'total_harga' => $item->total_harga,
                     'total_modal' => $item->total_modal,
                     'total_berat' => $item->total_berat
                 ]);
 
-                $produkstok = ProdukStok::where('produk_id', $item->produk_id)->first();
-                $produkstok->update([
-                    'po' => $produkstok->po - $item->qty,
-                ]);
+                if ($item->produk_id) {
+                    $produkstok = ProdukStok::where('produk_id', $item->produk_id)->first();
+                    $produkstok->update([
+                        'po' => $produkstok->po - $item->qty,
+                    ]);
 
-                ProdukStokLog::create([
-                    'produk_stok_id' => $produkstok->id,
-                    'jenis' => 'keluar',
-                    'po' => $item->qty,
-                    'keterangan' => 'pre order'
-                ]);
+                    ProdukStokLog::create([
+                        'produk_stok_id' => $produkstok->id,
+                        'jenis' => 'keluar',
+                        'po' => $item->qty,
+                        'keterangan' => 'pre order'
+                    ]);
+                }
 
                 if ($buat_transaksi_item) {
                     KeranjangItem::find($item->id)->delete();
@@ -268,7 +351,7 @@ class PenjualanAdmin extends Component
 
             $this->emit('success', ['pesan' => 'Berhasil buat pesanan']);
 
-            redirect()->to('pesanan-detail/'. $buattransaksi->no_transaksi);
+            redirect()->to('admin/penjualan/bayar/' . $buattransaksi->no_transaksi);
         } catch (\Exception $e) {
             dd($e);
             $this->emit('error', ['pesan' => $e->getMessage()]);

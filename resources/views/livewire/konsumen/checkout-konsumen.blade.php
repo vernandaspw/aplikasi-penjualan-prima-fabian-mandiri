@@ -104,7 +104,7 @@
                     <label for="metodekirim">Metode pengiriman</label>
                     <select required wire:model='metode_kirim_id' id="metodekirim"
                         class="form-control text-muted @error('metode_kirim_id') is-invalid @enderror">
-                        <option selected value="">Pilih pengiriman</option>
+                        {{-- <option selected value="">Pilih pengiriman</option> --}}
                         @forelse ($pengiriman as $data)
                             <option value="{{ $data->id }}">{{ $data->metode }}</option>
                         @empty
@@ -120,7 +120,7 @@
                     <label for="metodepembayaran">Metode pembayaran</label>
                     <select wire:model='metode_pembayaran_id' required id="metodepembayaran"
                         class="form-control text-muted @error('metode_pembayaran_id') is-invalid @enderror">
-                        <option selected value="">Pilih pembayaran</option>
+                        {{-- <option selected value="">Pilih pembayaran</option> --}}
                         @forelse ($pembayaran as $data)
                             <option value="{{ $data->id }}">{{ $data->metode }} - {{ $data->nama }}</option>
                         @empty
