@@ -44,7 +44,7 @@
                 @if($transaksi->metodepembayaran->metode == 'tunai')
                     <div class="text-center">
                         <label for="diterima">Uang diterima tunai</label>
-                        <input type="number" placeholder="jumlah uang diterima tunai..." class="form-control rounded-pill border-warning shadow">
+                        <input min="{{ $transaksi->total_pembayaran }}" wire:model='diterima' type="number" placeholder="jumlah uang diterima tunai..." class="form-control rounded-pill border-warning shadow">
                     </div>
                     <div class="mt-2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -60,7 +60,7 @@
                     </div>
                 @endif
             </div>
-            <div class="mt-2">
+            <div class="mt-4">
                 <div class="">
                     <button class="btn btn-success btn-sm shadow-sm form-control rounded-pill">
                         Sudah bayar dan barang diterima
