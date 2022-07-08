@@ -8,6 +8,6 @@ class PenjualanBerhasilAdmin extends Component
 {
     public function render()
     {
-        return view('livewire.admin.penjualan-berhasil-admin');
+        return view('livewire.admin.penjualan-berhasil-admin')->extends('layouts.main')->section('content');
     }
 }

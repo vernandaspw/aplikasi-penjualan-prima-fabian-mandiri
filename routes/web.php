@@ -22,6 +22,7 @@ use App\Http\Livewire\Admin\LaporanProdukAdmin;
 use App\Http\Livewire\Admin\LoginAdmin;
 use App\Http\Livewire\Admin\PenjualanAdmin;
 use App\Http\Livewire\Admin\PenjualanBayarAdmin;
+use App\Http\Livewire\Admin\PenjualanBerhasilAdmin;
 use App\Http\Livewire\Admin\PenjualanManualAdmin;
 use App\Http\Livewire\Admin\PenjualanProdukAdmin;
 use App\Http\Livewire\Admin\PesananMasukAdmin;
@@ -95,7 +96,7 @@ Route::prefix('admin')->group(function () {
             Route::get('penjualan/produk', PenjualanProdukAdmin::class);
             Route::get('penjualan/manual', PenjualanManualAdmin::class);
             Route::get('penjualan/bayar/{id}', PenjualanBayarAdmin::class);
-
+            Route::get('penjualan/bayar/berhasil/{id}', PenjualanBerhasilAdmin::class);
 
             Route::get('catat-transaksi', CatatTransaksiAdmin::class);
             Route::get('kelola-transaksi-penjualan', KelolaTransaksiPenjualanAdmin::class);

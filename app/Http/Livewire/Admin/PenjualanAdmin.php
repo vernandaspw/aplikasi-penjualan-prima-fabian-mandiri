@@ -240,6 +240,7 @@ class PenjualanAdmin extends Component
 
     public function buatpesanan()
     {
+
         $this->validate([
             'catatan' => 'nullable|max:100',
             'metode_kirim_id' => 'required',
@@ -351,7 +352,12 @@ class PenjualanAdmin extends Component
 
             $this->emit('success', ['pesan' => 'Berhasil buat pesanan']);
 
-            redirect()->to('admin/penjualan/bayar/' . $buattransaksi->no_transaksi);
+            $cod = MetodePembayaran::where('metode', 'cod')->first()->id;
+            if ($buattransaksi->metode_pembayaran_id == $cod) {
+                redirect()->to('admin/penjualan/bayar/berhasil/'. $buattransaksi->no_transaksi);
+            }else {
+                redirect()->to('admin/penjualan/bayar/' . $buattransaksi->no_transaksi);
+            }
         } catch (\Exception $e) {
             dd($e);
             $this->emit('error', ['pesan' => $e->getMessage()]);

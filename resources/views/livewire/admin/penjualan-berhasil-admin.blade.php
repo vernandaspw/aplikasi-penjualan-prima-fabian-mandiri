@@ -1,3 +1,6 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <livewire:admin.component.navbar-admin />
+    <div class="mt-3">
+        cek cod berhasil
+    </div>
 </div>
