@@ -28,10 +28,6 @@
                                 href="{{ url('admin/penjualan/produk') }}">Penjualan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Request::is('admin/catat-transaksi') == 'admin/catat-transaksi' ? 'active' : '' }}"
-                                href="{{ url('admin/catat-transaksi') }}">catat transaksi</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link
                                 @if(Request::is('admin/kelola-transaksi-penjualan') == 'admin/kelola-transaksi-penjualan')
                                     active
@@ -39,8 +35,13 @@
                                     active
                                     @endif
                            "
-                                href="{{ url('admin/kelola-transaksi-penjualan') }}">kelola transaksi</a>
+                                href="{{ url('admin/kelola-transaksi-penjualan') }}">kelola penjualan</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('admin/kelola-transaksi-lainnya') == 'admin/kelola-transaksi-lainnya' ? 'active' : '' }}"
+                                href="{{ url('admin/kelola-transaksi-lainnya') }}">Kelola transaksi</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('admin/kelola-produk') == 'admin/kelola-produk' ? 'active' : '' }}"
                                 href="{{ url('admin/kelola-produk') }}">kelola produk</a>

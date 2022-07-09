@@ -26,7 +26,7 @@
                         Pengiriman
                     </div>
                     <div class="">
-                        {{ $transaksi->metodekirim->metode }}{{ $transaksi->metodekirim->nama != null ? ', '. $transaksi->metodekirim->nama : '' }}
+                        {{ $transaksi->metodekirim->metode }}{{ $transaksi->metodekirim->nama != null ? ', ' . $transaksi->metodekirim->nama : '' }}
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
@@ -34,17 +34,19 @@
                         Pembayaran
                     </div>
                     <div class="">
-                        {{ $transaksi->metodepembayaran->metode }}{{ $transaksi->metodepembayaran->nama != null ? ', '. $transaksi->metodepembayaran->nama : '' }}
+                        {{ $transaksi->metodepembayaran->metode }}{{ $transaksi->metodepembayaran->nama != null ? ', ' . $transaksi->metodepembayaran->nama : '' }}
                     </div>
                 </div>
             </div>
             <hr class="py-0 my-0 mt-2">
 
             <div class="mt-2">
-                @if($transaksi->metodepembayaran->metode == 'tunai')
+                @if ($transaksi->metodepembayaran->metode == 'tunai')
                     <div class="text-center">
                         <label for="diterima">Uang diterima tunai</label>
-                        <input min="{{ $transaksi->total_pembayaran }}" wire:model='diterima' type="number" placeholder="jumlah uang diterima tunai..." class="form-control rounded-pill border-warning shadow">
+                        <input min="{{ $transaksi->total_pembayaran }}" wire:model='diterima' type="number"
+                            placeholder="jumlah uang diterima tunai..."
+                            class="form-control rounded-pill border-warning shadow">
                     </div>
                     <div class="mt-2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -62,25 +64,34 @@
             </div>
             <div class="mt-4">
                 <div class="">
-                    <button class="btn btn-success btn-sm shadow-sm form-control rounded-pill">
-                        Sudah bayar dan barang diterima
-                    </button>
-                    <button class="btn mt-1 btn-outline-success btn-sm shadow-sm form-control rounded-pill">
-                        Sudah bayar lalu kemas barang
-                    </button>
+                    @if ($transaksi->metodekirim->metode == 'ambil ditempat')
+                        <button class="btn btn-success btn-sm shadow-sm form-control rounded-pill">
+                            Sudah bayar dan barang diterima
+                        </button>
+                        @else
+                        <button class="btn mt-1 btn-outline-success btn-sm shadow-sm form-control rounded-pill">
+                            Sudah bayar lalu kemas barang
+                        </button>
+                    @endif
+
                 </div>
                 <div class="mt-2">
+                    @if ($transaksi->metodekirim->metode == 'ambil ditempat')
                     <button class="btn btn-warning btn-sm shadow-sm form-control rounded-pill">
                         Bayar nanti dan barang diterima
                     </button>
+                    @else
                     <button class="btn mt-1 btn-outline-warning btn-sm shadow-sm form-control rounded-pill">
                         Bayar nanti lalu kemas barang
                     </button>
+                    @endif
                 </div>
                 <div class="mt-2">
+                    @if($transaksi->metodepembayaran->metode != 'tunai')
                     <button class="btn btn-secondary btn-sm shadow-sm form-control rounded-pill">
                         Pembayaran dicek admin dulu
                     </button>
+                    @endif
                     <button class="btn mt-1 btn-danger btn-sm shadow-sm form-control rounded-pill">
                         Batal dan hapus transaksi ini
                     </button>
