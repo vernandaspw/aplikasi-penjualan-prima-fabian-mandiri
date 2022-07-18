@@ -120,8 +120,7 @@ class PenjualanBayarAdmin extends Component
         $transaksi = Transaksi::with('transaksiitem')->find($id);
 
         $transaksi->update([
-            'diterima' => $this->diterima,
-            'kembalian' => $this->diterima - $transaksi->total_pembayaran,
+
             'status' => 'diterima',
             'islunas' => false
         ]);
@@ -159,8 +158,7 @@ class PenjualanBayarAdmin extends Component
         $transaksi = Transaksi::with('transaksiitem')->find($id);
 
         $transaksi->update([
-            'diterima' => $this->diterima,
-            'kembalian' => $this->diterima - $transaksi->total_pembayaran,
+
             'status' => 'sedang_dikemas',
             'islunas' => false
         ]);
