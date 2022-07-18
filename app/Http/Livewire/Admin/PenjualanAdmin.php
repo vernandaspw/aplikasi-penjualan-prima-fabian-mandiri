@@ -51,12 +51,12 @@ class PenjualanAdmin extends Component
         $cek_pembayaran = MetodePembayaran::find($this->metode_pembayaran_id);
         if ($cek_pembayaran->metode == 'bank transfer') {
             $this->kode_unik = rand(100, 999);
-            $this->status = 'proses_pembayaran';
+            $this->status = 'kasir';
             $this->islunas = false;
             $this->expired_at = null;
         } elseif ($cek_pembayaran->metode == 'dompet digital') {
             $this->kode_unik = rand(100, 999);
-            $this->status = 'proses_pembayaran';
+            $this->status = 'kasir';
             $this->islunas = false;
             $this->expired_at = null;
         } elseif ($cek_pembayaran->metode == 'cod') {
@@ -66,7 +66,7 @@ class PenjualanAdmin extends Component
             $this->expired_at = null;
         } elseif ($cek_pembayaran->metode == 'tunai') {
             $this->kode_unik = 0;
-            $this->status = 'proses_pembayaran';
+            $this->status = 'kasir';
             $this->islunas = false;
             $this->expired_at = null;
         }
@@ -84,12 +84,12 @@ class PenjualanAdmin extends Component
             $cek_pembayaran = MetodePembayaran::find($this->metode_pembayaran_id);
             if ($cek_pembayaran->metode == 'bank transfer') {
                 $this->kode_unik = rand(100, 999);
-                $this->status = 'proses_pembayaran';
+                $this->status = 'kasir';
                 $this->islunas = false;
                 $this->expired_at = null;
             } elseif ($cek_pembayaran->metode == 'dompet digital') {
                 $this->kode_unik = rand(100, 999);
-                $this->status = 'proses_pembayaran';
+                $this->status = 'kasir';
                 $this->islunas = false;
                 $this->expired_at = null;
             } elseif ($cek_pembayaran->metode == 'cod') {
@@ -99,7 +99,7 @@ class PenjualanAdmin extends Component
                 $this->expired_at = null;
             } elseif ($cek_pembayaran->metode == 'tunai') {
                 $this->kode_unik = 0;
-                $this->status = 'proses_pembayaran';
+                $this->status = 'kasir';
                 $this->islunas = false;
                 $this->expired_at = null;
             }

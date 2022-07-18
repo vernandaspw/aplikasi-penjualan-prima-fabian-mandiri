@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PenjualanBerhasilController;
 use App\Http\Livewire\Admin\CatatTransaksiAdmin;
 use App\Http\Livewire\Admin\DashboardAdmin;
 use App\Http\Livewire\Admin\KasirAdmin;
@@ -81,6 +82,10 @@ Route::middleware(['konsumenislogin'])->group(function () {
     Route::get('ubah-password', UbahPasswordKonsumen::class);
 });
 
+Route::get('cetak-struk/{id}', [PenjualanBerhasilController::class, 'cetakstruk']);
+Route::get('cetak-nota/{id}', [PenjualanBerhasilController::class, 'cetaknota']);
+Route::get('cetak-surat-jalan/{id}', [PenjualanBerhasilController::class, 'cetaksuratjalan']);
+
 
 Route::prefix('admin')->group(function () {
     // Route::middleware([''])->group(function () {
@@ -96,7 +101,7 @@ Route::prefix('admin')->group(function () {
             Route::get('penjualan/produk', PenjualanProdukAdmin::class);
             Route::get('penjualan/manual', PenjualanManualAdmin::class);
             Route::get('penjualan/bayar/{id}', PenjualanBayarAdmin::class);
-            Route::get('penjualan/bayar/berhasil/{id}', PenjualanBerhasilAdmin::class);
+            Route::get('penjualan/bayar/berhasil/{id}', [PenjualanBerhasilController::class, 'get']);
 
             Route::get('catat-transaksi', CatatTransaksiAdmin::class);
             Route::get('kelola-transaksi-penjualan', KelolaTransaksiPenjualanAdmin::class);

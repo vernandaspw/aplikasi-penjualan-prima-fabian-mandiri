@@ -99,10 +99,10 @@
         </div>
         <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="">
-                Nama Toko 
+                Nama Toko
             </div>
             <div class="">
-                Irama Baru
+                Prima Elektronik
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center">
@@ -121,7 +121,7 @@
             <div class="">
                 @if($start)
                 {{ \Carbon\Carbon::parse($start->created_at)->isoFormat('D MMMM Y H:M') }}
-                @else 
+                @else
                 -
                 @endif
             </div>
@@ -131,13 +131,13 @@
                 End time
             </div>
             <div class="">
-            
+
                 @if($end)
                 {{ \Carbon\Carbon::parse($end->created_at)->isoFormat('D MMMM Y H:M') }}
-                @else 
+                @else
                 -
                 @endif
-                
+
             </div>
         </div>
         <hr class="my-1 py-0">
@@ -208,7 +208,7 @@
             <b>Riwayat Transaksi</b>
         </div>
         <div class="mt-1">
-      
+
             @foreach ($kasirtransaksi as $data)
                 <div class="card mb-1 shadow-sm rounded">
                     <div class="card-body py-2">

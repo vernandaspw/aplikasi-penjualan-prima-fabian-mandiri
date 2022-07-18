@@ -343,7 +343,7 @@
                                             <img src="{{ asset('trash.png') }}" alt="">
                                         </button>
                                         <button
-                                            onclick="confirm('Pastikan tidak ada perubahan pada pesanan!') || event.stopImmediatePropagation()"
+
                                             type="submit" class="nav-link btn px-3 my-1 mx-1 text-center btn-light"
                                             style="background-color: {{ env('COLOR_PRIMARY') }}; color: white;">
                                             <span class="small d-block" style="font-size: 15px">

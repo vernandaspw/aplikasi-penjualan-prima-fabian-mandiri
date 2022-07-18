@@ -62,41 +62,67 @@
                     </div>
                 @endif
             </div>
+
+
+
             <div class="mt-4">
                 <div class="">
                     @if ($transaksi->metodekirim->metode == 'ambil ditempat')
-                        <button class="btn btn-success btn-sm shadow-sm form-control rounded-pill">
+                        <button wire:click='sdh_byr_diterima'
+                            class="btn btn-success btn-sm shadow-sm form-control rounded-pill">
                             Sudah bayar dan barang diterima
                         </button>
-                        @else
+                    @else
                         <button class="btn mt-1 btn-outline-success btn-sm shadow-sm form-control rounded-pill">
                             Sudah bayar lalu kemas barang
                         </button>
                     @endif
-
                 </div>
                 <div class="mt-2">
                     @if ($transaksi->metodekirim->metode == 'ambil ditempat')
-                    <button class="btn btn-warning btn-sm shadow-sm form-control rounded-pill">
-                        Bayar nanti dan barang diterima
-                    </button>
+                        <button wire:click='byr_nanti_diterima' class="btn btn-warning btn-sm shadow-sm form-control rounded-pill">
+                            Bayar nanti dan barang diterima
+                        </button>
                     @else
-                    <button class="btn mt-1 btn-outline-warning btn-sm shadow-sm form-control rounded-pill">
-                        Bayar nanti lalu kemas barang
-                    </button>
+                        <button class="btn mt-1 btn-outline-warning btn-sm shadow-sm form-control rounded-pill">
+                            Bayar nanti lalu kemas barangs
+                        </button>
                     @endif
                 </div>
                 <div class="mt-2">
-                    @if($transaksi->metodepembayaran->metode != 'tunai')
-                    <button class="btn btn-secondary btn-sm shadow-sm form-control rounded-pill">
-                        Pembayaran dicek admin dulu
-                    </button>
+                    @if ($transaksi->metodepembayaran->metode != 'tunai')
+                        <button class="btn btn-secondary btn-sm shadow-sm form-control rounded-pill">
+                            Pembayaran dicek admin dulu
+                        </button>
                     @endif
-                    <button class="btn mt-1 btn-danger btn-sm shadow-sm form-control rounded-pill">
+                    <button wire:click='batal' class="btn mt-1 btn-danger btn-sm shadow-sm form-control rounded-pill">
                         Batal dan hapus transaksi ini
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    @push('script')
+        <script>
+            Livewire.on('success', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'success!',
+                    text: data.pesan,
+                    icon: 'success',
+                    confirmButtonText: 'oke'
+                })
+            })
+            Livewire.on('error', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'error!',
+                    text: data.pesan,
+                    icon: 'error',
+                    confirmButtonText: 'oke'
+                })
+            })
+        </script>
+    @endpush
 </div>

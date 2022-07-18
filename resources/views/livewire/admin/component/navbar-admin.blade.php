@@ -31,8 +31,7 @@
                             <a class="nav-link
                                 @if(Request::is('admin/kelola-transaksi-penjualan') == 'admin/kelola-transaksi-penjualan')
                                     active
-                                    @elseif(Request::is('admin/kelola-transaksi-lainnya') == 'admin/kelola-transaksi-lainnya')
-                                    active
+
                                     @endif
                            "
                                 href="{{ url('admin/kelola-transaksi-penjualan') }}">kelola penjualan</a>

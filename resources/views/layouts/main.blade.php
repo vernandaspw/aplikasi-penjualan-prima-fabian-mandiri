@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Irama Baru</title>
+    <title>
+        @yield('title')
+        Prima Elektronik</title>
 
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/x-icon">
 
@@ -61,12 +63,12 @@
     @livewireStyles
 </head>
 
-<body class="antialiased">
+<body class="antialiased" id="body">
 
     @yield('content')
     {{-- Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) --}}
 
-    
+
     @livewireScripts
 
     <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>

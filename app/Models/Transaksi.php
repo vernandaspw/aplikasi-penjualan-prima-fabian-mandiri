@@ -20,6 +20,11 @@ class Transaksi extends Model
         return $this->belongsTo(MetodeKirim::class, 'metode_kirim_id', 'id');
     }
 
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'pegawai_id', 'id');
+    }
+
     public function konsumen()
     {
         return $this->belongsTo(Konsumen::class, 'konsumen_id', 'id');
