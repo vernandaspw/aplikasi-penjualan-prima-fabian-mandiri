@@ -35,9 +35,13 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="mb-3 form-check">
+                        
+                        <div class="mb-1 form-check">
                             <input checked type="checkbox" wire:model='ingat' class="form-check-input" id="remember">
                             <label class="form-check-label" for="remember">Ingat saya</label>
+                        </div>
+                        <div class="mb-3">
+                            <a href="{{ route('forget.password.get') }}">Lupa password?</a>
                         </div>
                         <button type="submit" class="btn form-control rounded-pill shadow-sm text-white"
                             style="background-color: {{ env('COLOR_PRIMARY') }};">Login</button>

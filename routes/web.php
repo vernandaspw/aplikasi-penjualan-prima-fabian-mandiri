@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\PenjualanBerhasilController;
 use App\Http\Livewire\Admin\CatatTransaksiAdmin;
 use App\Http\Livewire\Admin\DashboardAdmin;
@@ -60,6 +61,11 @@ Route::get('/', MainPageKonsumen::class);
 Route::get('/perusahaan', PerusahaanKonsumen::class);
 Route::get('/produk', ProdukKonsumen::class);
 Route::get('/produk/{id}', ProdukDetailKonsumen::class);
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::middleware(['konsumenisnotlogin', 'adminisnotlogin'])->group(function () {
     Route::get('login', LoginKonsumen::class);
