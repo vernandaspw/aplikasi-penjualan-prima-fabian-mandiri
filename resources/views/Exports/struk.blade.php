@@ -15,11 +15,9 @@
 
 <body>
     <div class="" style="font-size: 13px">
-
         <div class="">
             <center>Prima Elektronik</center>
         </div>
-
         <div class="col-12">
             <table class="table mb-0">
                 <tbody>
@@ -111,9 +109,6 @@
             ~ Terimakasih ~
            </div>
         </center>
-
-
-
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
