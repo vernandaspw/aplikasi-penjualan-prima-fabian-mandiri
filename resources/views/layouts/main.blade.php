@@ -54,9 +54,9 @@
         }
 
         div.scrollmenu .card:hover {
-            background-color: {{ env('COLOR_PRIMARY') }};
             color: white;
             border: none;
+            background-color: {{ env('COLOR_PRIMARY') }};
         }
     </style>
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Component;
 
 use App\Models\Transaksi;
 use App\Models\TransaksiJenis;
 use App\Models\TransaksiKategori;
 use Livewire\Component;
 
-class DashboardAdmin extends Component
+class GrafikCashflowPie extends Component
 {
     public $penjualan, $pemasukan, $pengeluaran;
     public function render()
@@ -20,6 +20,6 @@ class DashboardAdmin extends Component
         $this->pemasukan = Transaksi::where('transaksi_jenis_id', $pemasukan->id)->where('islunas', true)->get()->sum('total_pembayaran');
         $this->pengeluaran = Transaksi::where('transaksi_jenis_id', $pengeluaran->id)->where('islunas', true)->get()->sum('total_pembayaran');
 
-        return view('livewire.admin.dashboard-admin')->extends('layouts.main')->section('content');
+        return view('livewire.admin.component.grafik-cashflow-pie')->extends('layouts.main')->section('content');
     }
 }
