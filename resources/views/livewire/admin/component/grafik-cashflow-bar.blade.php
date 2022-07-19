@@ -15,7 +15,7 @@
                 ],
                 datasets: [{
                     type: 'bar',
-                    label: 'Bar Dataset',
+                    label: 'Cashflow',
                     data: [{{ $penjualan }}, {{ $pemasukan }}, {{ $pengeluaran }}],
                     borderColor: 'rgb(255, 99, 132)',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)'
