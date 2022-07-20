@@ -65,7 +65,7 @@
                         </li>
                     @endif
                     @if (auth('pegawai')->user()->role == 'admin')
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Master
@@ -79,7 +79,7 @@
                                         href="{{ url('admin/metode-pembayaran') }}">Metode
                                         Pembayaran</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
                     @if (auth('pegawai')->user()->role == 'pimpinan')
                         <li class="nav-item dropdown">
