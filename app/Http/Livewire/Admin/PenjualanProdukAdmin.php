@@ -12,7 +12,9 @@ class PenjualanProdukAdmin extends Component
 {
     public $kategori = [];
 
-    public $take;
+    public $take = 15;
+    public $jmlproduk;
+
     public $produk = [];
     public $cariproduk, $kategori_id;
 
@@ -36,6 +38,7 @@ class PenjualanProdukAdmin extends Component
         $this->produk = $produk->take($this->take)->latest()->get();
         // dd($this->produk);
 
+        $this->jmlproduk = $produk->get()->count()
 
         return view('livewire.admin.penjualan-produk-admin')->extends('layouts.main')->section('content');
     }

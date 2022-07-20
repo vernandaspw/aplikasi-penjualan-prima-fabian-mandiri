@@ -32,7 +32,7 @@
             </select>
         </div>
         <div class="" style="margin-bottom: 90px">
-            <div wire:loading >
+            <div wire:loading>
                 loading...
             </div>
             @forelse ($produk as $data)
@@ -56,14 +56,14 @@
                                         <div class="ms-3">
                                             <b class="">{{ $data->nama }}</b>
                                             <p class="card-text text-muted mb-0" style="font-size: 14px">
-                                                @uang($data->harga_jual) | 
-                                                @if($data->produkstok)
-                                                @if ($data->produkstok->isstok)
-                                                Stok {{ $data->produkstok->po }}
-                                                {{ $data->produkstok->satuan_unit }}
-                                            @endif
+                                                @uang($data->harga_jual) |
+                                                @if ($data->produkstok)
+                                                    @if ($data->produkstok->isstok)
+                                                        Stok {{ $data->produkstok->po }}
+                                                        {{ $data->produkstok->satuan_unit }}
+                                                    @endif
                                                 @endif
-                                               
+
                                             </p>
 
                                         </div>
@@ -103,6 +103,12 @@
                     Belum memiliki produk
                 </center>
             @endforelse
+            @if ($take < $jmlproduk)
+            <center>
+                <button wire:click='lanjut'
+                    class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
+            </center>
+        @endif
         </div>
     </div>
 
