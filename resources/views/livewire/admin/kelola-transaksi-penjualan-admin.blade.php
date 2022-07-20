@@ -192,7 +192,7 @@
                                         class="btn m-1 btn-sm rounded text-white btn-warning" style="font-size: 12px">
                                         Edit
                                     </button> --}}
-                                    <a class="btn btn-secondary btn-sm" href="{{ url('cetak-surat-jalan', $data->no_transaksi) }}">Cetak surat jalan</a>
+                                    <a target="_blank" class="btn btn-secondary btn-sm" href="{{ url('cetak-surat-jalan', $data->no_transaksi) }}">Cetak surat jalan</a>
                                     @if ($data->status == 'konfirm')
                                         <button
                                             onclick="confirm('yakin batalkan pesanan?') || event.stopImmediatePropagation()"

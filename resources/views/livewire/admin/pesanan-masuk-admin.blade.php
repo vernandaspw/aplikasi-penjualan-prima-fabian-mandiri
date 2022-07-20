@@ -117,7 +117,7 @@
                                     {{ \Carbon\Carbon::parse($data->created_at)->diffForHumans() }}
                                 </td>
                                 <td>
-                                    
+                                    <a target="_blank" class="btn btn-secondary btn-sm" href="{{ url('cetak-surat-jalan', $data->no_transaksi) }}">Cetak surat jalan</a>
                                     @if ($data->status == 'konfirm')
                                         <button
                                             onclick="confirm('yakin batalkan pesanan?') || event.stopImmediatePropagation()"
