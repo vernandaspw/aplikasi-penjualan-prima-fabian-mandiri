@@ -67,7 +67,7 @@
                     <div class="me-3 col-lg-3">
                         <div class="card shadow-sm rounded">
                             <div class="card-header bg-warning">
-                                Kurang Stok Produk
+                                Kurangi Stok Produk
                             </div>
                             <div class="card-body">
                                 <form wire:submit.prevent="kurangstokproduk('{{ $kurangstok->id }}')">
@@ -79,12 +79,12 @@
                                     </div>
                                     <hr class="my-0 py-0">
                                     <div class="mt-1 d-flex justify-content-between align-items-center">
-                                        <div class="">kurang stok po ({{ $kurangstok->po }}) - </div>
+                                        <div class="">kurangi stok po ({{ $kurangstok->po }}) - </div>
                                         <input wire:model='inputkurangpo' min="1" type="number" placeholder="0"
                                             class="form-control rounded-pill  form-control-sm w-25">
                                     </div>
                                     <div class="mt-1 d-flex justify-content-between align-items-center">
-                                        <div class="">kurang stok real ({{ $kurangstok->real }}) - </div>
+                                        <div class="">kurangi stok real ({{ $kurangstok->real }}) - </div>
                                         <input wire:model='inputkurangreal' min="1" type="number"
                                             placeholder="0" class="form-control rounded-pill form-control-sm w-25">
                                     </div>
@@ -124,7 +124,7 @@
                                         </button>
                                         <button wire:click="formkurang('{{ $data->id }}')" type="button"
                                             class="btn btn-warning btn-sm mb-1 mr-1  rounded-pill ">
-                                            Kurang
+                                            Kurangi
                                         </button>
                                         <button wire:click="buatform" type="button"
                                             class="btn btn-secondary btn-sm mb-1 mr-1  rounded-pill ">
