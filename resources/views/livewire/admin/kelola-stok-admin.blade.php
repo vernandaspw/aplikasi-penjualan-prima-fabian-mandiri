@@ -34,30 +34,64 @@
                     <div class="me-3 col-lg-3">
                         <div class="card shadow-sm rounded">
                             <div class="card-header bg-success text-white">
-                                Tambah Produk
+                                Tambah Stok Produk
                             </div>
                             <div class="card-body">
-                               <form wire:submit.prevent='tambahstokproduk'>
-                                <div class="">
-                                    <label for=""><b>Produk ({{ $tambahstok->satuan_unit }})</b></label>
+                                <form wire:submit.prevent="tambahstokproduk('{{ $tambahstok->id }}')">
                                     <div class="">
-                                        {{ $tambahstok->produk->nama }}
+                                        <label for=""><b>Produk ({{ $tambahstok->satuan_unit }})</b></label>
+                                        <div class="">
+                                            {{ $tambahstok->produk->nama }}
+                                        </div>
                                     </div>
-                                </div>
-                                <hr class="my-0 py-0">
-                                <div class="mt-1 d-flex justify-content-between align-items-center">
-                                    <div class="">tambah stok po ({{ $tambahstok->po }}) + </div>
-                                    <input min="1" type="number" placeholder="0"
-                                    class="form-control rounded-pill  form-control-sm w-25">
-                                </div>
-                                <div class="mt-1 d-flex justify-content-between align-items-center">
-                                    <div class="">tambah stok real ({{ $tambahstok->real }}) + </div>
-                                    <input min="1" type="number" placeholder="0"
-                                        class="form-control rounded-pill form-control-sm w-25">
-                                </div>
-                                <button type="submit" class="btn mt-1 btn-success rounded-pill form-control">Simpan</button>
+                                    <hr class="my-0 py-0">
+                                    <div class="mt-1 d-flex justify-content-between align-items-center">
+                                        <div class="">tambah stok po ({{ $tambahstok->po }}) + </div>
+                                        <input wire:model='inputtambahpo' min="1" type="number" placeholder="0"
+                                            class="form-control rounded-pill  form-control-sm w-25">
+                                    </div>
+                                    <div class="mt-1 d-flex justify-content-between align-items-center">
+                                        <div class="">tambah stok real ({{ $tambahstok->real }}) + </div>
+                                        <input wire:model='inputtambahreal' min="1" type="number"
+                                            placeholder="0" class="form-control rounded-pill form-control-sm w-25">
+                                    </div>
+                                    <button type="submit"
+                                        class="btn mt-1 btn-success rounded-pill form-control">Simpan</button>
 
-                               </form>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($kurangpage)
+                    <div class="me-3 col-lg-3">
+                        <div class="card shadow-sm rounded">
+                            <div class="card-header bg-warning">
+                                Kurang Stok Produk
+                            </div>
+                            <div class="card-body">
+                                <form wire:submit.prevent="kurangstokproduk('{{ $kurangstok->id }}')">
+                                    <div class="">
+                                        <label for=""><b>Produk ({{ $kurangstok->satuan_unit }})</b></label>
+                                        <div class="">
+                                            {{ $kurangstok->produk->nama }}
+                                        </div>
+                                    </div>
+                                    <hr class="my-0 py-0">
+                                    <div class="mt-1 d-flex justify-content-between align-items-center">
+                                        <div class="">kurang stok po ({{ $kurangstok->po }}) - </div>
+                                        <input wire:model='inputkurangpo' min="1" type="number" placeholder="0"
+                                            class="form-control rounded-pill  form-control-sm w-25">
+                                    </div>
+                                    <div class="mt-1 d-flex justify-content-between align-items-center">
+                                        <div class="">kurang stok real ({{ $kurangstok->real }}) - </div>
+                                        <input wire:model='inputkurangreal' min="1" type="number"
+                                            placeholder="0" class="form-control rounded-pill form-control-sm w-25">
+                                    </div>
+                                    <button type="submit"
+                                        class="btn mt-1 btn-success rounded-pill form-control">Simpan</button>
+
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -88,7 +122,7 @@
                                             class="btn btn-primary btn-success btn-sm mb-1 mr-1 rounded-pill">
                                             Tambah
                                         </button>
-                                        <button wire:click="buatform" type="button"
+                                        <button wire:click="formkurang('{{ $data->id }}')" type="button"
                                             class="btn btn-warning btn-sm mb-1 mr-1  rounded-pill ">
                                             Kurang
                                         </button>
