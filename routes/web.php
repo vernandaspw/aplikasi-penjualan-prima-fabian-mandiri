@@ -30,6 +30,7 @@ use App\Http\Livewire\Admin\PenjualanProdukAdmin;
 use App\Http\Livewire\Admin\PesananMasukAdmin;
 use App\Http\Livewire\Admin\ProsesAntarAdmin;
 use App\Http\Livewire\Admin\SelesaiAdmin;
+use App\Http\Livewire\Admin\Semua;
 use App\Http\Livewire\Konsumen\BeliLangsungKonsumen;
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\BeriUlasanInputKonsumen;
@@ -122,7 +123,7 @@ Route::prefix('admin')->group(function () {
         Route::middleware(['logistik'])->group(function () {
             Route::get('pesanan-masuk', PesananMasukAdmin::class);
             Route::get('proses-antar', ProsesAntarAdmin::class);
-            Route::get('selesai', SelesaiAdmin::class);
+            Route::get('semua', Semua::class);
         });
         Route::middleware(['pimpinan'])->group(function () {
             Route::get('laporan-keuangan', LaporanKeuanganAdmin::class);

@@ -59,7 +59,7 @@
                     @endforelse
                 </div>
             </section>
-            <section class="merek">
+            {{-- <section class="merek">
                 <div class="mt-2">
                     <span style="font-size: 17px"><b>Merek</b></span>
                 </div>
@@ -79,7 +79,7 @@
                         tidak ada
                     @endforelse
                 </div>
-            </section>
+            </section> --}}
             <section class="produk">
                 <div class="mt-3">
                     <span style="font-size: 17px"><b>Produk Terbaru</b></span>

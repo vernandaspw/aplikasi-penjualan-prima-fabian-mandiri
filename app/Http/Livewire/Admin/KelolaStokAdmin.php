@@ -88,7 +88,7 @@ class KelolaStokAdmin extends Component
             if ($cek) {
                 ProdukStokLog::create([
                     'produk_stok_id' => $buat->id,
-                    'jenis' => 'masuk',
+                    'jenis' => 'keluar',
                     'po' => $this->inputkurangpo,
                     'real' =>  $this->inputkurangreal,
                     'keterangan' => 'kurang stok produk'

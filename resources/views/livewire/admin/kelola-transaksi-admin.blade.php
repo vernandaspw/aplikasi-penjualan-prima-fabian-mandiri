@@ -124,10 +124,10 @@
                                             Terima pembayaran
                                         </button>
                                     @endif
-                                    <button wire:click="editform('{{ $data->id }}')"
+                                    {{-- <button wire:click="editform('{{ $data->id }}')"
                                         class="btn m-1 btn-sm rounded text-white btn-warning" style="font-size: 12px">
                                         Edit
-                                    </button>
+                                    </button> --}}
                                 </td>
 
 

@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="">
-                            <b>KELOLA TRANSAKSI PENJUALAN</b>
+                            <b>SEMUA PESANAN</b>
                         </div>
                         <div class="">
                             {{-- <a href="{{ url('admin/kelola-produk-kategori') }}"
@@ -188,35 +188,8 @@
                                     {{ \Carbon\Carbon::parse($data->created_at)->diffForHumans() }}
                                 </td>
                                 <td>
-                                    {{-- <button wire:click="editform('{{ $data->id }}')"
-                                        class="btn m-1 btn-sm rounded text-white btn-warning" style="font-size: 12px">
-                                        Edit
-                                    </button> --}}
-                                    <a class="btn btn-secondary btn-sm" href="{{ url('cetak-surat-jalan', $data->no_transaksi) }}">Cetak surat jalan</a>
-                                    @if ($data->status == 'konfirm')
-                                        <button
-                                            onclick="confirm('yakin batalkan pesanan?') || event.stopImmediatePropagation()"
-                                            wire:click="batal('{{ $data->id }}')" type="button"
-                                            class="btn btn-sm text-white m-1 rounded btn-danger"
-                                            style="font-size: 12px">
-                                            Batal
-                                        </button>
-                                    @elseif ($data->status == 'proses_pembayaran')
-                                        <button
-                                            onclick="confirm('Pastikan konsumen telah membayar, klik oke jika sudah bayar') || event.stopImmediatePropagation()"
-                                            wire:click="terima_pembayaran('{{ $data->id }}')" type="button"
-                                            class="btn btn-sm text-white m-1 rounded btn-success"
-                                            style="font-size: 12px">
-                                            Terima pembayaran
-                                        </button>
-                                        <button
-                                            onclick="confirm('yakin batal pesanan?') || event.stopImmediatePropagation()"
-                                            wire:click="batal('{{ $data->id }}')" type="button"
-                                            class="btn btn-sm text-white m-1 rounded btn-danger"
-                                            style="font-size: 12px">
-                                            Batal
-                                        </button>
-                                    @elseif($data->status == 'sedang_dikemas')
+                                   
+                                   @if($data->status == 'sedang_dikemas')
                                         <button
                                             onclick="confirm('Ingin mengantar pesanan ini?') || event.stopImmediatePropagation()"
                                             wire:click="antar('{{ $data->id }}')" type="button"
@@ -240,29 +213,7 @@
                                             style="font-size: 12px">
                                             Retur
                                         </button>
-                                    @elseif($data->status == 'diterima')
-                                        <button
-                                            onclick="confirm('Pastikan barang telah diterima konsumen dan telah dibayar konsumen!') || event.stopImmediatePropagation()"
-                                            wire:click="selesai('{{ $data->id }}')" type="button"
-                                            class="btn btn-sm text-white m-1 rounded btn-success"
-                                            style="font-size: 12px">
-                                            Selesaikan pesanan
-                                        </button>
-                                        <button
-                                            onclick="confirm('yakin retur pesanan?') || event.stopImmediatePropagation()"
-                                            wire:click="retur('{{ $data->id }}')" type="button"
-                                            class="btn btn-sm text-white m-1 rounded btn-danger"
-                                            style="font-size: 12px">
-                                            Retur
-                                        </button>
-                                    @elseif($data->status == 'retur')
-                                        <button
-                                            onclick="confirm('yakin stok barang pesanan telah diterima kembali?') || event.stopImmediatePropagation()"
-                                            wire:click="returditerima('{{ $data->id }}')" type="button"
-                                            class="btn btn-sm text-white m-1 rounded btn-info"
-                                            style="font-size: 12px">
-                                            Selesai retur
-                                        </button>
+                                    
                                     @endif
                                 </td>
                             </tr>

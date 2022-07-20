@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\MetodeKirim;
 use App\Models\ProdukStok;
 use App\Models\ProdukStokLog;
 use App\Models\Transaksi;
@@ -11,7 +12,7 @@ use App\Models\TransaksiKategori;
 use App\Models\TransaksiLog;
 use Livewire\Component;
 
-class ProsesAntarAdmin extends Component
+class Semua extends Component
 {
     public $transaksi = [];
     public $jenis, $kategori;
@@ -35,7 +36,7 @@ class ProsesAntarAdmin extends Component
 
     public function render()
     {
-        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('status', 'sedang_antar');
+        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran');
         if ($this->cari_no) {
             $transaksi->where('no_transaksi', 'like', '%'. $this->cari_no . '%');
         }
@@ -46,7 +47,8 @@ class ProsesAntarAdmin extends Component
             }
         }
         $this->transaksi = $transaksi->take($this->take)->latest()->get();
-        return view('livewire.admin.proses-antar-admin')->extends('layouts.main')->section('content');
+        return view('livewire.admin.semua')->extends('layouts.main')->section('content');
+        
     }
 
     public function diterima($id)
@@ -100,29 +102,6 @@ class ProsesAntarAdmin extends Component
         $this->emit('success', ['pesan' => 'berhasil menyelesaikan pesanan']);
     }
 
-    public function batal($id)
-    {
-        $transaksi =  Transaksi::with('transaksiitem', 'konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
-        // batal ketika konsumen belum bayar, ubah status jadi batal
-        if ($transaksi->status == 'konfirm') {
-            $status = 'batal';
-        }
-
-        // batal ketika proses_pembayaran, ubah status jadi batal
-        if ($transaksi->status == 'proses_pembayaran') {
-            $status = 'batal';
-        }
-
-        $transaksi->update([
-            'status' => $status
-        ]);
-        TransaksiLog::create([
-            'transaksi_id' => $id,
-            'status' => $status
-        ]);
-
-        $this->emit('success', ['pesan' => 'berhasil batalkan pesanan']);
-    }
     public function retur($id)
     {
         $transaksi =  Transaksi::with('transaksiitem', 'konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
@@ -137,4 +116,5 @@ class ProsesAntarAdmin extends Component
 
         $this->emit('success', ['pesan' => 'berhasil retur pesanan']);
     }
+
 }
