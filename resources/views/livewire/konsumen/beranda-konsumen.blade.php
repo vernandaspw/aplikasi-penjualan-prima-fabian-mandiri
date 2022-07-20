@@ -134,7 +134,7 @@
                         @if ($take < $jmlproduk)
                         <center>
                             <button wire:click='lanjut'
-                                class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
+                                class="btn bg-white shadow-sm form-control rounded-pill">Lanjut</button>
                         </center>
                     @endif
                     </div>

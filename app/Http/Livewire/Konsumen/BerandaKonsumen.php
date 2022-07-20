@@ -14,12 +14,12 @@ class BerandaKonsumen extends Component
     public $produkkategori, $produkmerek, $produk = [];
     public $jml_terjual;
 
-    public $take = 5;
+    public $take = 8;
     public $jmlproduk;
 
     public function lanjut()
     {
-        $this->take = $this->take + 10;
+        $this->take = $this->take + 8;
     }
 
     public function cariproduk()
@@ -32,17 +32,13 @@ class BerandaKonsumen extends Component
         $this->perusahaan = Pengaturan::first();
         $this->produkkategori = ProdukKategori::latest()->get();
         $this->produkmerek = ProdukMerek::latest()->get();
-      
-
-        $this->produk = Produk::with('transaksiitem', 'produkulasan')->where('istersedia', true)->latest()->get();
-
-        $this->jmlproduk = Produk::where('istersedia', true)->get()->count();
-
-
     }
 
     public function render()
     {
+        $this->produk = Produk::with('transaksiitem', 'produkulasan')->where('istersedia', true)->latest()->take($this->take)->get();
+
+        $this->jmlproduk = Produk::where('istersedia', true)->get()->count();
         return view('livewire.konsumen.beranda-konsumen')->extends('layouts.main')->section('content');
     }
 }

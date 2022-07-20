@@ -51,7 +51,9 @@ class ProdukKonsumen extends Component
         if ($this->nama) {
             $produk->where('nama', 'like', '%' . $this->nama . '%');
         }
+
         $this->produk =  $produk->latest()->take($this->take)->get();
+        
 
         $jmlproduk = Produk::where('istersedia', true);
         if ($this->kategori) {
