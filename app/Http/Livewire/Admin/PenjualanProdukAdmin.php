@@ -38,7 +38,7 @@ class PenjualanProdukAdmin extends Component
         $this->produk = $produk->take($this->take)->latest()->get();
         // dd($this->produk);
 
-        $this->jmlproduk = $produk->get()->count()
+        $this->jmlproduk = Produk::with('kategori', 'gambar', 'produkstok')->where('istersedia', true)->get()->count();
 
         return view('livewire.admin.penjualan-produk-admin')->extends('layouts.main')->section('content');
     }

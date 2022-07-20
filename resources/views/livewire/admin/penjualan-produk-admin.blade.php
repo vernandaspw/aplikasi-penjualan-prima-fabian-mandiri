@@ -104,11 +104,11 @@
                 </center>
             @endforelse
             @if ($take < $jmlproduk)
-            <center>
-                <button wire:click='lanjut'
-                    class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
-            </center>
-        @endif
+                <center>
+                    <button wire:click='lanjut'
+                        class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>
+                </center>
+            @endif
         </div>
     </div>
 
