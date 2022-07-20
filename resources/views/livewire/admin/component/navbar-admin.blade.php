@@ -48,17 +48,15 @@
                         </li>
                     @endif
                     @if (auth('pegawai')->user()->role == 'logistik')
-                        <li class="nav-item" wire:poll>
+                        <li class="nav-item">
                             <a class="nav-link {{ Request::is('admin/pesanan-masuk') == 'admin/pesanan-masuk' ? 'active' : '' }}"
-                                href="{{ url('admin/pesanan-masuk') }}">Pesanan masuk <span
-                                    class="badge text-bg-danger">{{ $pesananmasuk }}</span></a>
+                                href="{{ url('admin/pesanan-masuk') }}">Pesanan masuk</a>
                         </li>
-                        <li class="nav-item" wire:poll>
+                        <li class="nav-item">
                             <a class="nav-link {{ Request::is('admin/proses-antar') == 'admin/proses-antar' ? 'active' : '' }}"
-                                href="{{ url('admin/proses-antar') }}">Proses antar <span
-                                    class="badge text-bg-danger">{{ $prosesantar }}</span></a>
+                                href="{{ url('admin/proses-antar') }}">Proses antar</a>
                         </li>
-                        <li class="nav-item" wire:poll>
+                        <li class="nav-item">
                             <a class="nav-link {{ Request::is('admin/semua') == 'admin/semua' ? 'active' : '' }}"
                                 href="{{ url('admin/semua') }}">Semua</a>
                         </li>
