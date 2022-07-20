@@ -13,6 +13,9 @@ class KelolaStokAdmin extends Component
     public $take = 10;
     public $jmlprodukstok;
 
+public $tambahpage = false;
+    public $tambahstok;
+
     public function render()
     {
         $stok = ProdukStok::with('produk')->latest();
@@ -23,5 +26,11 @@ class KelolaStokAdmin extends Component
 
         $this->jmlprodukstok = $stok->count();
         return view('livewire.admin.kelola-stok-admin')->extends('layouts.main')->section('content');
+    }
+
+    public function formtambah($id)
+    {
+        $this->tambahpage = true;
+        $this->tambahstok = ProdukStok::with('produk')->find($id);
     }
 }
