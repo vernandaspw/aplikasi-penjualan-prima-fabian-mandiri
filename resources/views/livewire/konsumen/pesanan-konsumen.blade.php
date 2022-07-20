@@ -123,12 +123,13 @@
         </div>
 
         <livewire:konsumen.component.navbottom />
+        <style>
+            body {
+                background-color: rgb(248, 248, 248);
+            }
+        </style>
     @endif
 </div>
 
 
-<style>
-    body {
-        background-color: rgb(248, 248, 248);
-    }
-</style>
+
