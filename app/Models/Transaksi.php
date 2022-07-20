@@ -37,7 +37,7 @@ class Transaksi extends Model
 
     public function transaksilog()
     {
-        return $this->hasMany(transaksilog::class, 'transaksi_id', 'id');
+        return $this->hasMany(TransaksiLog::class, 'transaksi_id', 'id');
     }
 
     public function transaksi_jenis()

@@ -91,7 +91,7 @@
                       @else
                    -
                     @endif
-                    
+
                 </div>
             </div>
 
@@ -100,7 +100,7 @@
             </div>
             <div class="">
                 <p style="text-align: justify">
-                    {{ $produk->deskripsi }}
+                    {!! $produk->deskripsi !!}
                 </p>
             </div>
             <hr style="margin: 0px">
