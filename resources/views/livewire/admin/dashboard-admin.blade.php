@@ -21,7 +21,7 @@
                             Jumlah Konsumen
                         </div>
                         <div class="card-body">
-                             34
+                             {{ $jml_konsumen }}
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             Total produk
                         </div>
                         <div class="card-body">
-                             22
+                             {{ $jml_produk }}
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             Total penjualan
                         </div>
                         <div class="card-body">
-                             22
+                             {{ $jml_penjualan }}
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             Total transaksi
                         </div>
                         <div class="card-body">
-                             22
+                             {{ $jml_transaksi }}
                         </div>
                     </div>
                 </div>
