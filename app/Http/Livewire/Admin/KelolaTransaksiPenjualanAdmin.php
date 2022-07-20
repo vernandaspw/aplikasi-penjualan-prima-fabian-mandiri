@@ -121,6 +121,7 @@ class KelolaTransaksiPenjualanAdmin extends Component
 
         $transaksi->update([
             'status' => 'selesai',
+            'islunas' => true
         ]);
         TransaksiLog::create([
             'transaksi_id' => $id,

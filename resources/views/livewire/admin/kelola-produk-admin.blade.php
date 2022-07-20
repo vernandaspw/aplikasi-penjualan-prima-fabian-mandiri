@@ -341,14 +341,14 @@
                                     @enderror
                                 </div>
                                 <hr>
-                                <div class="mt-2">
+                                {{-- <div class="mt-2">
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" wire:model='isstok' type="checkbox"
-                                            role="switch" id="flexSwitchCheckChecked" checked>
+                                        <input checked class="form-check-input" wire:model='isstok' type="checkbox"
+                                            role="switch" id="flexSwitchCheckChecked">
                                         <label class="form-check-label" for="flexSwitchCheckChecked">Produk ini
                                             memiliki stok?</label>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="mt-2">
                                     <label for="satuan_unit">Satuan unit</label>
@@ -730,8 +730,8 @@
                                         @endforeach
                                     </th>
                                     <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->kategori->nama }}</td>
-                                    <td>{{ $data->merek->nama }}</td>
+                                    <td>{{ $data->kategori != null ? $data->kategori->nama : '' }}</td>
+                                    <td>{{ $data->merek != null ? $data->merek->nama : '' }}</td>
                                     <td>@uang($data->harga_modal)</td>
                                     <td>@uang($data->harga_jual)</td>
                                     <td style="color: green">@uang($data->harga_jual - $data->harga_modal)</td>

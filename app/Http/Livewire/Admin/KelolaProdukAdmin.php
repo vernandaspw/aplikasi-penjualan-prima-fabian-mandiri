@@ -168,8 +168,8 @@ class KelolaProdukAdmin extends Component
         $data = Produk::create([
             'nama' => $this->nama,
             'barcode' => $this->barcode,
-            'produk_kategori_id' => $this->produk_kategori_id,
-            'produk_merek_id' => $this->produk_merek_id,
+            'produk_kategori_id' => $this->produk_kategori_id == '' ? null : $this->produk_kategori_id,
+            'produk_merek_id' => $this->produk_merek_id == '' ? null : $this->produk_merek_id,
             'harga_jual' => $this->harga_jual,
             'harga_modal' => $this->harga_modal,
             'berat_kg' => $this->berat_kg,
@@ -231,7 +231,7 @@ class KelolaProdukAdmin extends Component
             'po' => $this->stok == null ? 0 : $this->stok,
             'real' => $this->stok == null ? 0 : $this->stok,
             'stok_minimum' => $this->stok_minimum,
-            'isstok' => $this->isstok
+            'isstok' => $this->isstok == null ? true : $this->isstok
         ]);
 
         $this->resetNull();

@@ -241,7 +241,7 @@
                                         </button>
                                     @elseif($data->status == 'diterima')
                                         <button
-                                            onclick="confirm('yakin menyelesaikan pesanan konsumen?') || event.stopImmediatePropagation()"
+                                            onclick="confirm('Pastikan barang telah diterima konsumen dan telah dibayar konsumen!') || event.stopImmediatePropagation()"
                                             wire:click="selesai('{{ $data->id }}')" type="button"
                                             class="btn btn-sm text-white m-1 rounded btn-success"
                                             style="font-size: 12px">
