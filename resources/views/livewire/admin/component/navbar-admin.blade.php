@@ -29,10 +29,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link
-                                @if(Request::is('admin/kelola-transaksi-penjualan') == 'admin/kelola-transaksi-penjualan')
-                                    active
-
-                                    @endif
+                                @if (Request::is('admin/kelola-transaksi-penjualan') == 'admin/kelola-transaksi-penjualan') active @endif
                            "
                                 href="{{ url('admin/kelola-transaksi-penjualan') }}">kelola penjualan</a>
                         </li>
@@ -53,11 +50,13 @@
                     @if (auth('pegawai')->user()->role == 'logistik')
                         <li class="nav-item" wire:poll>
                             <a class="nav-link {{ Request::is('admin/pesanan-masuk') == 'admin/pesanan-masuk' ? 'active' : '' }}"
-                                href="{{ url('admin/pesanan-masuk') }}">Pesanan masuk <span class="badge text-bg-danger">{{ $pesananmasuk }}</span></a>
+                                href="{{ url('admin/pesanan-masuk') }}">Pesanan masuk <span
+                                    class="badge text-bg-danger">{{ $pesananmasuk }}</span></a>
                         </li>
                         <li class="nav-item" wire:poll>
                             <a class="nav-link {{ Request::is('admin/proses-antar') == 'admin/proses-antar' ? 'active' : '' }}"
-                                href="{{ url('admin/proses-antar') }}">Proses antar <span class="badge text-bg-danger">{{ $prosesantar }}</span></a>
+                                href="{{ url('admin/proses-antar') }}">Proses antar <span
+                                    class="badge text-bg-danger">{{ $prosesantar }}</span></a>
                         </li>
                         <li class="nav-item" wire:poll>
                             <a class="nav-link {{ Request::is('admin/semua') == 'admin/semua' ? 'active' : '' }}"
@@ -88,14 +87,18 @@
                                 Laporan
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan-keuangan') == 'admin/laporan-keuangan' ? 'active' : '' }}"
-                                        href="{{ url('admin/laporan-keuangan') }}">Laporan
-                                        keuangan</a></li>
+
                                 <li><a class="dropdown-item {{ Request::is('admin/laporan-penjualan') == 'admin/laporan-penjualan' ? 'active' : '' }}"
                                         href="{{ url('admin/laporan-penjualan') }}">Laporan
                                         penjualan</a></li>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan-keuangan') == 'admin/laporan-keuangan' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan-transaksi') }}">Laporan
+                                        transaksi</a></li>
                                 <li><a class="dropdown-item {{ Request::is('admin/laporan-produk') == 'admin/laporan-produk' ? 'active' : '' }}"
                                         href="{{ url('admin/laporan-produk') }}">Laporan produk</a>
+                                </li>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan-produk') == 'admin/laporan-produk' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan-produk') }}">Laporan produk stok</a>
                                 </li>
                             </ul>
                         </li>

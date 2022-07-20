@@ -10,6 +10,8 @@ use Livewire\Component;
 class DashboardAdmin extends Component
 {
     public $penjualan, $pemasukan, $pengeluaran;
+    
+
     public function render()
     {
         $penjualan = TransaksiKategori::where('nama', 'penjualan')->first();
