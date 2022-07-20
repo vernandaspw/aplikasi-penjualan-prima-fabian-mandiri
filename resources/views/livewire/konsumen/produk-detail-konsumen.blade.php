@@ -73,7 +73,11 @@
                     Kategori
                 </div>
                 <div class="kanan text-end">
-                    {{ $produk->kategori->nama }}
+                   @if($produk->kategori)
+                   {{ $produk->kategori->nama }}
+                   @else
+                   -
+                   @endif
                 </div>
             </div>
 
@@ -82,7 +86,12 @@
                     Merek
                 </div>
                 <div class="kanan text-end">
+                    @if($produk->merek)
                     {{ $produk->merek->nama }}
+                      @else
+                   -
+                    @endif
+                    
                 </div>
             </div>
 

@@ -34,6 +34,7 @@ class PenjualanProdukAdmin extends Component
             $produk->where('nama', 'like', '%' . $this->cariproduk . '%')->orWhere('barcode', 'like', '%' . $this->cariproduk . '%');
         }
         $this->produk = $produk->take($this->take)->latest()->get();
+        // dd($this->produk);
 
 
         return view('livewire.admin.penjualan-produk-admin')->extends('layouts.main')->section('content');

@@ -56,10 +56,14 @@
                                         <div class="ms-3">
                                             <b class="">{{ $data->nama }}</b>
                                             <p class="card-text text-muted mb-0" style="font-size: 14px">
-                                                @uang($data->harga_jual) | @if ($data->produkstok->isstok)
-                                                    Stok {{ $data->produkstok->po }}
-                                                    {{ $data->produkstok->satuan_unit }}
+                                                @uang($data->harga_jual) | 
+                                                @if($data->produkstok)
+                                                @if ($data->produkstok->isstok)
+                                                Stok {{ $data->produkstok->po }}
+                                                {{ $data->produkstok->satuan_unit }}
+                                            @endif
                                                 @endif
+                                               
                                             </p>
 
                                         </div>
