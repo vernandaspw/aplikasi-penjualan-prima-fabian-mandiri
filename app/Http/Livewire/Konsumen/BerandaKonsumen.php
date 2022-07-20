@@ -14,12 +14,12 @@ class BerandaKonsumen extends Component
     public $produkkategori, $produkmerek, $produk = [];
     public $jml_terjual;
 
-    public $take = 8;
+    public $take = 10;
     public $jmlproduk;
 
     public function lanjut()
     {
-        $this->take = $this->take + 8;
+        $this->take = $this->take + 10;
     }
 
     public function cariproduk()
