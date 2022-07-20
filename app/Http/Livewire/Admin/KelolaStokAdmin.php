@@ -12,6 +12,7 @@ class KelolaStokAdmin extends Component
     public $cariproduk;
 
     public $take = 10;
+
     public $jmlprodukstok;
 
     public $tambahstok, $kurangstok;
@@ -35,7 +36,7 @@ class KelolaStokAdmin extends Component
 
             // $stok->where('nama', $this->cariproduk)->orWhere('barcode', $this->cariproduk);
         }
-        $this->produkstok = $stok->get();
+        $this->produkstok = $stok->take($this->take)->get();
 
         $this->jmlprodukstok = $stok->count();
         return view('livewire.admin.kelola-stok-admin')->extends('layouts.main')->section('content');
