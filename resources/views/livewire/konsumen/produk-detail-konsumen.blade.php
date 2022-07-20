@@ -199,15 +199,15 @@
                 <div class="col-lg-6 col-md-6 col-xl-6">
                     @if ($lihatgambar)
                         <img src="{{ asset($lihatgambar->img == null ? 'imagenotfound.jpg' : Storage::url($lihatgambar->img)) }}"
-                            height="250" class="w-32 img-fluid" alt="...">
+                            height="250" width="340" class="ms-3" alt="...">
                     @else
                         @forelse ($produk->gambar as $data)
                             @if ($data->no == 1)
                                 <img src="{{ asset($data->img == null ? 'imagenotfound.jpg' : Storage::url($data->img)) }}"
-                                    height="250" class="w-32 img-fluid" alt="...">
+                                    height="250" width="340" class="ms-3" alt="...">
                             @endif
                         @empty
-                            <img src="{{ asset('imagenotfound.jpg') }}" height="250" class="img-fluid w-32"
+                            <img src="{{ asset('imagenotfound.jpg') }}" height="250" width="340" class="ms-3"
                                 alt="...">
                         @endforelse
                     @endif
