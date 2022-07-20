@@ -143,6 +143,8 @@
         </div>
     </div>
 
+    <livewire:konsumen.component.navbottom />
+
 </div>
 
 <style>

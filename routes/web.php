@@ -31,6 +31,7 @@ use App\Http\Livewire\Admin\PesananMasukAdmin;
 use App\Http\Livewire\Admin\ProsesAntarAdmin;
 use App\Http\Livewire\Admin\SelesaiAdmin;
 use App\Http\Livewire\Admin\Semua;
+use App\Http\Livewire\Konsumen\AkunKonsumen;
 use App\Http\Livewire\Konsumen\BeliLangsungKonsumen;
 use App\Http\Livewire\Konsumen\BerandaKonsumen;
 use App\Http\Livewire\Konsumen\BeriUlasanInputKonsumen;
@@ -43,6 +44,7 @@ use App\Http\Livewire\Konsumen\LoginKonsumen;
 use App\Http\Livewire\Konsumen\MainPageKonsumen;
 use App\Http\Livewire\Konsumen\PerusahaanKonsumen;
 use App\Http\Livewire\Konsumen\PesananDetailKonsumen;
+use App\Http\Livewire\Konsumen\PesananKonsumen;
 use App\Http\Livewire\Konsumen\ProdukDetailKonsumen;
 use App\Http\Livewire\Konsumen\ProdukKonsumen;
 use App\Http\Livewire\Konsumen\RiwayatPesananKonsumen;
@@ -58,13 +60,17 @@ use Illuminate\Support\Facades\Route;
 // Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
-Route::get('/', MainPageKonsumen::class);
+// Route::get('/', MainPageKonsumen::class);
+Route::get('/', BerandaKonsumen::class);
+Route::get('pesanan', PesananKonsumen::class);
+Route::get('akun', AkunKonsumen::class);
+
 Route::get('/perusahaan', PerusahaanKonsumen::class);
 Route::get('/produk', ProdukKonsumen::class);
 Route::get('/produk/{id}', ProdukDetailKonsumen::class);
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 

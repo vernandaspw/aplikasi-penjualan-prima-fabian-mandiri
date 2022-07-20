@@ -19,7 +19,7 @@ class PesananKonsumen extends Component
         }else {
             $this->transaksi = 'login';
         }
-        return view('livewire.konsumen.pesanan-konsumen');
+        return view('livewire.konsumen.pesanan-konsumen')->extends('layouts.main')->section('content');
     }
 
     public function diterima($id)

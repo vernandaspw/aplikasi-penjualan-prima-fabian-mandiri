@@ -17,7 +17,7 @@ class AkunKonsumen extends Component
             $this->akun = 'login';
         }
 
-        return view('livewire.konsumen.akun-konsumen');
+        return view('livewire.konsumen.akun-konsumen')->extends('layouts.main')->section('content');
     }
 
     public function logout()

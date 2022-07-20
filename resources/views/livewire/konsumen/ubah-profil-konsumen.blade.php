@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav me-auto w-full align-items-centar">
                 <li class="nav-item me-3">
-                    <span class="text-white"><b><a href="{{ url('/') }}"
+                    <span class="text-white"><b><a href="{{ url('/akun') }}"
                                 class="btn btn-close btn-close-white"></a></b></span>
                 </li>
                 <li class="nav-item">

@@ -121,6 +121,8 @@
                 @endforelse
             </div>
         </div>
+
+        <livewire:konsumen.component.navbottom />
     @endif
 </div>
 

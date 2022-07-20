@@ -24,8 +24,6 @@ public function mount()
 
     public function render()
     {
-
-
         return view('livewire.konsumen.ubah-profil-konsumen')->extends('layouts.main')->section('content');
     }
 
