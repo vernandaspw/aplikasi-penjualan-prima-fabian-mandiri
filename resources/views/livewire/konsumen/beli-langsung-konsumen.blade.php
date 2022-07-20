@@ -22,7 +22,12 @@
         <div class="body" style="padding-top: 60px; padding-bottom: 95px;">
             <div class="card border-top-0 shadow-sm border-0">
                 <div class="card-body">
-                    @if ($alamat->provinsi && $alamat->kota && $alamat->kecamatan && $alamat->alamat && $alamat->patokan && $alamat->kodepos)
+                    @if ($alamat->provinsi &&
+                        $alamat->kota &&
+                        $alamat->kecamatan &&
+                        $alamat->alamat &&
+                        $alamat->patokan &&
+                        $alamat->kodepos)
                         <div class="d-flex justify-content-between">
                             <h5>
                                 <b>Alamat pengiriman</b>
@@ -112,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-                <input wire:model='catatan' type="text" placeholder="Catatan.."
+                <input wire:model='catatan' type="text" placeholder="Catatan pelanggan.."
                     class="py-2 mt-3 @error('catatan') is-invalid @enderror rounded shadow-sm border border-light form-control">
                 @error('catatan')
                     <div class="invalid-feedback">
@@ -121,14 +126,23 @@
                 @enderror
                 <br>
 
-                <div class="">
+                <div class="text-danger" style="font-size: 13px">
+                    <div class="">*tersedia cod untuk pengiriman logistik perusahaan</div>
+                    <div class="">*logistik perusahaan minimal belanja 500k</div>
+                    <div class="">*biaya kirim logistik lain diluar total pembayaran</div>
+                </div>
+                <div class="mt-1">
                     <label for="metodekirim">Metode pengiriman</label>
                     <select required wire:model='metode_kirim_id' id="metodekirim"
                         class="form-control text-muted @error('metode_kirim_id') is-invalid @enderror">
                         <option selected value="">Pilih pengiriman</option>
                         @forelse ($pengiriman as $data)
-                            <option value="{{ $data->id }}">{{ $data->metode }}</option>
-                        @empty
+                            <option
+                                @if ($data->metode == 'logistik perusahaan') @if ($produk->harga_jual * $qty < 500000)
+                            disabled class="text-danger" @endif
+                                @endif
+                                value="{{ $data->id }}">{{ $data->metode }}</optiond>
+                            @empty
                         @endforelse
                     </select>
                     @error('metode_kirim_id')
@@ -136,6 +150,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+
                 </div>
                 <div class="mt-2">
                     <label for="metodepembayaran">Metode pembayaran</label>
@@ -192,7 +207,12 @@
                     </div>
 
                     <div class="ms-auto">
-                        @if ($alamat->provinsi && $alamat->kota && $alamat->kecamatan && $alamat->alamat && $alamat->patokan && $alamat->kodepos)
+                        @if ($alamat->provinsi &&
+                            $alamat->kota &&
+                            $alamat->kecamatan &&
+                            $alamat->alamat &&
+                            $alamat->patokan &&
+                            $alamat->kodepos)
                             <button type="submit" class="nav-link btn px-4 m-1 text-center btn-light"
                                 style="color: {{ env('COLOR_PRIMARY') }}">
                                 <span class="small d-block" style="font-size: 15px">
