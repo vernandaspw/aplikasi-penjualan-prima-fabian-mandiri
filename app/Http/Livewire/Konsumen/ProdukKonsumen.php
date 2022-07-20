@@ -33,6 +33,7 @@ class ProdukKonsumen extends Component
 
     public function render()
     {
+
         if ($this->kategori) {
             $this->namakategori = ProdukKategori::find($this->kategori)->nama;
         }
@@ -42,10 +43,10 @@ class ProdukKonsumen extends Component
 
         $produk = Produk::with('transaksiitem', 'produkulasan')->where('istersedia', true);
         if ($this->kategori) {
-            $produk->where('produk_kategori_id', 'like', '%' . $this->kategori . '%');
+            $produk->where('produk_kategori_id', $this->kategori);
         }
         if ($this->merek) {
-            $produk->where('produk_merek_id', 'like', '%' . $this->merek . '%');
+            $produk->where('produk_merek_id', $this->merek);
         }
         if ($this->nama) {
             $produk->where('nama', 'like', '%' . $this->nama . '%');
@@ -54,10 +55,10 @@ class ProdukKonsumen extends Component
 
         $jmlproduk = Produk::where('istersedia', true);
         if ($this->kategori) {
-            $jmlproduk->where('produk_kategori_id', 'like', '%' . $this->kategori . '%');
+            $jmlproduk->where('produk_kategori_id',  $this->kategori );
         }
         if ($this->merek) {
-            $jmlproduk->where('produk_merek_id', 'like', '%' . $this->merek . '%');
+            $jmlproduk->where('produk_merek_id',  $this->merek );
         }
         $this->jmlproduk = $jmlproduk->get()->count();
 

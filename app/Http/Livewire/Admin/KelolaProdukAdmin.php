@@ -236,6 +236,9 @@ class KelolaProdukAdmin extends Component
 
         $this->resetNull();
 
+        $this->produk_kategori_id = null;
+        $this->produk_merek_id = null;
+
         $this->emit('success', ['pesan' => 'berhasil buat data']);
     }
 

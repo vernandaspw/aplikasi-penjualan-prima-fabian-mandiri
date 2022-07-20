@@ -20,12 +20,20 @@ class KelolaStokAdmin extends Component
 
     public $tambahpage = false, $kurangpage = false;
 
+     public function lanjut()
+    {
+        $this->take = $this->take + 10;
+    }
 
     public function render()
     {
         $stok = ProdukStok::with('produk')->latest();
         if ($this->cariproduk) {
-            $stok->produk->where('nama', $this->cariproduk)->orWhere('barcode', $this->cariproduk);
+            $stok->with(['produk' => function($q){
+                $q->where('produks.nama', $this->cariproduk);
+            }]);
+
+            // $stok->where('nama', $this->cariproduk)->orWhere('barcode', $this->cariproduk);
         }
         $this->produkstok = $stok->get();
 

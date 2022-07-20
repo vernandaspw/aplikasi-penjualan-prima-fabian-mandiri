@@ -32,6 +32,7 @@ class BerandaKonsumen extends Component
         $this->perusahaan = Pengaturan::first();
         $this->produkkategori = ProdukKategori::latest()->get();
         $this->produkmerek = ProdukMerek::latest()->get();
+      
 
         $this->produk = Produk::with('transaksiitem', 'produkulasan')->where('istersedia', true)->latest()->get();
 
