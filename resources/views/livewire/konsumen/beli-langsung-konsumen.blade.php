@@ -125,7 +125,9 @@
                     </div>
                 @enderror
                 <br>
-
+                <div class="text-dark" style="font-size: 14px">
+                    Keterangan
+                </div>
                 <div class="text-danger" style="font-size: 13px">
                     <div class="">*tersedia cod untuk pengiriman logistik perusahaan</div>
                     <div class="">*logistik perusahaan minimal belanja 500k</div>
