@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody class='table-group-divider'>
-                @foreach ($produkstok as $data)
+                @foreach ($datas as $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->produk->nama }}</td>
