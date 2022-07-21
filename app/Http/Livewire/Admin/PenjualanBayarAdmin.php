@@ -138,16 +138,18 @@ class PenjualanBayarAdmin extends Component
             // ]);
 
             $produkstok = ProdukStok::where('produk_id', $item->produk_id)->first();
-            $produkstok->update([
-                'real' => $produkstok->real - $item->qty,
-            ]);
+            if ($produkstok) {
+                $produkstok->update([
+                    'real' => $produkstok->real - $item->qty,
+                ]);
 
-            ProdukStokLog::create([
-                'produk_stok_id' => $produkstok->id,
-                'jenis' => 'keluar',
-                'real' => $item->qty,
-                'keterangan' => 'diterima'
-            ]);
+                ProdukStokLog::create([
+                    'produk_stok_id' => $produkstok->id,
+                    'jenis' => 'keluar',
+                    'real' => $item->qty,
+                    'keterangan' => 'diterima'
+                ]);
+            }
         }
 
         $this->emit('success', ['pesan' => 'Berhasil']);
@@ -194,16 +196,18 @@ class PenjualanBayarAdmin extends Component
         foreach ($transaksi->transaksiitem as $item) {
             $produkstok = ProdukStok::where('produk_id', $item->produk_id)->first();
 
-            $produkstok->update([
-                'po' => $produkstok->po + $item->qty,
-            ]);
+            if ($produkstok) {
+                $produkstok->update([
+                    'po' => $produkstok->po + $item->qty,
+                ]);
 
-            ProdukStokLog::create([
-                'produk_stok_id' => $produkstok->id,
-                'jenis' => 'keluar',
-                'po' => $item->qty,
-                'keterangan' => 'batal'
-            ]);
+                ProdukStokLog::create([
+                    'produk_stok_id' => $produkstok->id,
+                    'jenis' => 'keluar',
+                    'po' => $item->qty,
+                    'keterangan' => 'batal'
+                ]);
+            }
         }
 
         $transaksi->delete();
