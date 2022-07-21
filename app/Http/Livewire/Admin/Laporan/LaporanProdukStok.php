@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Laporan;
 
+use App\Exports\LaporanProdukStokExport;
 use App\Models\ProdukStok;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 
 class LaporanProdukStok extends Component
@@ -44,6 +46,30 @@ class LaporanProdukStok extends Component
 
         $this->jml_item = ProdukStok::get()->count();
         return view('livewire.admin.laporan.laporan-produk-stok')->extends('layouts.main')->section('content');
+    }
+
+    public function cetak_laporan()
+    {
+        $datas =  ProdukStok::with('produk')->get();
+        if ($datas->count() == 0) {
+            $this->emit('error', ['pesan' => 'Tidak ada data, masukan terlebih dahulu tanggal yang akan dicetak']);
+        } else {
+            $pdf = Pdf::loadView('Exports.laporan-produk-stok', compact('datas'))->setPaper('a4', 'portrait')->output();
+            return response()->streamDownload(
+                fn () => print($pdf),
+                'laporan-produk-stok' . now() . '.pdf'
+            );
+        }
+    }
+
+    public function downloadExcel()
+    {
+        $datas =  ProdukStok::with('produk')->get();
+        if ($datas == null) {
+            $this->emit('error', ['pesan' => 'Tidak ada data, masukan terlebih dahulu tanggal yang akan dicetak']);
+        } else {
+            return (new LaporanProdukStokExport($datas))->download('laporan-produk-' . now() . '.xlsx');
+        }
     }
 
 }
