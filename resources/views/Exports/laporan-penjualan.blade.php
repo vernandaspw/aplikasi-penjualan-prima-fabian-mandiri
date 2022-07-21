@@ -15,24 +15,13 @@
 
 <body style="font-size: 12px">
 
-    <div class="row">
 
-        <div class="">
-
-        </div>
-        <div class="">
-
-        </div>
-    </div>
-    <hr>
     <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th><b>LAPORAN PENJUALAN</b></th>
-            </tr>
-        </thead>
         <tbody>
+            <tr>
+                <td></td>
+                <td><b>LAPORAN PENJUALAN</b></td>
+            </tr>
             <tr>
                 <td></td>
                 <td>
@@ -48,6 +37,7 @@
             </tr>
         </tbody>
     </table>
+    <hr>
     <div class="table-responsive">
         <table class="table table-sm table-bordered" style="font-size: 12px">
             <thead class="table-light">

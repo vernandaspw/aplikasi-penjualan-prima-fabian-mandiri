@@ -66,11 +66,15 @@ class LaporanPenjualan extends Component
         if ($datas->count() == 0) {
             $this->emit('error', ['pesan' => 'Tidak ada data, masukan terlebih dahulu tanggal yang akan dicetak']);
         } else {
-            $pdf = Pdf::loadView('Exports.laporan-penjualan', compact('datas', 'start', 'end'))->setPaper('a4', 'portrait')->output();
-            return response()->streamDownload(
-                fn () => print($pdf),
-                'laporan-penjualan-' . now() . '.pdf'
-            );
+            if ($start < $end) {
+                $pdf = Pdf::loadView('Exports.laporan-penjualan', compact('datas', 'start', 'end'))->setPaper('a4', 'portrait')->output();
+                return response()->streamDownload(
+                    fn () => print($pdf),
+                    'laporan-penjualan-' . now() . '.pdf'
+                );
+            } else {
+                $this->emit('error', ['pesan' => 'Tanggal awal harus lebih lama daripada tanggal akhir']);
+            }
         }
     }
 

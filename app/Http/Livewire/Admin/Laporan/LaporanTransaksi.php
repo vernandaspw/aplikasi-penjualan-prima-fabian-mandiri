@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Admin\Laporan;
 
+use App\Exports\LaporanPenjualanExport;
+use App\Exports\LaporanTransaksiExport;
 use App\Models\Transaksi;
 use App\Models\TransaksiJenis;
 use App\Models\TransaksiKategori;
@@ -60,14 +62,35 @@ class LaporanTransaksi extends Component
 
         $start = $this->start_date;
         $end = $this->end_date;
+
         if ($datas->count() == 0) {
             $this->emit('error', ['pesan' => 'Tidak ada data, masukan terlebih dahulu tanggal yang akan dicetak']);
-        }else {
-            $pdf = Pdf::loadView('Exports.laporan-transaksi', compact('datas', 'start', 'end'))->setPaper('a4', 'portrait')->output();
-            return response()->streamDownload(
-                fn () => print($pdf),
-                'laporan-transaksi-' . now().'.pdf'
-            );
+        } else {
+            if ($start < $end) {
+                $pdf = Pdf::loadView('Exports.laporan-transaksi', compact('datas', 'start', 'end'))->setPaper('a4', 'portrait')->output();
+                return response()->streamDownload(
+                    fn () => print($pdf),
+                    'laporan-penjualan-' . now() . '.pdf'
+                );
+            } else {
+                $this->emit('error', ['pesan' => 'Tanggal awal harus lebih lama daripada tanggal akhir']);
+            }
+        }
+    }
+
+    public function downloadExcel()
+    {
+        $start = $this->start_date;
+        $end = $this->end_date;
+        $data = Transaksi::with('transaksiitem', 'pegawai', 'konsumen', 'metodekirim', 'metodepembayaran')->whereBetween('created_at', [$this->start_date, $this->end_date])->get();
+        if ($start == null && $end == null) {
+            $this->emit('error', ['pesan' => 'Tidak ada data, masukan terlebih dahulu tanggal yang akan dicetak']);
+        } else {
+            if ($start < $end) {
+                return (new LaporanTransaksiExport($data, $start, $end))->download('laporan-transaksi-' . now() . '.xlsx');
+            } else {
+                $this->emit('error', ['pesan' => 'Tanggal awal harus lebih lama daripada tanggal akhir']);
+            }
         }
     }
 }

@@ -39,6 +39,10 @@
                     <button wire:click='cetak_laporan' type="button"
                         class="btn shadow-sm rounded-pill border-0 btn-primary">Cetak Laporan</button>
                 </div>
+                <div class="col-auto">
+                    <button wire:click='downloadExcel' type="button"
+                        class="btn shadow-sm rounded-pill border-0 btn-success">Download Excel</button>
+                </div>
             </div>
         </div>
 
@@ -60,7 +64,7 @@
                         <th style="width: 11%">Status</th>
                         <th style="width: 11%">Bayar</th>
                         <th style="width: 11%">Dibuat</th>
-                        <th style="width: 11%">aksi</th>
+
                     </tr>
                 </thead>
                 <tbody class='table-group-divider'>
@@ -102,20 +106,7 @@
                                 {{ $data->islunas == true ? 'sudah bayar' : 'belum bayar' }}
                             </td>
                             <td>
-                                {{ \Carbon\Carbon::parse($data->created_at)->diffForHumans() }}
-                            </td>
-                            <td>
-                                @if ($data->status == 'proses_pembayaran')
-                                    <button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
-                                        wire:click="ubahstatus({{ $data->id }})" type="button"
-                                        class="btn btn-sm text-white m-1 rounded btn-success" style="font-size: 12px">
-                                        Terima pembayaran
-                                    </button>
-                                @endif
-                                {{-- <button wire:click="editform('{{ $data->id }}')"
-                                        class="btn m-1 btn-sm rounded text-white btn-warning" style="font-size: 12px">
-                                        Edit
-                                    </button> --}}
+                                {{ \Carbon\Carbon::parse($data->created_at)->isoFormat('D MMMM Y, H:m') }}
                             </td>
 
 
