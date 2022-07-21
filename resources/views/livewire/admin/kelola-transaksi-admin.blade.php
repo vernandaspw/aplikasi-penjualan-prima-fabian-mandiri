@@ -104,7 +104,7 @@
                                 </td>
 
                                 <td>
-                                    {{ $data->total_pembayaran }}
+                                    @uang($data->total_pembayaran)
                                 </td>
                                 <td>
                                     {{ $data->status }}
@@ -138,7 +138,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                @if ($take < $jmlproduk)
+                @if ($take < $jml_item)
                     <center>
                         <button wire:click='lanjut'
                             class="btn btn-light shadow-sm form-control rounded-pill">Lanjut</button>

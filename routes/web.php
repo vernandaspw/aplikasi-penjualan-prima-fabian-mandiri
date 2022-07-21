@@ -18,6 +18,8 @@ use App\Http\Livewire\Admin\KelolaProdukMerekAdmin;
 use App\Http\Livewire\Admin\KelolaStokAdmin;
 use App\Http\Livewire\Admin\KelolaTransaksiAdmin;
 use App\Http\Livewire\Admin\KelolaTransaksiPenjualanAdmin;
+use App\Http\Livewire\Admin\Laporan\LaporanPenjualan;
+use App\Http\Livewire\Admin\Laporan\LaporanTransaksi;
 use App\Http\Livewire\Admin\LaporanKeuanganAdmin;
 use App\Http\Livewire\Admin\LaporanPenjualanAdmin;
 use App\Http\Livewire\Admin\LaporanProdukAdmin;
@@ -132,9 +134,10 @@ Route::prefix('admin')->group(function () {
             Route::get('semua', Semua::class);
         });
         Route::middleware(['pimpinan'])->group(function () {
-            Route::get('laporan-keuangan', LaporanKeuanganAdmin::class);
-            Route::get('laporan-penjualan', LaporanPenjualanAdmin::class);
-            Route::get('laporan-produk', LaporanProdukAdmin::class);
+            Route::get('laporan/penjualan', LaporanPenjualan::class);
+            Route::get('laporan/transaksi', LaporanTransaksi::class);
+
+            Route::get('laporan/produk', LaporanProdukAdmin::class);
         });
     });
 });

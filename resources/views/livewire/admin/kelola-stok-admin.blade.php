@@ -90,7 +90,6 @@
                                     </div>
                                     <button type="submit"
                                         class="btn mt-1 btn-success rounded-pill form-control">Simpan</button>
-
                                 </form>
                             </div>
                         </div>

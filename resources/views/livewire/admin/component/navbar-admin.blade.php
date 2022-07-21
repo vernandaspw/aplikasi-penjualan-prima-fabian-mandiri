@@ -80,23 +80,25 @@
                     @endif
                     @if (auth('pegawai')->user()->role == 'pimpinan')
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link @if(Request::is('admin/laporan/*'))
+                            active
+                            @endif dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Laporan
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan-penjualan') == 'admin/laporan-penjualan' ? 'active' : '' }}"
-                                        href="{{ url('admin/laporan-penjualan') }}">Laporan
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan/penjualan') == 'admin/laporan/penjualan' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan/penjualan') }}">Laporan
                                         penjualan</a></li>
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan-keuangan') == 'admin/laporan-keuangan' ? 'active' : '' }}"
-                                        href="{{ url('admin/laporan-transaksi') }}">Laporan
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan/keuangan') == 'admin/laporan/keuangan' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan/transaksi') }}">Laporan
                                         transaksi</a></li>
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan-produk') == 'admin/laporan-produk' ? 'active' : '' }}"
-                                        href="{{ url('admin/laporan-produk') }}">Laporan produk</a>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan/produk') == 'admin/laporan/produk' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan/produk') }}">Laporan produk</a>
                                 </li>
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan-produk') == 'admin/laporan-produk' ? 'active' : '' }}"
-                                        href="{{ url('admin/laporan-produk') }}">Laporan produk stok</a>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan/produk') == 'admin/laporan/produk' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan/produk') }}">Laporan produk stok</a>
                                 </li>
                             </ul>
                         </li>

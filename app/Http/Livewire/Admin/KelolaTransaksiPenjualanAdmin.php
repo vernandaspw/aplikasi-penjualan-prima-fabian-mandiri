@@ -16,16 +16,18 @@ class KelolaTransaksiPenjualanAdmin extends Component
 {
     public $transaksi = [];
     public $jenis, $kategori;
-    public $take = 10;
-    public $jmlproduk;
+    public $take = 20;
+    public $jml_item;
     public $selectJenis, $selectKategori;
     public $cari_no;
 
     public $status, $islunas;
 
+
+
     public function lanjut()
     {
-        $this->take = $this->take + 10;
+        $this->take = $this->take + 15;
     }
 
     public function mount()
@@ -47,6 +49,7 @@ class KelolaTransaksiPenjualanAdmin extends Component
             }
         }
         $this->transaksi = $transaksi->take($this->take)->latest()->get();
+        $this->jml_item = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->count();
         return view('livewire.admin.kelola-transaksi-penjualan-admin')->extends('layouts.main')->section('content');
     }
 

@@ -12,6 +12,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "maatwebsite/excel": "^3.1",
+        "psr/simple-cache": "1.0",
         "riskihajar/terbilang": "^1.2"
     },
     "require-dev": {
