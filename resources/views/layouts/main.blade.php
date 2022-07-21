@@ -60,6 +60,8 @@
         }
     </style>
 
+    @stack('style')
+
     @livewireStyles
 </head>
 

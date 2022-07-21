@@ -17,7 +17,7 @@ class PenjualanBerhasilController extends Controller
     }
 
     public function cetakstruk($id)
-    {
+    {   
         $data = Transaksi::with('transaksiitem', 'pegawai', 'konsumen', 'metodekirim', 'metodepembayaran')->where('no_transaksi', $id)->first();
         $pdf = Pdf::loadView('Exports.struk', compact('data'))->setPaper('a4', 'portrait');
         return $pdf->stream('struk-'.$id);

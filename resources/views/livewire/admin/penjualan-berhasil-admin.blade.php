@@ -65,7 +65,7 @@
                 </div>
             </div>
         @endif
-
+      
         <div class="d-flex justify-content-around">
             <button wire:click='cetak_struk' class="btn btn-info text-white w-100 me-1" type="button">Cetak struk</button>
             <button class="btn btn-outline-info w-100 ms-1" type="button">Kirim struk</button>
