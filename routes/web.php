@@ -20,6 +20,7 @@ use App\Http\Livewire\Admin\KelolaTransaksiAdmin;
 use App\Http\Livewire\Admin\KelolaTransaksiPenjualanAdmin;
 use App\Http\Livewire\Admin\Laporan\LaporanPenjualan;
 use App\Http\Livewire\Admin\Laporan\LaporanProduk;
+use App\Http\Livewire\Admin\Laporan\LaporanProdukStok;
 use App\Http\Livewire\Admin\Laporan\LaporanTransaksi;
 use App\Http\Livewire\Admin\LaporanKeuanganAdmin;
 use App\Http\Livewire\Admin\LaporanPenjualanAdmin;
@@ -138,6 +139,7 @@ Route::prefix('admin')->group(function () {
             Route::get('laporan/penjualan', LaporanPenjualan::class);
             Route::get('laporan/transaksi', LaporanTransaksi::class);
             Route::get('laporan/produk', LaporanProduk::class);
+            Route::get('laporan/produkstok', LaporanProdukStok::class);
         });
     });
 });

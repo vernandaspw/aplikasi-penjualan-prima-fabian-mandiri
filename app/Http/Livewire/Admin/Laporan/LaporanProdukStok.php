@@ -46,5 +46,4 @@ class LaporanProdukStok extends Component
         return view('livewire.admin.laporan.laporan-produk-stok')->extends('layouts.main')->section('content');
     }
 
-
 }
