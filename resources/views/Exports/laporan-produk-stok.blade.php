@@ -32,48 +32,22 @@
             <thead class="table-light">
                 <tr>
                     <th scope="col" style="width: 3%">#</th>
-                    {{-- <th style="width: 5%"></th> --}}
-                    <th scope="col" style="">Produk</th>
-                    <th scope="col" style="width: 10%">Kategori</th>
-                    <th scope="col" style="width: 10%">Merek</th>
-                    <th scope="col" style="width: 10%">Harga Modal</th>
-                    <th scope="col" style="width: 10%">Harga Jual</th>
-                    <th scope="col" style="width: 10%">Untung</th>
-                    <th style="width: 11%">Status</th>
+                    <th style="">Produk</th>
+                    <th style="width: 15%">Satuan unit</th>
+                    <th style="width: 10%">PO</th>
+                    <th style="width: 10%">Real</th>
                 </tr>
             </thead>
             <tbody class='table-group-divider'>
-                @forelse ($datas as $data)
+                @foreach ($produkstok as $data)
                     <tr>
-                        <th scope="row">
-                            {{ $loop->iteration }}
-                        </th>
-                        {{-- <th>
-                            @foreach ($data->gambar as $gambar)
-                                @if ($gambar->no == 1)
-                                    @if ($gambar->img == null)
-                                        <img width="60px" height="60" src="{{ asset('imagenotfound.jpg') }}"
-                                            alt="">
-                                    @else
-                                        <img width="60px" height="60"
-                                            src="{{ asset(Storage::url($gambar->img)) }}" alt="">
-                                    @endif
-                                @endif
-                            @endforeach
-                        </th> --}}
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->kategori != null ? $data->kategori->nama : '' }}</td>
-                        <td>{{ $data->merek != null ? $data->merek->nama : '' }}</td>
-                        <td>@uang($data->harga_modal)</td>
-                        <td>@uang($data->harga_jual)</td>
-                        <td style="color: green">@uang($data->harga_jual - $data->harga_modal)</td>
-                        <td>
-                            {{ $data->istersedia == true ? 'tersedia' : 'tidak tersedia' }}
-                        </td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->produk->nama }}</td>
+                        <td>{{ $data->satuan_unit }}</td>
+                        <td>{{ $data->po }}</td>
+                        <td>{{ $data->real }}</td>
                     </tr>
-                @empty
-                    tidak ada data
-                @endforelse
+                @endforeach
             </tbody>
         </table>
     </div>

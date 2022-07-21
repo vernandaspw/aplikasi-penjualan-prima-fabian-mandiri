@@ -57,7 +57,7 @@ class LaporanProdukStok extends Component
             $pdf = Pdf::loadView('Exports.laporan-produk-stok', compact('datas'))->setPaper('a4', 'portrait')->output();
             return response()->streamDownload(
                 fn () => print($pdf),
-                'laporan-produk-stok' . now() . '.pdf'
+                'laporan-produk-stok-' . now() . '.pdf'
             );
         }
     }
@@ -68,7 +68,7 @@ class LaporanProdukStok extends Component
         if ($datas == null) {
             $this->emit('error', ['pesan' => 'Tidak ada data, masukan terlebih dahulu tanggal yang akan dicetak']);
         } else {
-            return (new LaporanProdukStokExport($datas))->download('laporan-produk-' . now() . '.xlsx');
+            return (new LaporanProdukStokExport($datas))->download('laporan-produk-stok-' . now() . '.xlsx');
         }
     }
 
