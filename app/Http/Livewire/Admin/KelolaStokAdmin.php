@@ -51,22 +51,26 @@ class KelolaStokAdmin extends Component
 
     public function tambahstokproduk($id)
     {
-        if ($this->inputtambahpo < 0 || $this->inputtambahreal < 0) {
+
+        $tambahpo = $this->inputtambahpo == null ? 0 : $this->inputtambahpo;
+        $tambahreal = $this->inputtambahreal == null ? 0 : $this->inputtambahreal;
+
+        if ($tambahpo < 0 || $tambahreal < 0) {
             $this->emit('error', ['pesan' => 'tidak boleh minus']);
         } else {
             $buat = ProdukStok::find($id);
 
             $cek = $buat->update([
-                'po' => $buat->po + $this->inputtambahpo,
-                'real' => $buat->real + $this->inputtambahreal
+                'po' => $buat->po +  $tambahpo,
+                'real' => $buat->real +  $tambahreal
             ]);
 
             if ($cek) {
                 ProdukStokLog::create([
                     'produk_stok_id' => $buat->id,
                     'jenis' => 'masuk',
-                    'po' => $this->inputtambahpo,
-                    'real' =>  $this->inputtambahreal,
+                    'po' =>  $tambahpo,
+                    'real' =>  $tambahreal,
                     'keterangan' => 'tambah stok produk'
                 ]);
             }
@@ -84,22 +88,24 @@ class KelolaStokAdmin extends Component
 
     public function kurangstokproduk($id)
     {
-        if ($this->inputkurangpo < 0 || $this->inputkurangreal < 0) {
+        $kurangpo = $this->inputkurangpo == null ? 0 : $this->inputkurangpo;
+        $kurangreal = $this->inputkurangreal == null ? 0 : $this->inputkurangreal;
+        if ($kurangpo < 0 ||  $kurangreal < 0) {
             $this->emit('error', ['pesan' => 'tidak boleh minus']);
         } else {
             $buat = ProdukStok::find($id);
 
             $cek = $buat->update([
-                'po' => $buat->po - $this->inputkurangpo,
-                'real' => $buat->real - $this->inputkurangreal
+                'po' => $buat->po - $kurangpo,
+                'real' => $buat->real -  $kurangreal
             ]);
 
             if ($cek) {
                 ProdukStokLog::create([
                     'produk_stok_id' => $buat->id,
                     'jenis' => 'keluar',
-                    'po' => $this->inputkurangpo,
-                    'real' =>  $this->inputkurangreal,
+                    'po' => $kurangpo,
+                    'real' => $kurangreal,
                     'keterangan' => 'kurang stok produk'
                 ]);
             }

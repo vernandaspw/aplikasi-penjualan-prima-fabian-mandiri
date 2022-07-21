@@ -47,12 +47,12 @@
                                     <hr class="my-0 py-0">
                                     <div class="mt-1 d-flex justify-content-between align-items-center">
                                         <div class="">tambah stok po ({{ $tambahstok->po }}) + </div>
-                                        <input wire:model='inputtambahpo' min="1" type="number" placeholder="0"
+                                        <input wire:model='inputtambahpo' min="0" type="number" placeholder="0"
                                             class="form-control rounded-pill  form-control-sm w-25">
                                     </div>
                                     <div class="mt-1 d-flex justify-content-between align-items-center">
                                         <div class="">tambah stok real ({{ $tambahstok->real }}) + </div>
-                                        <input wire:model='inputtambahreal' min="1" type="number"
+                                        <input wire:model='inputtambahreal' min="0" type="number"
                                             placeholder="0" class="form-control rounded-pill form-control-sm w-25">
                                     </div>
                                     <button type="submit"
@@ -80,12 +80,12 @@
                                     <hr class="my-0 py-0">
                                     <div class="mt-1 d-flex justify-content-between align-items-center">
                                         <div class="">kurangi stok po ({{ $kurangstok->po }}) - </div>
-                                        <input wire:model='inputkurangpo' min="1" type="number" placeholder="0"
+                                        <input wire:model='inputkurangpo' min="0" type="number" placeholder="0"
                                             class="form-control rounded-pill  form-control-sm w-25">
                                     </div>
                                     <div class="mt-1 d-flex justify-content-between align-items-center">
                                         <div class="">kurangi stok real ({{ $kurangstok->real }}) - </div>
-                                        <input wire:model='inputkurangreal' min="1" type="number"
+                                        <input wire:model='inputkurangreal' min="0" type="number"
                                             placeholder="0" class="form-control rounded-pill form-control-sm w-25">
                                     </div>
                                     <button type="submit"
@@ -126,10 +126,10 @@
                                             class="btn btn-warning btn-sm mb-1 mr-1  rounded-pill ">
                                             Kurangi
                                         </button>
-                                        <button wire:click="buatform" type="button"
+                                        {{-- <button wire:click="buatform" type="button"
                                             class="btn btn-secondary btn-sm mb-1 mr-1  rounded-pill ">
                                             riwayat
-                                        </button>
+                                        </button> --}}
                                     </td>
                                 </tr>
                             @endforeach
