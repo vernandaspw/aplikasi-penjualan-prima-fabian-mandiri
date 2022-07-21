@@ -70,7 +70,7 @@ class LaporanTransaksi extends Component
                 $pdf = Pdf::loadView('Exports.laporan-transaksi', compact('datas', 'start', 'end'))->setPaper('a4', 'portrait')->output();
                 return response()->streamDownload(
                     fn () => print($pdf),
-                    'laporan-penjualan-' . now() . '.pdf'
+                    'laporan-transaksi-' . now() . '.pdf'
                 );
             } else {
                 $this->emit('error', ['pesan' => 'Tanggal awal harus lebih lama daripada tanggal akhir']);

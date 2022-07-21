@@ -31,13 +31,13 @@
             <tr>
                 <td></td>
                 <td>
-                    Dicetak pada {{ \Carbon\Carbon::parse($end)->isoFormat('D MMMM Y, H:m') }}
+                    Dicetak pada {{ \Carbon\Carbon::parse(now())->isoFormat('D MMMM Y, H:m') }}
                 </td>
             </tr>
         </tbody>
     </table>
     <hr>
-    <div class="table-responsive">
+    <div class="table-responsive mb-5">
         <table class="table table-sm table-bordered" style="font-size: 12px">
             <thead class="table-light">
                 <tr>

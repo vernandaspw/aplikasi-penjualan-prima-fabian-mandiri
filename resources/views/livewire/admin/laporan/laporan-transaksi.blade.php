@@ -2,7 +2,7 @@
     <livewire:admin.component.navbar-admin />
     <div class="container-fluid mt-3">
         <h4>LAPORAN TRANSAKSI</h4>
-        <div class="" wire:poll.750ms>
+        <div class="">
             {{ now() }}
         </div>
         <hr>

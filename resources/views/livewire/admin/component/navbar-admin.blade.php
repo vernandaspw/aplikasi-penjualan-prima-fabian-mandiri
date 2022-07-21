@@ -91,14 +91,14 @@
                                 <li><a class="dropdown-item {{ Request::is('admin/laporan/penjualan') == 'admin/laporan/penjualan' ? 'active' : '' }}"
                                         href="{{ url('admin/laporan/penjualan') }}">Laporan
                                         penjualan</a></li>
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan/keuangan') == 'admin/laporan/keuangan' ? 'active' : '' }}"
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan/transaksi') == 'admin/laporan/keuangan' ? 'active' : '' }}"
                                         href="{{ url('admin/laporan/transaksi') }}">Laporan
                                         transaksi</a></li>
                                 <li><a class="dropdown-item {{ Request::is('admin/laporan/produk') == 'admin/laporan/produk' ? 'active' : '' }}"
                                         href="{{ url('admin/laporan/produk') }}">Laporan produk</a>
                                 </li>
-                                <li><a class="dropdown-item {{ Request::is('admin/laporan/produk') == 'admin/laporan/produk' ? 'active' : '' }}"
-                                        href="{{ url('admin/laporan/produk') }}">Laporan produk stok</a>
+                                <li><a class="dropdown-item {{ Request::is('admin/laporan/produkstok') == 'admin/laporan/produk' ? 'active' : '' }}"
+                                        href="{{ url('admin/laporan/produkstok') }}">Laporan produk stok</a>
                                 </li>
                             </ul>
                         </li>
