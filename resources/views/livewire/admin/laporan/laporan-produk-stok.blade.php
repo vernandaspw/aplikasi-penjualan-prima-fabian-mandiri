@@ -37,10 +37,24 @@
         <div class="table-responsive">
             <table class="table table-sm table-bordered" style="font-size: 12px">
                 <thead class="table-light">
-                    
+                    <tr>
+                        <th scope="col" style="width: 3%">#</th>
+                        <th style="">Produk</th>
+                        <th style="width: 15%">Satuan unit</th>
+                        <th style="width: 10%">PO</th>
+                        <th style="width: 10%">Real</th>
+                    </tr>
                 </thead>
                 <tbody class='table-group-divider'>
-
+                    @foreach ($produkstok as $data)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->produk->nama }}</td>
+                        <td>{{ $data->satuan_unit }}</td>
+                        <td>{{ $data->po }}</td>
+                        <td>{{ $data->real }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
             @if ($take < $jml_item)
