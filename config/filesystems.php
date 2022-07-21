@@ -46,7 +46,7 @@ return [
 
         'hosting' => [
             'driver' => 'local',
-            'root' => storage_path('/../public_html/'. env('FOLDER_IN_PUBLIC_HTML') .'/storage'),
+            'root' => storage_path('/../public_html/'. env('FOLDER_IN_PUBLIC_HTML') .'storage'),
             'url' => env('APP_URL') .'/storage',
             'visibility' => 'public',
             'throw' => false,
