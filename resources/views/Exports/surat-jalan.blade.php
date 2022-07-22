@@ -89,6 +89,7 @@
                             <th scope="row">1</th>
                             <td>{{ $item->qty }}</td>
                             @if ($item->nama_produk)
+                            <td></td>
                             @else
                                 <td>
                                     {{ $item->produk->barcode }}

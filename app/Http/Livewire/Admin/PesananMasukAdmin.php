@@ -45,6 +45,8 @@ class PesananMasukAdmin extends Component
             }
         }
         $this->transaksi = $transaksi->take($this->take)->latest()->get();
+        
+        $this->jmlproduk = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('status', 'sedang_dikemas')->count();
         return view('livewire.admin.pesanan-masuk-admin')->extends('layouts.main')->section('content');
     }
 

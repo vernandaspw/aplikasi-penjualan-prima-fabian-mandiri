@@ -37,7 +37,7 @@ class ProsesAntarAdmin extends Component
     {
         $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('status', 'sedang_antar');
         if ($this->cari_no) {
-            $transaksi->where('no_transaksi', 'like', '%'. $this->cari_no . '%');
+            $transaksi->where('no_transaksi', 'like', '%' . $this->cari_no . '%');
         }
         if ($this->selectJenis) {
             $transaksi->where('transaksi_jenis_id', $this->jenis->id);
@@ -46,6 +46,8 @@ class ProsesAntarAdmin extends Component
             }
         }
         $this->transaksi = $transaksi->take($this->take)->latest()->get();
+
+        $this->jmlproduk = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('status', 'sedang_antar')->count();
         return view('livewire.admin.proses-antar-admin')->extends('layouts.main')->section('content');
     }
 

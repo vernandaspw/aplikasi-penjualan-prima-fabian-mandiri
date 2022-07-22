@@ -36,7 +36,8 @@ class Semua extends Component
 
     public function render()
     {
-        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran');
+        $kate = TransaksiKategori::where('nama', 'penjualan')->first();
+        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('transaksi_kategori_id', $kate->id);
         if ($this->cari_no) {
             $transaksi->where('no_transaksi', 'like', '%'. $this->cari_no . '%');
         }
@@ -47,6 +48,8 @@ class Semua extends Component
             }
         }
         $this->transaksi = $transaksi->take($this->take)->latest()->get();
+
+        $this->jmlproduk = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('transaksi_kategori_id', $kate->id)->count();
         return view('livewire.admin.semua')->extends('layouts.main')->section('content');
         
     }
