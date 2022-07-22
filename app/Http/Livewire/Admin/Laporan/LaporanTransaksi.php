@@ -40,9 +40,10 @@ class LaporanTransaksi extends Component
             $transaksi->where('no_transaksi', 'like', '%'. $this->cari_no . '%');
         }
         if ($this->selectJenis) {
-            $transaksi->where('transaksi_jenis_id', $this->jenis->id);
+            // dd($this->selectJenis);
+            $transaksi->where('transaksi_jenis_id', $this->selectJenis);
             if ($this->selectKategori) {
-                $transaksi->where('transaksi_kategori_id', $this->kategori->id);
+                $transaksi->where('transaksi_kategori_id', $this->selectKategori);
             }
         }
         if ($this->start_date && $this->end_date) {

@@ -15,7 +15,7 @@
 
 <body style="font-size: 12px">
 
-    <table>
+    {{-- <table>
         <tbody>
             <tr>
                 <td></td>
@@ -35,8 +35,22 @@
                 </td>
             </tr>
         </tbody>
-    </table>
-    <hr>
+    </table> --}}
+    <div class="mb-2">
+        <center>
+            <div class="">
+                <b>LAPORAN PENJUALAN</b>
+            </div>
+            <div class="">
+                Laporan tanggal {{ \Carbon\Carbon::parse($start)->isoFormat('D MMMM Y') }} -
+                {{ \Carbon\Carbon::parse($end)->isoFormat('D MMMM Y') }}
+            </div>
+            <div class="">
+                Dicetak pada {{ \Carbon\Carbon::parse(now())->isoFormat('D MMMM Y, H:m') }}
+            </div>
+        </center>
+    </div>
+    <hr class="my-0 py-0">
     <div class="table-responsive mb-5">
         <table class="table table-sm table-bordered" style="font-size: 12px">
             <thead class="table-light">
@@ -45,12 +59,12 @@
                     <th style="width: 10%">No Transaksi</th>
                     <th scope="col" style="width: 10%">Jenis</th>
                     <th scope="col" style="width: 10%">Kategori</th>
-                    <th scope="col" style="width: 10%">Konsumen</th>
+                    {{-- <th scope="col" style="width: 10%">Konsumen</th> --}}
                     <th scope="col" style="width: 10%">Pengiriman</th>
                     <th scope="col" style="width: 10%">Pembayaran</th>
-                    <th scope="col" style="width: 10%">Total Pembayaran</th>
-                    <th style="width: 11%">Status</th>
-                    <th style="width: 11%">Bayar</th>
+                    <th scope="col" style="">Total Pembayaran</th>
+                    <th style="width: 9%">Status</th>
+                    <th style="width: 9%">Bayar</th>
                     <th style="width: 11%">Dibuat</th>
 
                 </tr>
@@ -70,13 +84,13 @@
                         <td>
                             {{ $data->transaksi_kategori->nama }}
                         </td>
-                        <td>
+                        {{-- <td>
                             @if ($data->konsumen_id)
                                 {{ $data->konsumen->nama }}
                             @else
                                 {{ $data->nama_konsumen }}
                             @endif
-                        </td>
+                        </td> --}}
                         <td>
                             {{ $data->metodekirim == null ? '' : $data->metodekirim->metode }}
                         </td>

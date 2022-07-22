@@ -9,6 +9,7 @@
     </div>
     <div class="container-fluid mt-1 mb-1">
         <div class="d-md-flex justify-content-md-between">
+           <div class="">
             <div class="d-flex align-items-center mt-1">
                 <label for="">Tampilkan</label>
                 <select class="form-control ms-2 rounded-pill" wire:model='take' id="">
@@ -18,6 +19,28 @@
                     <option value="{{ $jml_item }}">Semua</option>
                 </select>
             </div>
+            <div class="d-flex align-items-center mt-1">
+                <label for="">Jenis</label>
+                <select class="form-control ms-2 rounded-pill" wire:model='selectJenis' id="">
+                    <option value="">Semua</option>
+                    @foreach ($jenis as $data)
+                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                    @endforeach
+                  
+                </select>
+            </div>
+            <div class="d-flex align-items-center mt-1">
+                <label for="">Kategori</label>
+                <select class="form-control ms-2 rounded-pill" wire:model='selectKategori' id="">
+                    <option value="">Semua</option>
+                    @foreach ($kategori as $data)
+                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                    @endforeach
+                  
+                </select>
+            </div>
+           </div>
+            
             <div class="row g-3 d-flex align-items-center mt-1">
                 <div class="col-auto">
                     <label for="start_date" class="">Awal</label>

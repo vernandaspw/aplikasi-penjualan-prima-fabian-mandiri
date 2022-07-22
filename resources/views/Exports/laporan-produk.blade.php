@@ -12,7 +12,7 @@
 
 <body style="font-size: 12px">
 
-    <table>
+    {{-- <table>
         <tbody>
             <tr>
                 <td></td>
@@ -25,8 +25,19 @@
                 </td>
             </tr>
         </tbody>
-    </table>
-    <hr>
+    </table> --}}
+    <div class="mb-2">
+        <center>
+            <div class="">
+                <b>LAPORAN PENJUALAN</b>
+            </div>
+           
+            <div class="">
+                Dicetak pada {{ \Carbon\Carbon::parse(now())->isoFormat('D MMMM Y, H:m') }}
+            </div>
+        </center>
+    </div>
+    <hr class="my-0 py-0">
     <div class="table-responsive mb-5">
         <table class="table table-sm table-bordered" style="font-size: 12px">
             <thead class="table-light">
