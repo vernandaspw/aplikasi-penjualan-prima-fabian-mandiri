@@ -19,7 +19,7 @@
             <table class="table mb-0">
                 <tbody>
                     <tr>
-                        <td>PT. PRIMA FEBIAN MANDIRI</td>
+                        <td>PT. PRIMA FABIAN MANDIRI</td>
                         <td class="text-end">PALEMBANG
                             {{ \Carbon\Carbon::parse($data->created_at)->isoFormat('D MMMM Y') }}</td>
                     </tr>
