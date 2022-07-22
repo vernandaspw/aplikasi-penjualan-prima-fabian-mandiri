@@ -25,7 +25,7 @@
                 <b>{{ $transaksi->status }}</b>
             </div>
             <div class="" style="color: {{ env('COLOR_PRIMARY') }}">
-                <a href="{{ url('cetak-nota', $transaksi->no_transaksi) }}" class="text-decoration-none text-warning">Nota</a> |
+                <a href="{{ url('cetak-nota', $transaksi->no_transaksi) }}" class="text-decoration-none text-warning">Invoice</a> |
                 <a href="{{ url('cetak-surat-jalan', $transaksi->no_transaksi) }}" class="text-decoration-none" style="color: {{ env('COLOR_PRIMARY') }}">Surat jalan</a> |
                 <a href="{{ url('riwayat-perjalanan', $transaksi->no_transaksi) }}" class="text-decoration-none">Lihat
                     Perjalanan</a>
