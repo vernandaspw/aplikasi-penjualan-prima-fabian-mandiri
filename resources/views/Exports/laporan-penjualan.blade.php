@@ -14,30 +14,23 @@
 </head>
 
 <body style="font-size: 12px">
+   <div class="mb-2">
+    <center>
+        <div class="">
+            <b>LAPORAN PENJUALAN</b>
+        </div>
+        <div class="">
+            Laporan tanggal {{ \Carbon\Carbon::parse($start)->isoFormat('D MMMM Y') }} -
+            {{ \Carbon\Carbon::parse($end)->isoFormat('D MMMM Y') }}
+        </div>
+        <div class="">
+            Dicetak pada {{ \Carbon\Carbon::parse(now())->isoFormat('D MMMM Y, H:m') }}
+        </div>
+    </center>
+   </div>
 
-
-    <table>
-        <tbody>
-            <tr>
-                <td></td>
-                <td><b>LAPORAN PENJUALAN</b></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    Laporan tanggal {{ \Carbon\Carbon::parse($start)->isoFormat('D MMMM Y') }} -
-                    {{ \Carbon\Carbon::parse($end)->isoFormat('D MMMM Y') }}
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    Dicetak pada {{ \Carbon\Carbon::parse(now())->isoFormat('D MMMM Y, H:m') }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
+  
+    <hr class="my-0 py-0">
     <div class="table-responsive mb-5">
         <table class="table table-sm table-bordered" style="font-size: 12px">
             <thead class="table-light">
@@ -101,6 +94,82 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    <div class="fixed-bottom">
+        <div class="col-12">
+            <table class="table mb-2">
+                <tbody class="table-group-divider pt-1">
+                    <tr >
+                        <td style="width: 20%">
+                            <center>
+                              
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                               
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                                
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                                
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                                Pimpinan
+                            </center>
+                        </td>
+
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+
+            <table class="table mt-5">
+                <tbody class="">
+
+                    <tr class="">
+                        <td style="width: 20%">
+                            <center>
+                                {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                                {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                               {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                               {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                               <hr class="mx-3">
+                            </center>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- JavaScript Bundle with Popper -->

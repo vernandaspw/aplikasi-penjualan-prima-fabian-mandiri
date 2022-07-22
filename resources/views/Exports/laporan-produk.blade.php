@@ -78,6 +78,83 @@
         </table>
     </div>
 
+
+    <div class="fixed-bottom">
+        <div class="col-12">
+            <table class="table mb-2">
+                <tbody class="table-group-divider pt-1">
+                    <tr >
+                        <td style="width: 20%">
+                            <center>
+                              
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                               
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                                
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                                
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                                Pimpinan
+                            </center>
+                        </td>
+
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+
+            <table class="table mt-5">
+                <tbody class="">
+
+                    <tr class="">
+                        <td style="width: 20%">
+                            <center>
+                                {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                                {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%">
+                            <center>
+                               {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                               {{-- <hr class="mx-3"> --}}
+                            </center>
+                        </td>
+                        <td style="width: 20%" >
+                            <center>
+                               <hr class="mx-3">
+                            </center>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">

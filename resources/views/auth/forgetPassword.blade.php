@@ -1,11 +1,19 @@
 @extends('layouts.main')
 
+@push('style')
+    <style>
+        body{
+            background-color: {{ env('COLOR_PRIMARY') }};
+        }
+    </style>
+@endpush
+
 @section('content')
     <main class="login-form mt-5">
         <div class="cotainer">
-            <div class="row justify-content-center">
+            <div class="d-flex justify-content-center">
                 <div class="col-lg-5">
-                    <div class="card">
+                    <div class="card shadow border-0 rounded">
                         <div class="card-header">Reset Password</div>
                         <div class="card-body">
 

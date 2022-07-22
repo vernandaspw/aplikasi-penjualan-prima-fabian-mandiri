@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\PenjualanBerhasilController;
 use App\Http\Livewire\Admin\CatatTransaksiAdmin;
+use App\Http\Livewire\Admin\Component\DataKonsumen;
 use App\Http\Livewire\Admin\DashboardAdmin;
 use App\Http\Livewire\Admin\KasirAdmin;
 use App\Http\Livewire\Admin\KasirDetailAdmin;
@@ -110,6 +111,7 @@ Route::prefix('admin')->group(function () {
     // });
     Route::middleware(['adminislogin'])->group(function () {
         Route::get('/', DashboardAdmin::class);
+        Route::get('data-konsumen', DataKonsumen::class);
         Route::middleware(['administrator'])->group(function () {
             Route::get('kelola-akun', KelolaAkunAdmin::class);
             Route::get('kelola-pengaturan', KelolaPengaturanAdmin::class);

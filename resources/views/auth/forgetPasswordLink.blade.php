@@ -1,11 +1,19 @@
 @extends('layouts.main')
 
+@push('style')
+    <style>
+         body{
+            background-color: {{ env('COLOR_PRIMARY') }};
+        }
+    </style>
+@endpush
+
 @section('content')
 <main class="login-form mt-5">
     <div class="cotainer">
-        <div class="row justify-content-center">
+        <div class="d-flex justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card shadow border-0 rounded">
                     <div class="card-header">Reset Password</div>
                     <div class="card-body">
     
@@ -14,7 +22,7 @@
                             <input type="hidden" name="token" value="{{ $token }}">
     
                             <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail</label>
                                 <div class="col-md-6">
                                     <input type="text" id="email_address" class="form-control" name="email" required autofocus>
                                     @if ($errors->has('email'))
@@ -24,7 +32,7 @@
                             </div>
     
                             <div class="form-group row mt-2">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password Baru</label>
                                 <div class="col-md-6">
                                     <input type="password" id="password" class="form-control" name="password" required autofocus>
                                     @if ($errors->has('password'))
@@ -34,7 +42,7 @@
                             </div>
     
                             <div class="form-group row mt-2">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Konfirm Password Baru</label>
                                 <div class="col-md-6">
                                     <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
                                     @if ($errors->has('password_confirmation'))
