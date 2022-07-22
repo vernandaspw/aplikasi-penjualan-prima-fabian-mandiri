@@ -78,10 +78,10 @@
                             @endif
                         </td>
                         <td>
-                            {{ $data->metodekirim->metode }}
+                            {{ $data->metodekirim == null ? '' : $data->metodekirim->metode }}
                         </td>
                         <td>
-                            {{ $data->metodepembayaran->metode }}
+                            {{ $data->metodepembayaran == null ? '' : $data->metodepembayaran->metode }}
                         </td>
 
                         <td>

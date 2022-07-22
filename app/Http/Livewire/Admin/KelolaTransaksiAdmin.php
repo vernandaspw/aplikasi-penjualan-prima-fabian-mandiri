@@ -12,12 +12,14 @@ use Livewire\Component;
 class KelolaTransaksiAdmin extends Component
 {
     public $transaksi = [];
-    public $jenis, $kategori = [];
+    public $jenis = [], $kategori = [], $metodepembayarans = [];
     public $take = 10;
     public $jml_item;
     public $selectJenis, $selectKategori;
 
-    public $inputJenis, $inputKategori, $nominal, $catatan, $datetime, $metodepembayaran, $nama_konsumen, $nowa_konsumen;
+    public $cekJenis;
+    public $inputJenis, $inputKategori, $nominal, $catatan, $datetime, $metodepembayaran, $nama, $no_telp;
+    public $modal = 0;
     public $islunas = true;
     public $cari_no;
 
@@ -50,13 +52,17 @@ class KelolaTransaksiAdmin extends Component
     {
         if ($this->inputJenis) {
             $this->kategori = TransaksiKategori::where('transaksi_jenis_id', $this->inputJenis)->where('nama', '!=', 'penjualan')->latest()->get();
+
+            $this->cekJenis = TransaksiJenis::find($this->inputJenis);
+    
         }
 
-        $this->metodepembayaran = MetodePembayaran::where('isaktif', true)->latest()->get();
+        $this->metodepembayarans = MetodePembayaran::where('isaktif', true)->latest()->get();
 
-        $transaksi = Transaksi::with('konsumen','transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran');
+        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran');
+        
         if ($this->cari_no) {
-            $transaksi->where('no_transaksi', 'like', '%'. $this->cari_no . '%');
+            $transaksi->where('no_transaksi', 'like', '%' . $this->cari_no . '%');
         }
         // if ($this->selectJenis) {
         //     $transaksi->where('transaksi_jenis_id', $this->jenis->id);
@@ -72,6 +78,23 @@ class KelolaTransaksiAdmin extends Component
         return view('livewire.admin.kelola-transaksi-admin')->extends('layouts.main')->section('content');
     }
 
+    public function terima_pembayaran($id)
+    {
+        $transaksi =  Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
+
+        $transaksi->update([
+            'status' => 'sedang_dikemas',
+            'islunas' => true
+        ]);
+
+        TransaksiLog::create([
+            'transaksi_id' => $id,
+            'status' => 'sedang_dikemas',
+        ]);
+
+        $this->emit('success', ['pesan' => 'Berhasil terima pembayaran']);
+    }
+
     public function formBuat()
     {
         $this->pageBuat = true;
@@ -80,22 +103,45 @@ class KelolaTransaksiAdmin extends Component
     public function buatTransaksi()
     {
         $this->validate([
-
+            'nominal' => 'min:1|required'
         ]);
 
-        $buat = Transaksi::create([
-            'pegawai_id' => auth('pegawai')->user()->id,
-            'jenis_transaksi_id' => $this->inputJenis,
-            'kategori_transaksi_id' => $this->inputKategori,
-            'total_pembayaran' => $this->nominal,
-            'catatan' => $this->catatan,
-            'created_at' => $this->datetime
-        ]);
+         $make_no = 'T' . date('Y') . date('m') . date('d') . date('H') . rand(10, 99) . rand(10, 99);
 
-        if ($buat) {
-            TransaksiLog::create([
-
+        try {
+            $buat = Transaksi::create([
+               'no_transaksi' => $make_no,
+                'pegawai_id' => auth('pegawai')->user()->id,
+                'transaksi_jenis_id' => $this->inputJenis,
+                'transaksi_kategori_id' => $this->inputKategori,
+                'total_pembayaran' => $this->nominal,
+                'total_modal' => $this->modal,
+                'catatan' => $this->catatan,
+                'created_at' => $this->datetime,
+                'islunas' => $this->islunas,
+                'metode_pembayaran_id' => $this->metodepembayaran,
+                'nama_konsumen' => $this->nama,
+                'nowa_konsumen' => $this->no_telp,
+                'status' => 'selesai'
             ]);
+            // dd($buat);
+            if ($buat) {
+                TransaksiLog::create([
+                    'transaksi_id' => $buat->id,
+                    'status' => 'selesai'
+                ]);
+            }
+
+        } catch (\Exception $e) {
+            dd($e);
+            return $this->emit('error', ['pesan' => 'Terjadi kesalahan']);
         }
+
+        $this->emit('success', ['pesan' => 'berhasil buat transaksi']);
+    }
+
+    public function hapus($id)
+    {
+        $hapus = Transaksi::find($id)->delete();
     }
 }

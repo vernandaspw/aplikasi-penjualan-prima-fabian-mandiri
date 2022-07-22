@@ -104,6 +104,23 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    @if ($cekJenis)
+                                        @if ($cekJenis->nama == 'pemasukan')
+                                            <div class="mt-1">
+                                                <label for="modal">Modal <span
+                                                        class="text-muted">(optional)</span></label>
+                                                <input required placeholder="modal" min="0" id="modal"
+                                                    type="number" wire:model.lazy='modal'
+                                                    class="form-control form-control-sm @error('modal') is-invalid @enderror">
+                                                @error('modal')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        @endif
+
+                                    @endif
                                     <div class="mt-1">
                                         <label for="catatan">catatan</label>
                                         <input placeholder="catatan" id="catatan" type="text"
@@ -129,33 +146,65 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="mt-1">
-                                        <label for="metodepembayaran">Metode Pembayaran</label>
-                                        <select required
-                                            class="form-control form-control-sm @error('metodepembayaran') is-invalid @enderror""
-                                            wire:model='inputmetodepembayaran' id="metodepembayaran">
-                                            <option value="">Pilih metodepembayaran</option>
-                                            @foreach ($metodepembayaran as $data)
-                                                <option value="{{ $data->id }}">{{ $data->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('metodepembayaran')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                    <div class="accordion mt-2" id="accordionExample">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button py-2 " type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                    aria-expanded="false" aria-controls="collapseThree">
+                                                    Opsional
+                                                </button>
+                                            </h2>
+                                            <div id="collapseThree" class="accordion-collapse collapse  "
+                                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="mt-0">
+                                                        <label for="metodepembayaran">Metode Pembayaran</label>
+                                                        <select
+                                                            class="form-control form-control-sm @error('metodepembayaran') is-invalid @enderror""
+                                                            wire:model='metodepembayaran' id="metodepembayaran">
+                                                            <option value="">Pilih pembayaran</option>
+                                                            @foreach ($metodepembayarans as $data)
+                                                                <option value="{{ $data->id }}">
+                                                                    {{ $data->metode }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('metodepembayaran')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-1">
+                                                        <label for="nama">Nama</label>
+                                                        <input placeholder="exm: jhon doe" id="nama" type="text"
+                                                            wire:model.lazy='nama'
+                                                            class="form-control form-control-sm @error('nama') is-invalid @enderror">
+                                                        @error('nama')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-1">
+                                                        <label for="no_telp">Nomor telpon</label>
+                                                        <input placeholder="08962xxxxx" id="no_telp" type="tel"
+                                                            wire:model.lazy='no_telp'
+                                                            class="form-control form-control-sm @error('no_telp') is-invalid @enderror">
+                                                        @error('no_telp')
+                                                            <div class="invalid-feedback">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
                                             </div>
-                                        @enderror
+                                        </div>
                                     </div>
-                                    <div class="mt-1">
-                                        <label for="nama">Nama Produk</label>
-                                        <input placeholder="Nama produk" id="nama" type="text"
-                                            wire:model.lazy='nama'
-                                            class="form-control form-control-sm @error('nama') is-invalid @enderror">
-                                        @error('nama')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+
                                     <button type="submit"
                                         class="btn form-control btn-sm mt-2 me-1 text-white mb-1 rounded-pill btn-success shadow-sm text-dark">
                                         Simpan
@@ -184,8 +233,7 @@
             </div>
             <div class="mt-2">
                 <div class="col-lg-3 col-md-6">
-                    <input class="form-control" type="text" wire:model='cariproduk'
-                        placeholder="Cari no transaksi/barcode">
+                    <input class="form-control" type="text" wire:model='cari_no' placeholder="Cari no transaksi">
                 </div>
             </div>
             <div class="table-responsive">
@@ -229,10 +277,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $data->metodekirim->metode }}
+                                    {{ $data->metodekirim == null ? '' : $data->metodekirim->metode }}
                                 </td>
                                 <td>
-                                    {{ $data->metodepembayaran->metode }}
+                                    {{ $data->metodepembayaran == null ? '' : $data->metodepembayaran->metode }}
                                 </td>
 
                                 <td>
@@ -250,7 +298,7 @@
                                 <td>
                                     @if ($data->status == 'proses_pembayaran')
                                         <button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
-                                            wire:click="ubahstatus({{ $data->id }})" type="button"
+                                            wire:click="terima_pembayaran({{ $data->id }})" type="button"
                                             class="btn btn-sm text-white m-1 rounded btn-success"
                                             style="font-size: 12px">
                                             Terima pembayaran
@@ -260,6 +308,14 @@
                                         class="btn m-1 btn-sm rounded text-white btn-warning" style="font-size: 12px">
                                         Edit
                                     </button> --}}
+                                    @if ($data->transaksi_kategori->nama != 'penjualan')
+                                        <button onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
+                                            wire:click="hapus('{{ $data->id }}')"
+                                            class="btn m-1 btn-sm rounded text-white btn-danger"
+                                            style="font-size: 12px">
+                                            Hapus
+                                        </button>
+                                    @endif
                                 </td>
 
 
@@ -279,4 +335,27 @@
             </div>
         </div>
     </div>
+
+    @push('script')
+        <script>
+            Livewire.on('success', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'success!',
+                    text: data.pesan,
+                    icon: 'success',
+                    confirmButtonText: 'oke'
+                })
+            })
+            Livewire.on('error', data => {
+                console.log(data.pesan);
+                Swal.fire({
+                    title: 'error!',
+                    text: data.pesan,
+                    icon: 'error',
+                    confirmButtonText: 'oke'
+                })
+            })
+        </script>
+    @endpush
 </div>
