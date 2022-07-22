@@ -14,7 +14,7 @@ class PesananDetailKonsumen extends Component
     public function mount($no)
     {
         $this->transaksi = Transaksi::with('konsumen','transaksiitem', 'metodekirim', 'metodepembayaran')->where('no_transaksi', $no)->where('konsumen_id', auth('konsumen')->user()->id)->first();
-
+// dd($this->transaksi);
         if ($this->transaksi->status == 'konfirm') {
             if (now() > $this->transaksi->pembayaran_expired_at) {
                 $data = Transaksi::with('transaksiitem')->find($this->transaksi->id);

@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav me-auto w-full align-items-centar">
                 <li class="nav-item me-3">
-                    <span class="text-white"><b><a href="{{ url('/') }}"
+                    <span class="text-white"><b><a href="{{ url('pesanan') }}"
                                 class="btn btn-close btn-close-white"></a></b></span>
                 </li>
                 <li class="nav-item">
@@ -25,48 +25,50 @@
                 <b>Perlu diberi ulasan</b>
             </div>
             @forelse ($transaksiitem as $data)
-                <div class="card mt-1 shadow-sm border-light">
-                    <div class="card-body py-2">
-                        <a href="{{ url('beri-ulasan-input', $data->id) }}" class="text-decoration-none text-dark">
-                            <div class="mt-2 d-flex justify-content-start align-items-start">
-                                <div class="kiri">
-                                    <img src="{{ $data->produk->gambar[0]->img == null ? asset('imagenotfound.jpg') : Storage::url($data->produk->gambar[0]->img) }}" width="65px" height="65px"
-                                        class="rounded" alt="...">
+               @if($data->produk)
+               <div class="card mt-1 shadow-sm border-light">
+                <div class="card-body py-2">
+                    <a href="{{ url('beri-ulasan-input', $data->id) }}" class="text-decoration-none text-dark">
+                        <div class="mt-2 d-flex justify-content-start align-items-start">
+                            <div class="kiri">
+                                <img src="{{ $data->produk->gambar[0]->img == null ? asset('imagenotfound.jpg') : Storage::url($data->produk->gambar[0]->img) }}" width="65px" height="65px"
+                                    class="rounded" alt="...">
+                            </div>
+                            <div class="kanan ms-2">
+                                <b>
+                                    <span style="font-size: 14px">{{ $data->produk->nama }}</span></b>
+                                <div class="" style="font-size: 13px">
+                                    @uang($data->produk->harga_jual) x {{ $data->qty }} qty
                                 </div>
-                                <div class="kanan ms-2">
-                                    <b>
-                                        <span style="font-size: 14px">{{ $data->produk->nama }}</span></b>
-                                    <div class="" style="font-size: 13px">
-                                        @uang($data->produk->harga_jual) x {{ $data->qty }} qty
-                                    </div>
-                                    <div class="" style="font-size: 13px">
-                                        @uang($data->produk->harga_jual * $data->qty)
-                                    </div>
+                                <div class="" style="font-size: 13px">
+                                    @uang($data->produk->harga_jual * $data->qty)
                                 </div>
                             </div>
-                        </a>
-                        <hr class="mb-0 mt-1">
-                        <div class="mt-2 d-flex justify-content-between align-items-center">
-                            <div class="kir">
-                                <div class="text-muted">
-                                    Total harga
-                                </div>
-                                <div class="">
-                                    <b>@uang($data->total_harga)</b>
-                                </div>
+                        </div>
+                    </a>
+                    <hr class="mb-0 mt-1">
+                    <div class="mt-2 d-flex justify-content-between align-items-center">
+                        <div class="kir">
+                            <div class="text-muted">
+                                Total harga
                             </div>
-                            <div class="kanan">
-                                @if ($data->transaksi->status == 'selesai')
-                                    <a href="{{ url('beri-ulasan-input', $data->id) }}"
-                                        class="btn btn rounded text-white"
-                                        style="background-color: {{ env('COLOR_PRIMARY') }}">
-                                        Beri ulasan
-                                    </a>
-                                @endif
+                            <div class="">
+                                <b>@uang($data->total_harga)</b>
                             </div>
+                        </div>
+                        <div class="kanan">
+                            @if ($data->transaksi->status == 'selesai')
+                                <a href="{{ url('beri-ulasan-input', $data->id) }}"
+                                    class="btn btn rounded text-white"
+                                    style="background-color: {{ env('COLOR_PRIMARY') }}">
+                                    Beri ulasan
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
+            </div>
+               @endif
             @empty
                 Belum memiliki transaksi untuk diberi rating
             @endforelse

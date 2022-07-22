@@ -26,17 +26,23 @@
                         <a href="{{ url('beri-ulasan-input', $data->id) }}" class="text-decoration-none text-dark">
                             <div class="mt-2 d-flex justify-content-start align-items-start">
                                 <div class="kiri">
+                                    @if($data->produk)
                                     <img src="{{ $data->produk->gambar[0]->img == null ? asset('imagenotfound.jpg') : Storage::url($data->produk->gambar[0]->img) }}"
+                                    width="65px" height="65px" class="rounded" alt="...">
+                                    @else
+                                    <img src="{{ asset('imagenotfound.jpg')}}"
                                         width="65px" height="65px" class="rounded" alt="...">
+                                    @endif
+                                    
                                 </div>
                                 <div class="kanan ms-2">
                                     <b>
-                                        <span style="font-size: 14px">{{ $data->produk->nama }}</span></b>
+                                        <span style="font-size: 14px">{{ $data->produk == null ? $data->nama_produk : $data->produk->nama }}</span></b>
                                     <div class="" style="font-size: 13px">
-                                        @uang($data->produk->harga_jual) x {{ $data->qty }} qty
+                                        @uang($data->produk == null ? $data->harga_jual : $data->produk->harga_jual) x {{ $data->qty }} qty
                                     </div>
                                     <div class="" style="font-size: 13px">
-                                        @uang($data->produk->harga_jual * $data->qty)
+                                        @uang($data->produk == null ? $data->harga_jual : $data->produk->harga_jual * $data->qty)
                                     </div>
                                 </div>
                             </div>

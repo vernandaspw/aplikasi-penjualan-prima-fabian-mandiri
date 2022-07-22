@@ -55,7 +55,7 @@
                     <b> @uang($produk->harga_jual)</b>
                 </div>
                 <div class="">
-                    Terjual {{ $produk->transaksiitem->where('terjual', true)->count() }} | <img
+                    Terjual {{ $produk->transaksiitem->where('terjual', true)->sum('qty') }} | <img
                         src="{{ asset('stars.svg') }}" alt="">
                     @rating($produk->produkulasan->avg('rating')) ({{ $produk->produkulasan->count() }})
                 </div>
@@ -220,7 +220,7 @@
                         <b> @uang($produk->harga_jual)</b>
                     </div>
                     <div class="">
-                        Terjual {{ $produk->transaksiitem->where('terjual', true)->count() }} | <img
+                        Terjual {{ $produk->transaksiitem->where('terjual', true)->sum('qty') }} | <img
                             src="{{ asset('stars.svg') }}" alt="">
                         @rating($produk->produkulasan->avg('rating')) ({{ $produk->produkulasan->count() }})
                     </div>
