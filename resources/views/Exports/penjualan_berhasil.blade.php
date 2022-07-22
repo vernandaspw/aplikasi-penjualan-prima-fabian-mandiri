@@ -132,7 +132,7 @@
         <div class="" style="font-size: 10px;">
             <div class="" style="width: 175px">
                 <div class="mb-1">
-                    <center><b>Prima Elektronik</b>
+                    <center><b>PFM STORE</b>
                         <div class="">
                             {{ \Carbon\Carbon::parse($data->created_at)->isoFormat('D MMMM Y, H:m') }}
                         </div>

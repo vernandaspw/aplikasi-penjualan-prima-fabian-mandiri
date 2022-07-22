@@ -24,7 +24,7 @@
     <div class="" style="font-size: 9px;">
         <div class="" style="width: 21%">
             <div class="mb-2">
-                <center><b>Prima Elektronik</b></center>
+                <center><b>PFM STORE</b></center>
             </div>
             <hr class="my-0 py-0">
             <div class="col-12">

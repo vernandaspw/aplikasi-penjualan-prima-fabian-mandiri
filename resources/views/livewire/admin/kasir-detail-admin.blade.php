@@ -102,7 +102,7 @@
                 Nama Toko
             </div>
             <div class="">
-                Prima Elektronik
+                PFM STORE
             </div>
         </div>
         <div class="d-flex justify-content-between align-items-center">

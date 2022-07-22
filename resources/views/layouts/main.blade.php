@@ -7,7 +7,7 @@
 
     <title>
         @yield('title')
-        Prima Elektronik</title>
+        PFM STORE</title>
 
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/x-icon">
 

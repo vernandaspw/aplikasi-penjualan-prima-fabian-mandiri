@@ -23,10 +23,10 @@
         </ul>
     </nav> --}}
 
-    <div class="mt-4 mb-5">
+    <div class="mt-2 mb-5">
         <div class="mb-3 container-fluid">
             <div class="card shadow-sm">
-                <div class="card-body">
+                <div class="card-body py-2">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="">
                             <b>KELOLA TRANSAKSI</b>
@@ -35,16 +35,152 @@
                             {{-- <a href="{{ url('admin/kelola-produk-kategori') }}"
                                 class="btn me-1 mb-1 rounded-pill btn-info text-white">
                                 Kategori ('{{ $jmlkategori }}')
-                            </a>
-
-                            <a href="{{ url('admin/kelola-produk-merek') }}"
-                                class="btn me-1 mb-1 rounded-pill btn-info text-white">
-                                Merek ('{{ $jmlmerek }}')
                             </a> --}}
+
+                            @if ($pageBuat)
+                            @else
+                                <button wire:click="formBuat"
+                                    class="btn btn-sm me-1 mb-1 rounded-pill btn-success text-white">
+                                    Buat transaksi baru
+                                </button>
+                            @endif
 
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        @if ($pageBuat)
+            <div class="container-fluid">
+                <div class="col-lg-3 col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="">
+                                <form wire:submit.prevent='buatTransaksi'>
+                                    <div class="mt-2">
+                                        <b>Buat Transaksi baru</b>
+                                    </div>
+                                    <div class="mt-1">
+                                        <label for="jenis">Jenis Transaksi</label>
+                                        <select required
+                                            class="form-control form-control-sm @error('jenis') is-invalid @enderror""
+                                            wire:model='inputJenis' id="jenis">
+                                            <option value="">Pilih jenis</option>
+                                            @foreach ($jenis as $data)
+                                                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('jenis')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-1">
+                                        <label for="kategori">Kategori Transaksi</label>
+                                        <select required
+                                            class="form-control form-control-sm @error('kategori') is-invalid @enderror""
+                                            wire:model='inputKategori' id="kategori">
+                                            <option value="">Pilih kategori</option>
+                                            @foreach ($kategori as $data)
+                                                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('kategori')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-1">
+                                        <label for="nominal">Nominal</label>
+                                        <input required placeholder="Nominal" min="1" id="nominal"
+                                            type="number" wire:model.lazy='nominal'
+                                            class="form-control form-control-sm @error('nominal') is-invalid @enderror">
+                                        @error('nominal')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-1">
+                                        <label for="catatan">catatan</label>
+                                        <input placeholder="catatan" id="catatan" type="text"
+                                            wire:model.lazy='catatan'
+                                            class="form-control form-control-sm @error('catatan') is-invalid @enderror">
+                                        @error('catatan')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-1 d-flex w-100">
+                                        <div class="w-100 me-1">
+                                            <input type="datetime-local" wire:model='datetime' id=""
+                                                class="form-control form-control-sm">
+                                        </div>
+                                        <div class="ms-1 w-100">
+                                            <select wire:model='islunas' class="form-control form-control-sm">
+                                                <option value="true">Lunas
+                                                </option>
+                                                <option value="false">Belum
+                                                    bayar</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-1">
+                                        <label for="metodepembayaran">Metode Pembayaran</label>
+                                        <select required
+                                            class="form-control form-control-sm @error('metodepembayaran') is-invalid @enderror""
+                                            wire:model='inputmetodepembayaran' id="metodepembayaran">
+                                            <option value="">Pilih metodepembayaran</option>
+                                            @foreach ($metodepembayaran as $data)
+                                                <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('metodepembayaran')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-1">
+                                        <label for="nama">Nama Produk</label>
+                                        <input placeholder="Nama produk" id="nama" type="text"
+                                            wire:model.lazy='nama'
+                                            class="form-control form-control-sm @error('nama') is-invalid @enderror">
+                                        @error('nama')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit"
+                                        class="btn form-control btn-sm mt-2 me-1 text-white mb-1 rounded-pill btn-success shadow-sm text-dark">
+                                        Simpan
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="mt-1">
+                                <button wire:click="tutupForm" type="button"
+                                    class="btn form-control btn-sm mt-2 me-1 mb-1 rounded-pill btn-light shadow-sm text-dark">
+                                    Tutup
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        <div class="container-fluid">
+            <hr>
+            <div class="">
+                <h5>
+                    Riwayat Transaksi
+                </h5>
             </div>
             <div class="mt-2">
                 <div class="col-lg-3 col-md-6">
@@ -52,10 +188,6 @@
                         placeholder="Cari no transaksi/barcode">
                 </div>
             </div>
-        </div>
-
-
-        <div class="container-fluid">
             <div class="table-responsive">
                 <table class="table table-sm" style="font-size: 12px">
                     <thead class="table-light">

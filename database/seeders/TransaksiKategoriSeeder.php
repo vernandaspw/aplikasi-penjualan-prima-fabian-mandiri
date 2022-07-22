@@ -38,6 +38,10 @@ class TransaksiKategoriSeeder extends Seeder
             ],
             [
                 'transaksi_jenis_id' => 1,
+                'nama' => 'pendapatan jasa'
+            ],
+            [
+                'transaksi_jenis_id' => 1,
                 'nama' => 'pendapatan lain lain'
             ],
 

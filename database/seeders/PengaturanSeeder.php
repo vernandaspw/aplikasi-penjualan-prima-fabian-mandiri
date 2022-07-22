@@ -20,7 +20,7 @@ class PengaturanSeeder extends Seeder
                 'nm_perusahaan' => 'PT. Prima Fabian Mandiri',
                 'no_telp' => '0711412413',
                 'no_wa' => '8532532524',
-                'ig' => 'iramatoko',
+                'ig' => 'iramabaru',
                 'sejarah' => 'PT. Prima Fabian Mandiri Palembang berdiri sejak tanggal 13 Januari 2015, yang bergerak di bidang perdagangan sebagai distributor produk dan sparepart elektronik. Perusahaan ini didirikan oleh Daniel Fabian Soendoko dan Darmawan pada tanggal 13 Januari 2015. PT. Prima Fabian Mandiri memiliki NPWP: 72.162.330.4-307.000. Kantor PT. Prima Fabian Mandiri berlokasi di Jalan Veteran No. 757L Kelurahan Kuto Batu Kecamatan Ilir Timur II Kota Palembang. Gudang barang PT. Prima Fabian Mandiri berlokasi di Pasar 16 tepatnya di Jalan Beringin Janggut No. II, 17 Ilir, Kec. Ilir Timur. I, Kota Palembang, Sumatera Selatan 30111. ',
                 'visi' => 'Menjadi perusahaan di bidang penyedia produk elektronik yang maju dan terkemuka di Indonesia',
                 'misi' => 'Berikut ini adalah misi PT. Prima Fabian Mandiri:
