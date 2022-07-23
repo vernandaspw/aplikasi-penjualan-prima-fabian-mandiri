@@ -31,7 +31,7 @@
             </div>
             <div class="d-flex align-items-center mt-1">
                 <label for="">Pengiriman</label>
-                <select class="form-control ms-2 rounded-pill" wire:model='selectKategori' id="">
+                <select class="form-control ms-2 rounded-pill" wire:model='selectPengiriman' id="">
                     <option value="">Semua</option>
                     @foreach ($pengiriman as $data)
                     <option value="{{ $data->id }}">{{ $data->metode }}</option>
@@ -41,7 +41,7 @@
             </div>
             <div class="d-flex align-items-center mt-1">
                 <label for="">Pembayaran</label>
-                <select class="form-control ms-2 rounded-pill" wire:model='selectKategori' id="">
+                <select class="form-control ms-2 rounded-pill" wire:model='selectPembayaran' id="">
                     <option value="">Semua</option>
                     @foreach ($pembayaran as $data)
                     <option value="{{ $data->id }}">{{ $data->metode }}</option>

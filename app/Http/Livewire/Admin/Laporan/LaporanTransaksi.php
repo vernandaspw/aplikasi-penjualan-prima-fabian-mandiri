@@ -18,7 +18,7 @@ class LaporanTransaksi extends Component
     public $jenis, $kategori, $pengiriman, $pembayaran;
     public $take = 20;
     public $jml_item;
-    public $selectJenis, $selectKategori;
+    public $selectJenis, $selectKategori, $selectPengiriman, $selectPembayaran;
 
     public $cari_no;
 
@@ -43,12 +43,19 @@ class LaporanTransaksi extends Component
         if ($this->cari_no) {
             $transaksi->where('no_transaksi', 'like', '%'. $this->cari_no . '%');
         }
+
         if ($this->selectJenis) {
             // dd($this->selectJenis);
             $transaksi->where('transaksi_jenis_id', $this->selectJenis);
             if ($this->selectKategori) {
                 $transaksi->where('transaksi_kategori_id', $this->selectKategori);
             }
+        }
+        if ($this->selectPengiriman) {
+            $transaksi->where('metode_kirim_id', $this->selectPengiriman);
+        } 
+        if ($this->selectPembayaran) {
+            $transaksi->where('metode_pembayaran_id', $this->selectPembayaran);
         }
         if ($this->start_date && $this->end_date) {
             $transaksi->whereBetween('created_at', [$this->start_date, $this->end_date]);
