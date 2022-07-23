@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin\Laporan;
 
 use App\Exports\LaporanPenjualanExport;
 use App\Exports\LaporanTransaksiExport;
+use App\Models\MetodeKirim;
+use App\Models\MetodePembayaran;
 use App\Models\Transaksi;
 use App\Models\TransaksiJenis;
 use App\Models\TransaksiKategori;
@@ -13,7 +15,7 @@ use Livewire\Component;
 class LaporanTransaksi extends Component
 {
     public $transaksi = [];
-    public $jenis, $kategori;
+    public $jenis, $kategori, $pengiriman, $pembayaran;
     public $take = 20;
     public $jml_item;
     public $selectJenis, $selectKategori;
@@ -30,7 +32,9 @@ class LaporanTransaksi extends Component
     public function mount()
     {
         $this->jenis = TransaksiJenis::latest()->get();
-        $this->kategori = TransaksiKategori::latest()->get();
+        // $this->kategori = TransaksiKategori::latest()->get();
+        $this->pengiriman = MetodeKirim::where('isaktif', true)->get();
+        $this->pembayaran = MetodePembayaran::where('isaktif', true)->get();
     }
 
     public function render()
