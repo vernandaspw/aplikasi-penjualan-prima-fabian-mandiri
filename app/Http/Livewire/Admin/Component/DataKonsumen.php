@@ -11,6 +11,11 @@ class DataKonsumen extends Component
     public $take = 15;
     public $jml_item;
 
+    public function lanjut()
+    {
+        $this->take = $this->take + 15;
+    }
+
     public function render()
     {
         $this->konsumen = Konsumen::latest()->get();
