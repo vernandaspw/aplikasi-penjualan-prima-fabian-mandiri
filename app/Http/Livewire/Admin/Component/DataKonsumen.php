@@ -18,10 +18,9 @@ class DataKonsumen extends Component
 
     public function render()
     {
-        $this->konsumen = Konsumen::latest()->get();
+        $this->konsumen = Konsumen::take($this->take)->latest()->get();
 
         $this->jml_item = Konsumen::latest()->get()->count();
-
         return view('livewire.admin.component.data-konsumen')->extends('layouts.main')->section('content');
     }
 }
