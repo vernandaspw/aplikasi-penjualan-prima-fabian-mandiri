@@ -73,7 +73,7 @@
                             Sudah bayar dan barang diterima
                         </button>
                     @else
-                        <button class="btn mt-1 btn-outline-success btn-sm shadow-sm form-control rounded-pill">
+                        <button wire:click='sdh_byr_kemas' class="btn mt-1 btn-outline-success btn-sm shadow-sm form-control rounded-pill">
                             Sudah bayar lalu kemas barang
                         </button>
                     @endif
@@ -84,14 +84,14 @@
                             Bayar nanti dan barang diterima
                         </button>
                     @else
-                        <button class="btn mt-1 btn-outline-warning btn-sm shadow-sm form-control rounded-pill">
+                        <button wire:click='byr_nanti_kemas' class="btn mt-1 btn-outline-warning btn-sm shadow-sm form-control rounded-pill">
                             Bayar nanti lalu kemas barangs
                         </button>
                     @endif
                 </div>
                 <div class="mt-2">
                     @if ($transaksi->metodepembayaran->metode != 'tunai')
-                        <button class="btn btn-secondary btn-sm shadow-sm form-control rounded-pill">
+                        <button wire:click='cek_admin' class="btn btn-secondary btn-sm shadow-sm form-control rounded-pill">
                             Pembayaran dicek admin dulu
                         </button>
                     @endif

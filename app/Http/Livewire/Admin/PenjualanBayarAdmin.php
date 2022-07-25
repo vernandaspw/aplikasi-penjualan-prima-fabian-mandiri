@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\MetodePembayaran;
 use App\Models\ProdukStok;
 use App\Models\ProdukStokLog;
 use App\Models\Transaksi;
@@ -43,8 +44,51 @@ class PenjualanBayarAdmin extends Component
     {
         $id = $this->transaksi->id;
         $transaksi = Transaksi::with('transaksiitem')->find($id);
-        if ($transaksi->total_pembayaran > $this->diterima) {
-            $this->emit('error', ['pesan' => 'nominal uang diterima tunai harus lebih besar dari tagihan pembayaran']);
+        // dd($transaksi->metode_pembayaran_id);
+        $pembayaran = MetodePembayaran::find($transaksi->metode_pembayaran_id);
+
+
+        if ($pembayaran->metode == 'tunai') {
+            // dd($pembayaran->metode);
+            if ($transaksi->total_pembayaran > $this->diterima) {
+                $this->emit('error', ['pesan' => 'nominal uang diterima tunai harus lebih besar dari tagihan pembayaran']);
+            } else {
+                $transaksi->update([
+                    'diterima' => $this->diterima,
+                    'kembalian' => $this->diterima - $transaksi->total_pembayaran,
+                    'status' => 'selesai',
+                    'islunas' => true
+                ]);
+
+                TransaksiLog::create([
+                    'transaksi_id' => $transaksi->id,
+                    'status' => 'selesai',
+                ]);
+
+                foreach ($transaksi->transaksiitem as $item) {
+
+                    // transaksiitem terjual true
+                    TransaksiItem::find($item->id)->update([
+                        'terjual' => true
+                    ]);
+
+                    $produkstok = ProdukStok::where('produk_id', $item->produk_id)->first();
+                    if ($produkstok) {
+                        $produkstok->update([
+                            'real' => $produkstok->real - $item->qty,
+                        ]);
+                        ProdukStokLog::create([
+                            'produk_stok_id' => $produkstok->id,
+                            'jenis' => 'keluar',
+                            'real' => $item->qty,
+                            'keterangan' => 'diterima konsumen'
+                        ]);
+                    }
+                }
+
+                $this->emit('success', ['pesan' => 'Berhasil']);
+                redirect()->to('admin/penjualan/bayar/berhasil/' . $transaksi->no_transaksi);
+            }
         } else {
             $transaksi->update([
                 'diterima' => $this->diterima,
@@ -77,7 +121,6 @@ class PenjualanBayarAdmin extends Component
                         'keterangan' => 'diterima konsumen'
                     ]);
                 }
-
             }
 
             $this->emit('success', ['pesan' => 'Berhasil']);
@@ -87,10 +130,37 @@ class PenjualanBayarAdmin extends Component
 
     public function sdh_byr_kemas()
     {
+
         $id = $this->transaksi->id;
         $transaksi = Transaksi::with('transaksiitem')->find($id);
-        if ($transaksi->total_pembayaran > $this->diterima) {
-            $this->emit('error', ['pesan' => 'nominal uang diterima tunai harus lebih besar dari tagihan pembayaran']);
+        // dd($transaksi->metode_pembayaran_id);
+        $pembayaran = MetodePembayaran::find($transaksi->metode_pembayaran_id);
+        if ($pembayaran->metode == 'tunai') {
+            if ($transaksi->total_pembayaran > $this->diterima) {
+                $this->emit('error', ['pesan' => 'nominal uang diterima tunai harus lebih besar dari tagihan pembayaran']);
+            } else {
+                $transaksi->update([
+                    'diterima' => $this->diterima,
+                    'kembalian' => $this->diterima - $transaksi->total_pembayaran,
+                    'status' => 'sedang_dikemas',
+                    'islunas' => true
+                ]);
+
+                TransaksiLog::create([
+                    'transaksi_id' => $transaksi->id,
+                    'status' => 'sedang_dikemas',
+                ]);
+
+                // foreach ($transaksi->transaksiitem as $item) {
+                //     // transaksiitem terjual true
+                //     TransaksiItem::find($item->id)->update([
+                //         'terjual' => true
+                //     ]);
+                // }
+
+                $this->emit('success', ['pesan' => 'Berhasil']);
+                redirect()->to('admin/penjualan/bayar/berhasil/' . $transaksi->no_transaksi);
+            }
         } else {
             $transaksi->update([
                 'diterima' => $this->diterima,
@@ -162,29 +232,44 @@ class PenjualanBayarAdmin extends Component
         $transaksi = Transaksi::with('transaksiitem')->find($id);
 
         $transaksi->update([
-
             'status' => 'sedang_dikemas',
             'islunas' => false
         ]);
-
         TransaksiLog::create([
             'transaksi_id' => $transaksi->id,
             'status' => 'sedang_dikemas',
         ]);
-
         // foreach ($transaksi->transaksiitem as $item) {
         //     // transaksiitem terjual true
         //     TransaksiItem::find($item->id)->update([
         //         'terjual' => false
         //     ]);
         // }
-
         $this->emit('success', ['pesan' => 'Berhasil']);
         redirect()->to('admin/penjualan/bayar/berhasil/' . $transaksi->no_transaksi);
     }
 
     public function  cek_admin()
     {
+        $id = $this->transaksi->id;
+        $transaksi = Transaksi::with('transaksiitem')->find($id);
+
+        $transaksi->update([
+            'status' => 'proses_pembayaran',
+            'islunas' => false
+        ]);
+        TransaksiLog::create([
+            'transaksi_id' => $transaksi->id,
+            'status' => 'proses_pembayaran',
+        ]);
+        // foreach ($transaksi->transaksiitem as $item) {
+        //     // transaksiitem terjual true
+        //     TransaksiItem::find($item->id)->update([
+        //         'terjual' => false
+        //     ]);
+        // }
+        $this->emit('success', ['pesan' => 'Berhasil']);
+        // redirect()->to('admin/penjualan/produk' . $transaksi->no_transaksi);
         redirect()->to('admin/penjualan/produk');
     }
 

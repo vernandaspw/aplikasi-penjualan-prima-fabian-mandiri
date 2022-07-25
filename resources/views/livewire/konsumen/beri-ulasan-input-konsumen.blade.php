@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <ul class="navbar-nav me-auto w-full align-items-centar">
                 <li class="nav-item me-3">
-                    <span class="text-white"><b><a href="{{ url('/') }}"
+                    <span class="text-white"><b><a href="{{ url('beri-ulasan') }}"
                                 class="btn btn-close btn-close-white"></a></b></span>
                 </li>
                 <li class="nav-item">
@@ -33,7 +33,7 @@
                                     <img src="{{ asset('imagenotfound.jpg')}}"
                                         width="65px" height="65px" class="rounded" alt="...">
                                     @endif
-                                    
+
                                 </div>
                                 <div class="kanan ms-2">
                                     <b>
