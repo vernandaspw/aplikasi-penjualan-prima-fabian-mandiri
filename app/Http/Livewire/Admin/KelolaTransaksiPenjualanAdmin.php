@@ -197,11 +197,11 @@ class KelolaTransaksiPenjualanAdmin extends Component
         $transaksi =  Transaksi::with('transaksiitem', 'konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
 
         $transaksi->update([
-            'status' => 'batal',
+            'status' => 'selesai',
         ]);
         TransaksiLog::create([
             'transaksi_id' => $id,
-            'status' => 'batal'
+            'status' => 'selesai'
         ]);
         $this->emit('success', ['pesan' => 'berhasil terima retur pesanan']);
     }
