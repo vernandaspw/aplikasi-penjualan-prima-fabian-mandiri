@@ -154,7 +154,7 @@ class KelolaTransaksiPenjualanAdmin extends Component
         $this->emit('success', ['pesan' => 'berhasil menyelesaikan pesanan']);
     }
 
-    public function batal($id)
+    public functiongit batal($id)
     {
         $transaksi =  Transaksi::with('transaksiitem', 'konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
         // batal ketika konsumen belum bayar, ubah status jadi batal
