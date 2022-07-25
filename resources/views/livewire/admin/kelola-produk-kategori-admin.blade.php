@@ -35,7 +35,7 @@
                 <div class="mb-3">
                     <div class="card shadow">
                         <div class="card-body">
-                            <b>Tambah Produk Baru</b>
+                            <b>Tambah Merek Baru</b>
                             <form wire:submit.prevent='buatKategori'>
 
                                 <div class="mt-2">
@@ -68,7 +68,7 @@
                 <div class="mb-3">
                     <div class="card shadow">
                         <div class="card-body">
-                            <b>Edit Produk</b>
+                            <b>Edit kategori</b>
                             <form wire:submit.prevent='editKategori'>
                                 <div class="mt-2">
                                     <label for="nama">Nama kategori</label>

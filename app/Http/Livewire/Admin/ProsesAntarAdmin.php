@@ -35,7 +35,7 @@ class ProsesAntarAdmin extends Component
 
     public function render()
     {
-        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('status', 'sedang_antar');
+        $transaksi = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran');
         if ($this->cari_no) {
             $transaksi->where('no_transaksi', 'like', '%' . $this->cari_no . '%');
         }
@@ -45,7 +45,8 @@ class ProsesAntarAdmin extends Component
                 $transaksi->where('transaksi_kategori_id', $this->kategori->id);
             }
         }
-        $this->transaksi = $transaksi->take($this->take)->latest()->get();
+
+        $this->transaksi = $transaksi->where('status', 'sedang_antar')->orWhere('status', 'retur')->take($this->take)->latest()->get();
 
         $this->jmlproduk = Transaksi::with('konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->where('status', 'sedang_antar')->count();
         return view('livewire.admin.proses-antar-admin')->extends('layouts.main')->section('content');
@@ -138,5 +139,19 @@ class ProsesAntarAdmin extends Component
         ]);
 
         $this->emit('success', ['pesan' => 'berhasil retur pesanan']);
+    }
+
+    public function returditerima($id)
+    {
+        $transaksi =  Transaksi::with('transaksiitem', 'konsumen', 'transaksi_kategori', 'transaksi_jenis', 'metodekirim', 'metodepembayaran')->find($id);
+
+        $transaksi->update([
+            'status' => 'selesai',
+        ]);
+        TransaksiLog::create([
+            'transaksi_id' => $id,
+            'status' => 'selesai'
+        ]);
+        $this->emit('success', ['pesan' => 'berhasil terima retur pesanan']);
     }
 }
