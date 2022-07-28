@@ -23,7 +23,7 @@
         </nav>
 
         <div class="d-md-block d-lg-block d-xl-block d-none">
-            <div class="body" style="padding-top: 60px; padding-bottom: 65px;">
+            <div class="body" style="padding-top: 65px; padding-bottom: 65px;">
                 <div class="row">
                     <div class="col-md-2">
                         <div class="container-lg container-fluid">

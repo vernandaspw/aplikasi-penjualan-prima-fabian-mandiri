@@ -22,10 +22,10 @@
                     </ul>
                 </div>
             </nav>
-            <div class="mt-5 pt-1"></div>
+            {{-- <div class="mt-5 pt-1"></div> --}}
 
-            <div class="body" style="padding-bottom: 65px;">
-                <div class="row">
+            <div class="body" style="padding-top: 65px; background-color: {{ env('COLOR_PRIMARY') }}">
+                <div class="row bg-white" style="padding-bottom: 65px">
                     <div class="col-md-2">
                         <div class="container-lg container-fluid">
                             <div class="mt-2 text-center">
