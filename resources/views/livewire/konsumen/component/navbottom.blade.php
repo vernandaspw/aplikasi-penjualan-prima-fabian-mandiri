@@ -12,40 +12,33 @@
                     </span>
                 </div> --}}
 
-                <a href="{{ url('/') }}"
-                class="nav-link {{ Request::is('/') == '/' ? 'active' : '' }} text-center">
-                <img src="{{ asset('icon_home.png') }}" class="mb-0 pb-0" alt=""
-                    style=" {{ Request::is('/') == '/' ? 'active' : 'width: 15px' }}">
-                <span class="small d-block" style="font-size: 11px">
-                    Beranda
-                </span>
-            </a>
+                <a href="{{ url('/') }}" class="nav-link {{ Request::is('/') == '/' ? 'active' : '' }} text-center">
+                    <img src="{{ asset('icon_home.png') }}" class="mb-0 pb-0" alt=""
+                        style=" {{ Request::is('/') == '/' ? 'active' : 'width: 15px' }}">
+                    <span class="small d-block" style="font-size: 11px">
+                        Beranda
+                    </span>
+                </a>
             </li>
             <li class="nav-item">
-
-
-
                 <a href="{{ url('/pesanan') }}"
-                        class="nav-link {{ Request::is('/pesanan') == '/pesanan' ? 'active' : '' }} text-center">
-                        <img src="{{ asset('icon_order.png') }}" class="mb-0 pb-0" alt=""
-                            style=" {{ Request::is('/pesanan') == '/pesanan' ? 'active' : 'width: 15px' }}">
-                        <span class="small d-block" style="font-size: 11px">
-                            Pesanan
-                        </span>
-                    </a>
-
+                    class="nav-link {{ Request::is('/pesanan') == '/pesanan' ? 'active' : '' }} text-center">
+                    <img src="{{ asset('icon_order.png') }}" class="mb-0 pb-0" alt=""
+                        style=" {{ Request::is('/pesanan') == '/pesanan' ? 'active' : 'width: 15px' }}">
+                    <span class="small d-block" style="font-size: 11px">
+                        Pesanan
+                    </span>
+                </a>
             </li>
             <li class="nav-item">
-
-
-                    <a href="{{ url('/akun') }}"
-                        class="nav-link {{ Request::is('/akun') == '/akun' ? 'active' : '' }} text-center">
-                        <img src="{{ asset('icon_person.png') }}" class="mb-0 pb-0" alt=""
-                            style=" {{ Request::is('/akun') == '/akun' ? 'active' : 'width: 15px' }}">
-                        <span class="small d-block" style="font-size: 11px">
-                            Akun
-                        </span>
-                    </a>
+                <a href="{{ url('/akun') }}"
+                    class="nav-link {{ Request::is('/akun') == '/akun' ? 'active' : '' }} text-center">
+                    <img src="{{ asset('icon_person.png') }}" class="mb-0 pb-0" alt=""
+                        style=" {{ Request::is('/akun') == '/akun' ? 'active' : 'width: 15px' }}">
+                    <span class="small d-block" style="font-size: 11px">
+                        Akun
+                    </span>
+                </a>
 
             </li>
         </ul>
