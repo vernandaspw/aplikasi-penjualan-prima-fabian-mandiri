@@ -326,6 +326,6 @@
 
 <style>
     body {
-        background-color: rgb(248, 248, 248);
+        background-color: rgb(254, 254, 254);
     }
 </style>
