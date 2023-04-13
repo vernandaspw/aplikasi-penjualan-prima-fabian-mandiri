@@ -36,3 +36,34 @@ class Produk extends Model
         return $this->hasOne(ProdukStok::class, 'produk_id', 'id');
     }
 }
+$asd = array(
+    "name" => "tanto",
+    "alamat" => "dktw"
+);
+
+$asd = array(
+    "kel1" => array(
+        "01" => array(
+            "name" => "tanto",
+            "alamat" => "dktw",
+        ),
+        "02" => array(
+            "name" => "toni",
+            "alamat" => "dktw1",
+        ),
+    ),
+    "kel2" => array(
+        "01" => array(
+            "name" => "desi",
+            "alamat" => "dktw2",
+        ),
+        "02" => array(
+            "name" => "Mawar",
+            "alamat" => "dktw3",
+        ),
+    ),
+);
+
+
+
+$asd = array("tanto", "dktw");

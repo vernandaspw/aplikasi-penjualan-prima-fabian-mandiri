@@ -119,7 +119,7 @@ class PenjualanAdmin extends Component
         }
         if ($this->catatan) {
             $this->show = true;
-        }
+        }   
     }
 
     public function render()

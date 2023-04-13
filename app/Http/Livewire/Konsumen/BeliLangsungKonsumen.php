@@ -48,6 +48,7 @@ class BeliLangsungKonsumen extends Component
         $this->produk = Produk::find($id);
         $this->alamat = auth('konsumen')->user();
     }
+    
     public function render()
     {
         $this->pengiriman = MetodeKirim::with('metode_pembayaran')->where('isaktif', true)->get();
